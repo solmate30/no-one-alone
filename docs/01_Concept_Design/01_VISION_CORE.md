@@ -1,6 +1,6 @@
-# Vision & Core Values — Solmate
-> Created: 2026-05-08
-> Last Updated: 2026-05-08
+# Vision & Core Values — no-one-alone
+> Created: 2026-05-08 01:39
+> Last Updated: 2026-05-08 02:00
 
 ## 1. 핵심 비전
 
@@ -18,7 +18,7 @@
 |:---|:---|:---|
 | 위기 가구 (대상자) | 고독사 위험군, 고시원·쪽방 거주자, 자기 신청 불가 취약계층 | 복지 정보 접근 불가, 자력 신청 불가 |
 | 시민 제보자 | 이상 징후를 인지한 이웃, 지인, 가족 | 신고 채널 불명확, 허위 신고 우려 |
-| 복지 담당자 (B2G) | 읍면동 행정복지센터 사회복지사 | 1인 평균 1,027명 수동 관리, 우선순위 판단 어려움 |
+| 복지 담당자 (B2G) | 읍면동 행정복지센터 사회복지사 | 복지대상자 증가와 반복 조사로 인한 업무 부담, 우선순위 판단 어려움 |
 | 보험사 / 기업 (B2B) | 고독사 보험 개발사, CSR 예산 집행 기업 | 위험 데이터 부재, 집행 투명성 입증 불가 |
 
 ## 4. 핵심 가치
@@ -32,10 +32,10 @@
 
 ## 5. Unfair Advantage
 
-- 기존 서비스 (Next.js + NestJS + AI 챗봇 Soli) 배포 완료
+- 기존 no-one-alone 기획 자산과 Web3/AI 구현 경험 보유
 - 공공 블록체인 실무 경험 (Hyperledger Fabric, IITP 과제)
-- 한국 공공데이터 API 연동 완료
-- OmniOne CX 모바일 신분증 연동 예정 (해커톤 결선)
+- 한국 공공데이터 API 활용 경험 보유
+- OmniOne CX 모바일 신분증 연동 및 OmniOne Chain 기록을 결선 MVP 범위로 확정
 
 ## 6. 장기 비전
 
@@ -50,3 +50,5 @@
 - **Concept_Design**: [Lean Canvas](./02_LEAN_CANVAS.md) — 비즈니스 모델 및 수익 구조
 - **Concept_Design**: [Product Specs](./03_PRODUCT_SPECS.md) — MVP 기능 명세
 - **Concept_Design**: [Pitch Deck](./XX_PITCH_DECK.md) — 해커톤 발표용 자료
+- **UI_Screens**: [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md) — 4개 핵심 플로우 화면 구조
+- **Logic_Progress**: [Roadmap](../04_Logic_Progress/00_ROADMAP.md) — 단계별 성장 로드맵

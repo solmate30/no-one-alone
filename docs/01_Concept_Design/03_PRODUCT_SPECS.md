@@ -1,14 +1,15 @@
-# Product Specs — Solmate MVP
-> Created: 2026-05-08
-> Last Updated: 2026-05-08
+# Product Specs — no-one-alone MVP
+> Created: 2026-05-08 01:39
+> Last Updated: 2026-05-08 02:00
 
 ## 1. 개발 단계
 
-**현재 상태**: MVP (배포 완료)
-- Next.js + TypeScript 기반 서비스 운영 중
-- AI 챗봇 Soli 구현 및 배포 완료
-- 한국 공공데이터 API 연동 완료
-- OmniOne CX (모바일 신분증) + OmniOne Chain 연동: 해커톤 결선까지 추가 예정
+**현재 상태**: 제안서 작성 단계 (구현 없음)
+- 2026-05-31 온라인 모집 마감 전 공모 제안서 제출이 1차 목표
+- 현재 문서는 제안서 본문, 발표 흐름, 결선 MVP 구현 계획을 정리하기 위한 설계 자료
+- Next.js + TypeScript 기반 시민 앱 및 담당자 대시보드는 결선 진출 후 구현 예정
+- AI 챗봇 Soli의 위기 키워드 감지·위기도 스코어링은 제안서 내 핵심 구현 계획으로 제시
+- OmniOne CX (모바일 신분증) + Open DID + OmniOne Chain 연동은 결선 MVP에서 구현할 선택조건 가점 전략
 
 ## 2. 기술 스택
 
@@ -78,10 +79,10 @@
 
 | 기록 항목 | 내용 |
 |:---|:---|
-| 제보 이력 | 제보자 DID + 타임스탬프 + 상황 해시 |
-| 판단 이력 | 위기도 스코어 + 담당자 승인 기록 |
-| 집행 이력 | 지원 종류 + 금액 + 수혜자 DID |
-| CSR 기부 | 기업명 + 집행 금액 + 수혜자 통계 → ESG 리포트 자동 생성 |
+| 제보 이력 | 제보자 DID 해시 + 타임스탬프 + 상황 해시 |
+| 판단 이력 | 위기도 스코어 해시 + 담당자 승인 기록 해시 |
+| 집행 이력 | 지원 종류·금액 해시 + 수혜자 DID 해시 |
+| CSR 기부 | 기업명 해시 + 집행 금액 집계 + 수혜자 통계 → ESG 리포트 자동 생성 |
 
 ## 4. 필수조건 충족 (해커톤 Track 2)
 
@@ -100,13 +101,40 @@
 | Open DID | 시민 제보자 DID 발급 → VC 기반 신원 증명 |
 | OmniOne Chain | 제보-판단-집행 전 과정 온체인 기록, CSR 기부 투명화 |
 
-## 5. MVP 범위 (해커톤 데모)
+## 5. MVP 범위
 
-**포함:**
+### 5-1. 5월 제안서 제출물 (2026-05-31 온라인 모집 마감)
+
+제안서 단계에서는 구현물이 없다는 전제로, 문제 정의·해결 방식·차별성·사업성·결선 구현 가능성을 명확히 증명한다.
+
+**제출 대상:**
+- 공모 제안서 PPTX (refs/TrackNo_팀명_프로젝트명_yymmdd.pptx 양식 기반)
+- 제안 요약서 (최대 2p, 표 수정 불가)
+- 제안내용의 목적 및 필요성
+- 제안내용의 상세 설명
+- 제안내용의 차별성
+- 기대효과
+- 관련 자료 및 기타 보충 자료
+
+**미포함:**
+- 실제 동작하는 웹앱, API, DB, OmniOne CX/Chain 연동 구현물
+
+### 5-2. 예선 대면평가 준비물 (2026-06-24 ~ 2026-06-25)
+
+예선에 선정될 경우, 8분 발표와 5분 Q&A 기준으로 제안서 내용을 발표 자료화한다.
+
+**중점:**
+- 창의성 35점: 이웃 제보 + AI 케어 + 모바일 신분증 + 온체인 기록 조합
+- 실현 가능성 35점: 결선 기간 내 구현 가능한 4개 핵심 플로우
+- 사업성 30점: B2G SaaS, 보험, CSR, 익명 집계 데이터 API 수익 구조
+
+### 5-3. 결선 구현 범위 (2026-07-01 ~ 2026-09-21)
+
+**결선에서 구현해야 할 범위:**
 - Soli 챗봇 (위기 키워드 감지 + 위기도 스코어 출력)
-- 이웃 제보 플로우 (모바일 신분증 연동 시뮬레이션)
+- 이웃 제보 플로우 (OmniOne CX 모바일 신분증 실연동)
 - 담당자 대시보드 (위기 우선순위 리스트)
-- OmniOne Chain 집행 기록 시연
+- OmniOne Chain 집행 기록 실연동 (가점 +10%)
 
 **미포함 (이후 단계):**
 - 실제 행정 시스템 연동
@@ -127,3 +155,8 @@
 - **Concept_Design**: [Vision & Core Values](./01_VISION_CORE.md) — 타겟 오디언스 및 핵심 가치
 - **Concept_Design**: [Lean Canvas](./02_LEAN_CANVAS.md) — 비즈니스 모델 및 수익 구조
 - **Concept_Design**: [Pitch Deck](./XX_PITCH_DECK.md) — 발표용 요약 자료
+- **UI_Screens**: [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md) — 기능별 화면 플로우
+- **Technical_Specs**: [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 기능 구현용 DB 테이블
+- **Technical_Specs**: [API Specs](../03_Technical_Specs/02_API_SPECS.md) — 기능별 API 엔드포인트
+- **Logic_Progress**: [Backlog](../04_Logic_Progress/00_BACKLOG.md) — 제안서 작성 및 결선 후보 작업
+- **QA_Validation**: [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md) — 제안서 제출 전 검증
