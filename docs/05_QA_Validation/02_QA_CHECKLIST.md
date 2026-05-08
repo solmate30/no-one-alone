@@ -1,6 +1,7 @@
 # QA Checklist — no-one-alone 제안서 제출 전 점검
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 02:00
+> Last Updated: 2026-05-08 17:35
+> Backlog: P-07, D-03, M-01, M-02, M-03, M-05, Q-01, Q-02, Q-04
 
 > 이 체크리스트는 2026-05-31 온라인 모집 마감 전, 공모 제안서 제출물을 검수하기 위한 문서다.
 > 현재 단계에서는 구현물이 없으므로 앱 실행 QA가 아니라 제안서 품질과 심사 기준 대응을 점검한다.
@@ -84,4 +85,4 @@
 
 - **QA_Validation**: [Test Scenarios](./01_TEST_SCENARIOS.md) — 제안서 심사 기준별 검증 관점
 - **Logic_Progress**: [Backlog](../04_Logic_Progress/00_BACKLOG.md) — 제안서 작성 작업 목록
-- **Concept_Design**: [Pitch Deck](../01_Concept_Design/XX_PITCH_DECK.md) — PPTX 이식용 발표 흐름
+- **Concept_Design**: [Pitch Deck](../01_Concept_Design/04_PITCH_DECK.md) — PPTX 이식용 발표 흐름

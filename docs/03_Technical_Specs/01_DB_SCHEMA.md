@@ -1,6 +1,7 @@
 # DB Schema — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 02:00
+> Last Updated: 2026-05-08 17:35
+> Backlog: T-01, T-02, T-03, M-02, M-03, M-04, M-05
 
 ## 1. 설계 원칙
 

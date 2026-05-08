@@ -1,6 +1,7 @@
 # Vision & Core Values — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 02:00
+> Last Updated: 2026-05-08 17:35
+> Backlog: P-02, P-03, D-02
 
 ## 1. 핵심 비전
 
@@ -49,6 +50,6 @@
 
 - **Concept_Design**: [Lean Canvas](./02_LEAN_CANVAS.md) — 비즈니스 모델 및 수익 구조
 - **Concept_Design**: [Product Specs](./03_PRODUCT_SPECS.md) — MVP 기능 명세
-- **Concept_Design**: [Pitch Deck](./XX_PITCH_DECK.md) — 해커톤 발표용 자료
+- **Concept_Design**: [Pitch Deck](./04_PITCH_DECK.md) — 해커톤 발표용 자료
 - **UI_Screens**: [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md) — 4개 핵심 플로우 화면 구조
 - **Logic_Progress**: [Roadmap](../04_Logic_Progress/00_ROADMAP.md) — 단계별 성장 로드맵

@@ -1,6 +1,7 @@
 # Proposal Validation Scenarios — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 02:00
+> Last Updated: 2026-05-08 17:35
+> Backlog: P-05, T-03, M-02, M-04, Q-01, Q-03
 
 ## 1. 검증 기준 — 제안서 심사 관점
 
@@ -96,4 +97,4 @@
 
 - **QA_Validation**: [QA Checklist](./02_QA_CHECKLIST.md) — 제안서 제출 전 최종 체크리스트
 - **Logic_Progress**: [Backlog](../04_Logic_Progress/00_BACKLOG.md) — 제안서 작성 작업 목록
-- **Concept_Design**: [Pitch Deck](../01_Concept_Design/XX_PITCH_DECK.md) — 8분 발표 흐름
+- **Concept_Design**: [Pitch Deck](../01_Concept_Design/04_PITCH_DECK.md) — 8분 발표 흐름

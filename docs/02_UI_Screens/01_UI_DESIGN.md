@@ -1,6 +1,7 @@
 # UI Design — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 02:00
+> Last Updated: 2026-05-08 17:35
+> Backlog: P-04, T-01, T-03, M-01, M-02, M-03, M-04
 
 ## 1. 설계 원칙
 
