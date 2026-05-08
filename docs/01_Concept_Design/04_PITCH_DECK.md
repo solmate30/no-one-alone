@@ -1,6 +1,7 @@
 # Proposal Deck — no-one-alone
-> Created: 2026-05-08
-> Last Updated: 2026-05-08
+> Created: 2026-05-08 01:39
+> Last Updated: 2026-05-08 17:35
+> Backlog: P-01, P-02, P-03, P-04, P-05, P-06, P-07, D-02, D-03, Q-02, Q-03
 > Target: 2026 블록체인&AI 해커톤 — Track 2 MVP 모델 개발·시연
 > Format: 공모 제안서 PPTX / 제안 요약서 최대 2p / 본문 10p 이내 / 8분 발표
 

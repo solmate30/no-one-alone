@@ -1,6 +1,7 @@
 # Product Specs — no-one-alone MVP
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 02:00
+> Last Updated: 2026-05-08 17:35
+> Backlog: P-01, P-02, P-04, P-05, T-01, T-02, T-03, M-01, M-02, M-03, M-04, M-05
 
 ## 1. 개발 단계
 
@@ -154,7 +155,7 @@
 
 - **Concept_Design**: [Vision & Core Values](./01_VISION_CORE.md) — 타겟 오디언스 및 핵심 가치
 - **Concept_Design**: [Lean Canvas](./02_LEAN_CANVAS.md) — 비즈니스 모델 및 수익 구조
-- **Concept_Design**: [Pitch Deck](./XX_PITCH_DECK.md) — 발표용 요약 자료
+- **Concept_Design**: [Pitch Deck](./04_PITCH_DECK.md) — 발표용 요약 자료
 - **UI_Screens**: [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md) — 기능별 화면 플로우
 - **Technical_Specs**: [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 기능 구현용 DB 테이블
 - **Technical_Specs**: [API Specs](../03_Technical_Specs/02_API_SPECS.md) — 기능별 API 엔드포인트

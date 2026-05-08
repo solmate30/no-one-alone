@@ -1,6 +1,7 @@
 # Lean Canvas — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 02:00
+> Last Updated: 2026-05-08 17:35
+> Backlog: P-02, P-03, P-06, D-02
 
 ## 1. Problem (문제)
 
@@ -94,6 +95,6 @@
 
 - **Concept_Design**: [Vision & Core Values](./01_VISION_CORE.md) — 핵심 비전 및 타겟 오디언스
 - **Concept_Design**: [Product Specs](./03_PRODUCT_SPECS.md) — MVP 기능 명세
-- **Concept_Design**: [Pitch Deck](./XX_PITCH_DECK.md) — 발표용 요약 자료
+- **Concept_Design**: [Pitch Deck](./04_PITCH_DECK.md) — 발표용 요약 자료
 - **Logic_Progress**: [Roadmap](../04_Logic_Progress/00_ROADMAP.md) — 수익 레이어별 단계 계획
 - **Technical_Specs**: [API Specs](../03_Technical_Specs/02_API_SPECS.md) — CSR·데이터 API 명세

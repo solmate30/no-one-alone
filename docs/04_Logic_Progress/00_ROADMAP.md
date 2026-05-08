@@ -1,6 +1,7 @@
 # Roadmap — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 02:00
+> Last Updated: 2026-05-08 17:35
+> Backlog: P-06, Q-04
 
 ## 0. 해커톤 공식 일정 (2026 블록체인 & AI 해커톤)
 

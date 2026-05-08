@@ -1,6 +1,7 @@
 # Screen Flow — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 02:00
+> Last Updated: 2026-05-08 17:35
+> Backlog: P-04, T-03, M-01, M-02, M-03, M-04
 
 ## 1. 전체 화면 구조
 
