@@ -1,6 +1,7 @@
 # Development Principles — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 02:00
+> Last Updated: 2026-05-08 17:35
+> Backlog: D-01, P-05, T-01, T-02, M-01, M-05
 
 > 현재 구현된 코드는 없다. 이 문서는 5월 제안서에서 실현 가능성을 설명하고, 예선 통과 후 결선 MVP를 구현할 때 적용할 후보 개발 원칙이다.
 
