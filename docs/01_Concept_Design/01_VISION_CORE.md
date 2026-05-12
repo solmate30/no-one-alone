@@ -1,6 +1,6 @@
 # Vision & Core Values — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 17:35
+> Last Updated: 2026-05-12 23:00
 > Backlog: P-02, P-03, D-02
 
 ## 1. 핵심 비전
@@ -34,9 +34,9 @@
 ## 5. Unfair Advantage
 
 - 기존 no-one-alone 기획 자산과 Web3/AI 구현 경험 보유
-- 공공 블록체인 실무 경험 (Hyperledger Fabric, IITP 과제)
+- 공공 블록체인 실무 경험 (IITP 블록체인 과제)
 - 한국 공공데이터 API 활용 경험 보유
-- OmniOne CX 모바일 신분증 연동 및 OmniOne Chain 기록을 결선 MVP 범위로 확정
+- OmniOne CX 모바일 신분증 연동 및 OmniOne Chain 기록을 MVP 개발 단계 범위로 확정
 
 ## 6. 장기 비전
 

@@ -1,6 +1,6 @@
 # Document Index — no-one-alone
 > Created: 2026-05-08 17:35
-> Last Updated: 2026-05-12 13:21
+> Last Updated: 2026-05-12 23:00
 > Backlog: D-01
 
 ## 1. 목적
@@ -31,7 +31,7 @@
 | `P-*` | 2026년 5월 공모 제안서 제출 작업 |
 | `D-*` | 개념, 전략, 문서 구조 정리 작업 |
 | `T-*` | 기술 조사 및 기술 명세 작업 |
-| `M-*` | 결선 MVP 구현 작업 |
+| `M-*` | MVP 구현 작업 |
 | `Q-*` | QA, 검증, 발표 준비 작업 |
 
 ## 4. 문서 지도
@@ -52,8 +52,7 @@
 | [DB Schema](./03_Technical_Specs/01_DB_SCHEMA.md) | Technical_Specs | `T-01`, `T-02`, `T-03`, `M-02`, `M-03`, `M-04`, `M-05` | 데이터 모델, 인덱스, 온체인 기록 대상. |
 | [API Specs](./03_Technical_Specs/02_API_SPECS.md) | Technical_Specs | `T-01`, `T-02`, `T-03`, `M-02`, `M-03`, `M-04`, `M-05` | 인증, 제보, Soli, 위기도, 대시보드, 체인 API 계약. |
 | [Proposal Validation Scenarios](./05_QA_Validation/01_TEST_SCENARIOS.md) | QA_Validation | `P-05`, `T-03`, `M-02`, `M-04`, `Q-01`, `Q-03` | 창의성, 실현 가능성, 사업성, 발표 검증 시나리오. |
-| [QA Checklist](./05_QA_Validation/02_QA_CHECKLIST.md) | QA_Validation | `P-07`, `D-03`, `T-04`, `M-01`, `M-02`, `M-03`, `M-05`, `M-06`, `Q-01`, `Q-02`, `Q-04` | 제출 전 점검, 내용 정합성, 결선 MVP 계획 검증. |
-| [Proposal Source](../solmate_hackathon_proposal.md) | Source | `P-03`, `P-06`, `D-02` | 제안서 원문. 5-Layer 문서와 동기화해야 하는 원천 자료. |
+| [QA Checklist](./05_QA_Validation/02_QA_CHECKLIST.md) | QA_Validation | `P-07`, `D-03`, `T-04`, `M-01`, `M-02`, `M-03`, `M-05`, `M-06`, `Q-01`, `Q-02`, `Q-04` | 제출 전 점검, 내용 정합성, MVP 개발 단계 계획 검증. |
 | [CLAUDE.md](../CLAUDE.md) | Root | `D-01` | Claude Code가 이 repo에서 작업할 때 참조하는 도구별 지침. |
 
 ## 5. 신규 문서 후보
@@ -65,7 +64,7 @@
 | `03_OMNIONE_CX_INTEGRATION.md` | `docs/03_Technical_Specs/` | `T-01`, `M-03`, `M-05` | OmniOne CX SDK 연동 방식이 구체화될 때 |
 | `04_OPEN_DID_CHAIN_INTEGRATION.md` | `docs/03_Technical_Specs/` | `T-02`, `M-05` | Open DID, OmniOne Chain 기록 구조가 구체화될 때 |
 | `01_SOLI_SCORING_LOGIC.md` | `docs/04_Logic_Progress/` | `T-03`, `M-02` | 위기 키워드와 스코어링 규칙을 구현 전 확정할 때 |
-| `02_IMPLEMENTATION_DECISIONS.md` | `docs/04_Logic_Progress/` | `M-01` | 결선 진출 후 실제 코드 구조와 패턴을 확정할 때 |
+| `02_IMPLEMENTATION_DECISIONS.md` | `docs/04_Logic_Progress/` | `M-01` | MVP 개발 단계 진입 후 실제 코드 구조와 패턴을 확정할 때 |
 | `03_DEMO_SCRIPT.md` | `docs/05_QA_Validation/` | `Q-03`, `Q-04` | 8분 발표와 최종 데모 흐름을 확정할 때 |
 
 ## Related Documents

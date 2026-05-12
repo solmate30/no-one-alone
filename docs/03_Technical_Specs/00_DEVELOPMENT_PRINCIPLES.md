@@ -1,9 +1,9 @@
 # Development Principles — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 17:35
+> Last Updated: 2026-05-12 23:00
 > Backlog: D-01, P-05, T-01, T-02, M-01, M-05
 
-> 현재 구현된 코드는 없다. 이 문서는 5월 제안서에서 실현 가능성을 설명하고, 예선 통과 후 결선 MVP를 구현할 때 적용할 후보 개발 원칙이다.
+> 현재 구현된 코드는 없다. 이 문서는 5월 제안서에서 실현 가능성을 설명하고, MVP 개발 단계에서 적용할 후보 개발 원칙이다.
 
 ## 1. 기술 스택
 
@@ -12,7 +12,7 @@
 | Frontend | Next.js + TypeScript | Next.js 14+ (App Router) |
 | Backend | NestJS + PostgreSQL | NestJS 10+, PostgreSQL 16+ |
 | ORM | Drizzle ORM | 최신 stable |
-| AI | Claude API (Anthropic) | 결선 시점 공식 최신 Sonnet 계열 모델 확인 후 확정 |
+| AI | Claude API (Anthropic) | MVP 개발 단계 진입 시 공식 최신 Sonnet 계열 모델 확인 후 확정 |
 | Auth | OmniOne CX (모바일 신분증), Open DID | OmniOne CX SDK |
 | Blockchain | OmniOne Chain | 공식 SDK |
 | Infra | Vercel (Frontend) + AWS (Backend) | - |
@@ -166,7 +166,7 @@ fix/[설명]    — 버그 수정
 
 | 항목 | 목표 |
 |:---|:---|
-| Soli 응답 지연 | 결선 MVP 3초 이내 목표 (Claude API 스트리밍 활용) |
+| Soli 응답 지연 | MVP 3초 이내 목표 (Claude API 스트리밍 활용) |
 | 대시보드 초기 로드 | LCP 2.5초 이하 |
 | 위기 알림 | 스코어 갱신 후 5초 이내 담당자 웹소켓 전달 |
 | 온체인 기록 | 집행 완료 후 비동기 처리 (사용자 대기 없음) |
