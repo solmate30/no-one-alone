@@ -1,6 +1,6 @@
 # Backlog — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 17:35
+> Last Updated: 2026-05-12 13:21
 > Backlog: 전체
 
 ## 0. Backlog 운영 원칙
@@ -45,7 +45,7 @@
 
 현재 no-one-alone은 **구현 전 설계 단계**다. 2026년 5월의 목표는 동작하는 MVP가 아니라, `refs/TrackNo_팀명_프로젝트명_yymmdd.pptx` 양식에 맞춘 공모 제안서 제출이다.
 
-다만 Track 2는 결선에서 MVP 모델 개발·시연을 요구하므로, 제안서에는 **5월 제출 계획**과 **결선 진출 시 2026-07-01 ~ 2026-09-21 MVP 구현 계획**을 함께 담는다.
+다만 Track 2는 MVP 모델 개발·시연을 요구하므로, 제안서에는 **5월 제출 계획**과 **MVP 개발 단계 2026-07-01 ~ 2026-09-21 구현 계획**을 함께 담는다.
 
 ---
 
@@ -171,7 +171,7 @@
 - 작업 유형: Proposal
 - 목표: 사회적 효과와 지속 가능한 수익 구조를 함께 설명한다.
 - 필수 참조:
-  - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 7. 기대효과, 8. 사업화 계획
+  - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 6. 기대효과와 사업화
   - [Lean Canvas](../01_Concept_Design/02_LEAN_CANVAS.md) — 6. Revenue Streams, 8. Key Metrics, 9. Unfair Advantage
   - [Roadmap](./00_ROADMAP.md) — 2. 생존 단계, 3. 검증 단계, 7. 수익 목표 요약
   - [Proposal Source](../../solmate_hackathon_proposal.md) — 5. 비즈니스 모델, 6. 기대효과
@@ -257,7 +257,7 @@
 - 작업 유형: Research
 - 목표: 문제 정의, 시장성, 정책 적합성, 개인정보·블록체인 설명에 필요한 근거 자료를 모은다.
 - 필수 참조:
-  - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 9. 제안내용 관련 자료
+  - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 7. 제안내용 관련 자료
   - [Proposal Validation Scenarios](../05_QA_Validation/01_TEST_SCENARIOS.md) — 1. 검증 기준
   - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md) — 5. 내용 정합성
 - 생성/업데이트 문서:
@@ -341,6 +341,28 @@
 - 완료 기준:
   - AI 실패 시 룰 기반 fallback이 정의됨
   - 대화 원문 접근 제한 원칙이 반영됨
+
+### T-04. 공공 마이데이터 자격 확인 흐름 정리
+
+- 상태: Todo
+- 우선순위: High
+- 작업 유형: Research
+- 목표: 대상자 동의 기반 복지 자격 확인 흐름을 제안서와 MVP 범위 안에서 설명 가능하게 만든다.
+- 필수 참조:
+  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 3-6. 공공 마이데이터 자격 확인 흐름, 4. 필수조건 충족
+  - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 4. 제안내용의 상세 설명, 5. 제안내용의 차별성
+  - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md) — 4. Track 2 및 가점 조건, 6. 결선 MVP 계획 점검
+- 생성/업데이트 문서:
+  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md)
+  - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md)
+  - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md)
+- 산출물:
+  - 대상자 동의, Mock 조회, 담당자 확인 배지 흐름
+  - 원문 저장 금지 및 이벤트 해시 기록 원칙
+  - 실제 운영 API 계약·심사 완료는 파일럿 단계로 분리한다는 설명
+- 완료 기준:
+  - 마이데이터가 자동 판정 장치가 아니라 담당자 판단 보조 도구로 정의됨
+  - MVP 시연 범위와 실제 운영 연동 범위가 구분됨
 
 ---
 
@@ -467,6 +489,29 @@
   - 개인정보 원문이 온체인에 기록되지 않음
   - 실패 시 데모 모드 fallback이 준비됨
 
+### M-06. 공공 마이데이터 자격 확인 데모 구현
+
+- 상태: Planned
+- 우선순위: Medium
+- 작업 유형: MVP Implementation
+- 목표: 대상자 동의 화면, Mock 자격 정보 조회, 담당자 대시보드 확인 배지 흐름을 구현한다.
+- 필수 참조:
+  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 3-6. 공공 마이데이터 자격 확인 흐름
+  - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 4. 제안내용의 상세 설명
+  - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md) — 6. 결선 MVP 계획 점검
+- 생성/업데이트 문서:
+  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md)
+  - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md)
+- 산출물:
+  - 동의 화면
+  - Mock 자격 확인 결과
+  - 담당자 확인 배지
+  - 자격 확인 이벤트 해시 표시
+- 완료 기준:
+  - 대상자 동의 없이는 자격 확인이 진행되지 않음
+  - 마이데이터 원문이 저장되지 않음
+  - 실제 운영 API 계약·심사 완료가 MVP 필수 조건으로 오해되지 않음
+
 ---
 
 ## 7. QA 및 발표 준비 백로그
@@ -551,9 +596,10 @@
 | 리스크 | 대응 | 관련 백로그 |
 |:---|:---|:---|
 | OmniOne CX/Chain SDK 연동 지연 | 데모 모드와 실제 연동 모드를 분리하고, 최소 1개 인증·TX 성공을 목표로 축소 | `T-01`, `T-02`, `M-05` |
+| 공공 마이데이터 운영 API 연동 지연 | MVP에서는 동의 화면과 Mock 응답으로 자격 확인 흐름을 시연하고, 실제 운영 API 계약·심사는 파일럿 단계로 분리 | `T-04`, `M-06` |
 | AI 응답 품질 불안정 | 위기 키워드 룰 기반 스코어링을 fallback으로 구현 | `T-03`, `M-02` |
-| 개인정보 이슈 | 실사용자 데이터 없이 데모 데이터와 DID 해시만 사용 | `T-01`, `T-02`, `M-03`, `M-05` |
-| 범위 과대 | 가족 케어·자가 신청은 화면 설계 수준으로 두고, 핵심 시연은 이웃 제보→담당자 승인→온체인 기록에 집중 | `P-05`, `M-03`, `M-04`, `M-05` |
+| 개인정보 이슈 | 실사용자 데이터 없이 데모 데이터와 DID 해시만 사용. 마이데이터 원문은 저장하지 않고 확인 결과와 이벤트 해시만 남김 | `T-01`, `T-02`, `T-04`, `M-03`, `M-05`, `M-06` |
+| 범위 과대 | Phase 2 가족 안부 케어는 제외하고, 핵심 시연은 이웃 제보→담당자 승인→온체인 기록에 집중 | `P-05`, `M-03`, `M-04`, `M-05`, `M-06` |
 | 발표 당일 네트워크 장애 | 로컬 데모 데이터와 녹화 영상을 백업으로 준비 | `Q-03`, `Q-04` |
 
 ---
