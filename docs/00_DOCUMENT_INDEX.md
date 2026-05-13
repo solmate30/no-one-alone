@@ -1,6 +1,6 @@
 # Document Index — no-one-alone
 > Created: 2026-05-08 17:35
-> Last Updated: 2026-05-12 23:00
+> Last Updated: 2026-05-13 02:00
 > Backlog: D-01
 
 ## 1. 목적
@@ -47,10 +47,10 @@
 | [Proposal Deck](./01_Concept_Design/04_PITCH_DECK.md) | Concept_Design | `P-01`, `P-02`, `P-03`, `P-04`, `P-05`, `P-06`, `P-07`, `D-02`, `D-03`, `T-04`, `M-06`, `Q-02`, `Q-03` | 공모 제안서 본문, 요약서, 발표 흐름의 기준 문서. |
 | [Pitch Deck HTML Preview](./pitch-deck.html) | Documentation | `P-07`, `Q-02` | 공모 제안서 내용을 시각적으로 확인하기 위한 HTML 미리보기 산출물. |
 | [Screen Flow](./02_UI_Screens/00_SCREEN_FLOW.md) | UI_Screens | `P-04`, `T-03`, `M-01`, `M-02`, `M-03`, `M-04` | 사용자별 화면 흐름과 핵심 플로우. |
-| [UI Design](./02_UI_Screens/01_UI_DESIGN.md) | UI_Screens | `P-04`, `T-01`, `T-03`, `M-01`, `M-02`, `M-03`, `M-04` | 시민 앱, 담당자 대시보드, Soli, 인증 UX 기준. |
+| [UI Design](./02_UI_Screens/01_UI_DESIGN.md) | UI_Screens | `P-04`, `T-01`, `T-03`, `M-01`, `M-02`, `M-03`, `M-04` | 대상자 웹 화면, 담당자 대시보드, Soli, 인증 UX 기준. |
 | [Development Principles](./03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md) | Technical_Specs | `D-01`, `P-05`, `T-01`, `T-02`, `M-01`, `M-05` | 기술 스택, 프로젝트 구조, 코딩 컨벤션, 보안 원칙. |
 | [DB Schema](./03_Technical_Specs/01_DB_SCHEMA.md) | Technical_Specs | `T-01`, `T-02`, `T-03`, `M-02`, `M-03`, `M-04`, `M-05` | 데이터 모델, 인덱스, 온체인 기록 대상. |
-| [API Specs](./03_Technical_Specs/02_API_SPECS.md) | Technical_Specs | `T-01`, `T-02`, `T-03`, `M-02`, `M-03`, `M-04`, `M-05` | 인증, 제보, Soli, 위기도, 대시보드, 체인 API 계약. |
+| [API Specs](./03_Technical_Specs/02_API_SPECS.md) | Technical_Specs | `T-01`, `T-02`, `T-03`, `M-02`, `M-03`, `M-04`, `M-05` | 인증, Soli, 위기도, 복지 매칭, 대시보드, 체인 API 계약. |
 | [Proposal Validation Scenarios](./05_QA_Validation/01_TEST_SCENARIOS.md) | QA_Validation | `P-05`, `T-03`, `M-02`, `M-04`, `Q-01`, `Q-03` | 창의성, 실현 가능성, 사업성, 발표 검증 시나리오. |
 | [QA Checklist](./05_QA_Validation/02_QA_CHECKLIST.md) | QA_Validation | `P-07`, `D-03`, `T-04`, `M-01`, `M-02`, `M-03`, `M-05`, `M-06`, `Q-01`, `Q-02`, `Q-04` | 제출 전 점검, 내용 정합성, MVP 개발 단계 계획 검증. |
 | [CLAUDE.md](../CLAUDE.md) | Root | `D-01` | Claude Code가 이 repo에서 작업할 때 참조하는 도구별 지침. |

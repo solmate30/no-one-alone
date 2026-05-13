@@ -1,7 +1,9 @@
 # CLAUDE.md
 > Created: 2026-05-08 17:45
-> Last Updated: 2026-05-08 17:45
-> Backlog: D-01
+> Last Updated: 2026-05-13 12:30
+
+> **Current phase: Proposal (2026-05-31 deadline). No application code exists.**
+> Coding conventions, security rules, and performance targets in this file are for reference only — they activate at finals entry (2026-07-01).
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
@@ -9,9 +11,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Solmate** (repo: `no-one-alone`) is a welfare crisis detection platform for the 2026 Blockchain & AI Hackathon (Track 2). The tagline: "국가가 못 찾는 사람을, 이웃이 찾고, AI가 연결하고, 블록체인이 증명한다."
+**Solmate** (repo: `no-one-alone`) is a welfare crisis detection platform for the 2026 Blockchain & AI Hackathon (Track 2). The tagline: "국가가 못 찾는 사람을, AI가 찾고, 복지가 닿고, 블록체인이 증명한다."
 
-Core pipeline: **이웃 제보 → Soli AI 위기도 스코어링 → 담당자 대시보드 → 지원 집행 → OmniOne Chain 기록**
+Core pipeline: **OmniOne CX 가입·로그인 본인확인 → Soli AI 정기 안부 감지 → Soli 복지 매칭 → 담당자 대시보드 승인 → 집행 직전 본인 재확인 → Open DID VC/VP + OmniOne Chain txId 기록**
 
 **Current state**: Proposal/documentation phase only. No application code exists. Proposal submission deadline: **2026-05-31**. Finals MVP development runs 2026-07-01 ~ 2026-09-21 if the team advances.
 
@@ -41,7 +43,6 @@ The reason: the proposal phase and the finals implementation phase are linked. E
 │   ├── 04_Logic_Progress/        — Roadmap, backlog, execution plans
 │   └── 05_QA_Validation/         — Test scenarios, QA checklists
 ├── refs/                         — Hackathon guidebook + PPTX template (read-only reference)
-├── solmate_hackathon_proposal.md — Proposal narrative (early draft)
 └── .agent/skills/                — AI agent skill definitions (local only, not committed)
 ```
 
@@ -113,7 +114,7 @@ If a document has associated backlog items, add them on the next line:
 > Backlog: P-01, T-03, M-02
 ```
 
-Always update `Last Updated` when modifying a document.
+Update `Last Updated` when making a substantial content change. Tiny typo, spacing, or formatting-only edits may keep the existing timestamp.
 
 ### Related Documents section (required at end of every document)
 
@@ -180,7 +181,7 @@ If any of these is missing, complete the document first.
 ```
 web/
 ├── app/
-│   ├── (citizen)/          — 시민 앱 라우트 (이웃 제보, 가족 케어, 복지 신청)
+│   ├── (user)/             — 대상자 웹 화면 라우트 (Soli 정기 안부, Soli 복지 매칭)
 │   ├── (dashboard)/        — 담당자 대시보드 (우선순위 리스트, 케이스 상세, 집행)
 │   └── api/                — Next.js BFF API Routes
 ├── components/
@@ -197,14 +198,16 @@ web/
 ```
 server/src/
 ├── auth/       — OmniOne CX DID 인증, JWT 발급
-├── reports/    — 이웃 제보
 ├── crisis/     — 위기도 스코어링
 ├── soli/       — Claude API 챗봇
-├── welfare/    — 복지 매칭·신청
+├── targets/    — 정기 안부 대상자 등록
+├── welfare/    — Soli 복지 매칭
 ├── dashboard/  — 담당자 대시보드
 ├── chain/      — OmniOne Chain 연동
-└── csr/        — CSR 기부·ESG 리포트
+└── csr/        — 파일럿 이후 CSR 기부·ESG 리포트 후보 모듈
 ```
+
+Coding conventions, security rules, and performance targets: see [`docs/03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md`](./docs/03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md).
 
 ---
 
@@ -222,14 +225,6 @@ server/src/
 - Color contrast: WCAG AA (4.5:1 minimum)
 - Keyboard: full keyboard navigation required on dashboard
 
-### Named components (from `01_UI_DESIGN.md`)
-
-Citizen app: `<ReportCard>`, `<CareStatus>`, `<WelfareMatch>`, `<OmniOneButton>`, `<ChainProof>`
-
-Dashboard: `<PriorityList>`, `<CrisisDetail>`, `<ApprovalModal>`, `<ChainHistory>`, `<DashboardMetrics>`
-
-Soli chat: `<ChatBubble>`, `<QuickReplyBar>`, `<SoliAvatar>`, `<TypingIndicator>`, `<CrisisAlert>`, `<WelfareProposal>`
-
 ### Soli crisis score thresholds
 
 | Score | Level | Soli behavior | UI change |
@@ -237,7 +232,7 @@ Soli chat: `<ChatBubble>`, `<QuickReplyBar>`, `<SoliAvatar>`, `<TypingIndicator>
 | 0–3 | 정상 | 일반 대화 유지 | 없음 |
 | 4–6 | 주의 | 복지 도움 제안 | 복지 제안 카드 표시 |
 | 7–8 | 경고 | 전문가 연결 제안 | 상담 연결 버튼 강조 |
-| 9–10 | 위급 | 즉시 담당자·가족 알림 발송 | 긴급 알림 UI |
+| 9–10 | 위급 | 즉시 담당자 알림 발송 | 긴급 알림 UI |
 
 ---
 
@@ -247,9 +242,9 @@ Soli chat: `<ChatBubble>`, `<QuickReplyBar>`, `<SoliAvatar>`, `<TypingIndicator>
 
 **Commit format** — Conventional Commits, Korean subject, minimum 3 detail lines:
 ```
-feat(reports): 이웃 제보 OmniOne CX 인증 연동
+feat(auth): OmniOne CX 본인 확인 연동
 
-- POST /reports 엔드포인트에 reporter_vc 검증 로직 추가
+- POST /auth/omni-cx/verify 엔드포인트에 검증 결과 처리 추가
 - OmniOne CX SDK 콜백 처리 후 DID 해시 저장
 - 인증 실패 시 403 에러 반환 처리
 ```
@@ -258,72 +253,13 @@ Types: `feat` / `fix` / `chore` / `docs` / `refactor` / `test`
 
 ---
 
-## Coding Conventions (for Finals MVP phase)
-
-### TypeScript
-
-- `strict: true` always on; never disable
-- No `any` — use `unknown` + type guards
-- Validate API responses and env vars with Zod; centralize env in `env.ts`
-- Date/time: use Luxon, not native Date
-
-### Naming
-
-| Target | Rule | Example |
-|:---|:---|:---|
-| Components | PascalCase | `CrisisScoreCard` |
-| Functions / variables | camelCase | `getCrisisScore` |
-| Constants | UPPER_SNAKE_CASE | `MAX_CRISIS_SCORE` |
-| DB columns | snake_case | `crisis_score` |
-| API paths | kebab-case | `/crisis-scores` |
-
-### Next.js (App Router)
-
-- New pages and routes: App Router only (`app/` directory)
-- Client-only browser APIs or interactive components: `'use client'`; everything else stays Server Component
-- `NEXT_PUBLIC_*` only for client-exposed env vars
-- External images: `next/image` + `remotePatterns` (never `domains`)
-
-### Database (Drizzle)
-
-- All schema defined in `server/drizzle/schema.ts`
-- Parameterized queries only — no raw SQL
-- Back up before any destructive migration or schema change
-
----
-
-## Security Rules
-
-| Rule | Detail |
-|:---|:---|
-| Soli conversations | AES-256 encrypted at rest; officers can only access AI-generated summaries, never plaintext |
-| On-chain data | DID hash + data hash + aggregated counts only — no personally identifiable information |
-| DID / VC | VC plaintext must never be stored; verify and discard immediately; only `did_hash` (SHA-256) in DB |
-| API auth | JWT Bearer token; RBAC with `citizen` / `officer` / `admin` roles enforced at route level |
-| Dashboard list | Names and addresses masked in list view; full detail only on case detail entry |
-| `chain_tx_hash` | Non-nullable on `support_executions` — every execution requires an on-chain record |
-| `.env*` files | Never commit; use AWS Secrets Manager for production secrets |
-
----
-
-## Performance Targets (Finals MVP)
-
-| Metric | Target | Implementation note |
-|:---|:---|:---|
-| Soli response latency | Under 3s | Claude API SSE streaming |
-| Dashboard LCP | Under 2.5s | Server Components + RSC |
-| Crisis alert push | Within 5s of score update | WebSocket to officer dashboard |
-| On-chain recording | Async, user does not wait | Fire-and-forget after execution approval |
-
----
-
 ## Hackathon Scoring Context
 
 The proposal is scored: **Creativity 35 / Feasibility 35 / Business 30**. Every document and every implementation decision should strengthen one of these three axes. When in doubt about what to build or document next, ask which axis it serves most.
 
 Key differentiators to preserve across all docs and code:
-- OmniOne CX mobile ID used at 3 trust points: reporter identity, welfare eligibility, execution recipient
-- Open DID for VC-based reporter DID issuance (+5% bonus)
-- OmniOne Chain for execution proof hashes (+5% bonus)
+- OmniOne CX mobile ID used at 2 trust points: sign-up/login, execution recipient
+- Open DID for beneficiary VC issuance and VP verification (+5% bonus)
+- OmniOne Chain for VC metadata and execution proof txId (+5% bonus)
 - Soli AI as proactive first contact — not a reactive chatbot
-- Social isolation data moat (crisis scores, response gaps, report history) — defensibility argument
+- Social isolation data moat (crisis scores, response gaps, officer feedback) — defensibility argument
