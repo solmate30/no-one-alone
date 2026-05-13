@@ -1,6 +1,6 @@
 # API Specs — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 17:35
+> Last Updated: 2026-05-13 12:30
 > Backlog: T-01, T-02, T-03, M-02, M-03, M-04, M-05
 
 ## 1. 공통 규칙
@@ -75,84 +75,51 @@ OmniOne CX 인증 콜백 처리 → JWT 발급
 
 ---
 
-### `POST /auth/did/issue`
-Open DID — 시민 제보자 DID 발급
+### `POST /auth/did/issue-beneficiary-vc`
+Open DID — 지원 확인 VC 발급
 
 **Request** (인증 필요)
 ```json
-{ "purpose": "reporter" }
-```
-
-**Response**
-```json
 {
-  "did": "did:open:xyz789",
-  "vc": "vc_eyJ..."
-}
-```
-
----
-
-## 3. `/reports` — 이웃 제보
-
-### `POST /reports`
-제보 접수 (인증 필요 — 시민)
-
-**Request**
-```json
-{
-  "address": "서울시 강남구 삼성동 123",
-  "description": "2주째 우편물이 쌓여 있고 소리가 없습니다.",
-  "reporter_vc": "vc_eyJ..."
+  "purpose": "welfare_eligibility",
+  "application_id": "app_xyz"
 }
 ```
 
 **Response**
 ```json
 {
-  "report_id": "rpt_abc",
-  "status": "pending",
-  "chain_tx_hash": "0xabc...",
-  "estimated_review_hours": 24
+  "beneficiary_did": "did:open:xyz789",
+  "vc_id": "vc_123",
+  "vc_metadata_hash": "sha256:vcmeta..."
 }
 ```
 
 ---
 
-### `GET /reports/:id`
-제보 상세 조회 (인증 필요 — 담당자 or 제보자 본인)
+### `POST /auth/did/verify-vp`
+Open DID — 제출된 VP 검증
+
+**Request** (인증 필요)
+```json
+{
+  "vp_token": "vp_eyJ...",
+  "required_claim": "welfare_eligibility"
+}
+```
 
 **Response**
 ```json
 {
-  "id": "rpt_abc",
-  "status": "reviewed",
-  "created_at": "2026-05-08T10:00:00Z",
-  "chain_tx_hash": "0xabc...",
-  "officer": { "district_name": "강남구 삼성동 행정복지센터" }
+  "verified": true,
+  "subject_did_hash": "sha256:abc123...",
+  "verified_at": "2026-05-08T11:10:00Z"
 }
 ```
 
 ---
 
-### `GET /reports` (담당자 전용)
-담당자 관할 제보 목록
-
-**Query**: `?status=pending&page=1&limit=20`
-
----
-
-### `PATCH /reports/:id/status` (담당자 전용)
-제보 상태 업데이트
-
-**Request**
-```json
-{ "status": "resolved", "note": "현장 방문 완료" }
-```
-
----
-
-## 4. `/crisis` — 위기도 스코어
+## 3. `/crisis` — 위기도 스코어
 
 ### `POST /crisis/score`
 위기도 스코어 산출 (내부 서비스 전용)
@@ -172,9 +139,13 @@ Open DID — 시민 제보자 DID 발급
   "score": 7.4,
   "score_basis": {
     "keywords": 3.2,
-    "response_gap": 2.1,
-    "reports": 1.5,
-    "isolation": 0.6
+    "response_gap": 2.6,
+    "isolation": 1.6
+  },
+  "source_weights": {
+    "keywords": 0.4,
+    "response_gap": 0.35,
+    "isolation": 0.25
   }
 }
 ```
@@ -194,7 +165,7 @@ Open DID — 시민 제보자 DID 발급
       "target_did_masked": "sha256:***456",
       "latest_score": 8.2,
       "trend": "rising",
-      "report_count": 2,
+      "eligibility_status": "verified",
       "last_soli_response_gap_hours": 48
     }
   ]
@@ -203,10 +174,10 @@ Open DID — 시민 제보자 DID 발급
 
 ---
 
-## 5. `/soli` — Soli 챗봇
+## 4. `/soli` — Soli 챗봇 (위기 감지 1차 경로)
 
 ### `POST /soli/chat`
-Soli 대화 (인증 필요 — 시민)
+Soli 대화 (인증 필요 — 시민) — Critical Path
 
 **Request**
 ```json
@@ -239,14 +210,22 @@ Soli 대화 요약 조회 (원문 아님)
 
 ---
 
-## 6. `/welfare` — 복지 매칭·신청
+## 5. `/welfare` — Soli 복지 매칭
 
 ### `POST /welfare/match`
-복지 자동 매칭 (인증 필요 — 시민)
+복지 자동 매칭 (가입·로그인 인증 세션 필요)
 
 **Request**
 ```json
-{ "conversation_id": "conv_abc" }
+{
+  "conversation_id": "conv_abc",
+  "profile": {
+    "age_group": "65+",
+    "region_code": "11680",
+    "household_type": "single"
+  },
+  "situation_tags": ["질병", "주거 불안", "긴급 생계"]
+}
 ```
 
 **Response**
@@ -257,7 +236,9 @@ Soli 대화 요약 조회 (원문 아님)
       "code": "W001",
       "name": "긴급복지지원",
       "description": "생계·의료·주거 위기 시 즉시 지원",
-      "eligible": true
+      "match_score": 0.86,
+      "match_basis": ["긴급 생계", "1인 가구", "주거 불안"],
+      "apply_url": "https://www.bokjiro.go.kr"
     }
   ]
 }
@@ -265,29 +246,7 @@ Soli 대화 요약 조회 (원문 아님)
 
 ---
 
-### `POST /welfare/apply`
-복지 신청 (인증 필요 — OmniOne CX 자격 검증 포함)
-
-**Request**
-```json
-{
-  "welfare_code": "W001",
-  "applicant_vc": "vc_eyJ..."
-}
-```
-
-**Response**
-```json
-{
-  "application_id": "app_xyz",
-  "status": "pending",
-  "verified_at": "2026-05-08T11:00:00Z"
-}
-```
-
----
-
-## 7. `/dashboard` — 담당자 도구
+## 6. `/dashboard` — 담당자 도구
 
 ### `GET /dashboard/priority` (담당자 전용)
 오늘의 케어 우선순위 리스트
@@ -300,9 +259,9 @@ Soli 대화 요약 조회 (원문 아님)
     {
       "id": "case_abc",
       "score": 8.2,
-      "report_count": 2,
       "soli_gap_hours": 48,
-      "care_type": ["이웃 제보", "가족 케어"]
+      "eligibility_status": "verified",
+      "care_type": ["Soli 감지", "Soli 복지 매칭", "담당자 등록"]
     }
   ]
 }
@@ -327,22 +286,22 @@ Soli 대화 요약 조회 (원문 아님)
 ```json
 {
   "execution_id": "exec_abc",
-  "chain_tx_hash": "0xabc123...",
+  "chain_tx_id": "0xabc123...",
   "approved_at": "2026-05-08T12:00:00Z"
 }
 ```
 
 ---
 
-## 8. `/chain` — OmniOne Chain 기록 조회
+## 7. `/chain` — OmniOne Chain 기록 조회
 
-### `GET /chain/record/:tx_hash`
-특정 TX 상세 조회
+### `GET /chain/record/:tx_id`
+특정 txId 상세 조회
 
 **Response**
 ```json
 {
-  "tx_hash": "0xabc123",
+  "tx_id": "0xabc123",
   "type": "support_execution",
   "timestamp": "2026-05-08T12:00:00Z",
   "data_hash": "sha256:xyz...",
@@ -357,9 +316,13 @@ Soli 대화 요약 조회 (원문 아님)
 
 ---
 
-## 9. `/csr` — CSR 기부·ESG 리포트
+## 8. Future APIs — MVP 이후 확장 후보
 
-### `POST /csr/donations` (기업 관리자)
+아래 API는 2026-07-01 ~ 2026-09-21 MVP 구현 범위가 아니다. 제안서에서는 사업 확장 가능성을 설명하기 위한 후보 계약으로만 다루며, 결선 MVP에서는 Soli 감지, 담당자 승인, 본인 확인, VC/txId 표시 흐름을 우선 구현한다.
+
+### 8-1. `/csr` — CSR 기부·ESG 리포트
+
+#### `POST /csr/donations` (기업 관리자)
 CSR 기부 등록
 
 **Request**
@@ -374,7 +337,7 @@ CSR 기부 등록
 
 ---
 
-### `GET /csr/donations/:id/report` (기업 관리자)
+#### `GET /csr/donations/:id/report` (기업 관리자)
 ESG 리포트 자동 생성
 
 **Response**
@@ -395,10 +358,10 @@ ESG 리포트 자동 생성
 
 ---
 
-## 10. `/data-api` — 보험사 익명 집계 데이터 API
+### 8-2. `/data-products` — 보험사 대상 익명 집계 데이터 상품 후보
 
-### `POST /data-api/insurance/exports` (관리자 전용)
-보험사 제공용 익명·집계 데이터셋 생성 요청
+#### `POST /data-products/insurance/exports` (관리자 전용)
+보험사 대상 비식별·집계 데이터 상품 생성 요청
 
 **Request**
 ```json
@@ -421,12 +384,12 @@ ESG 리포트 자동 생성
   "export_id": "exp_abc",
   "record_count": 1200,
   "data_hash": "sha256:abc...",
-  "download_url": "https://api.example.no-one-alone.kr/v1/data-api/insurance/exports/exp_abc/download"
+  "download_url": "https://api.example.no-one-alone.kr/v1/data-products/insurance/exports/exp_abc/download"
 }
 ```
 
-### `GET /data-api/insurance/exports/:id` (계약 보험사 전용)
-생성된 익명 집계 데이터셋 메타데이터 조회
+#### `GET /data-products/insurance/exports/:id` (계약 보험사 전용)
+생성된 비식별·집계 데이터 상품 메타데이터 조회
 
 **Response**
 ```json

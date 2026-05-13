@@ -1,11 +1,12 @@
 # DB Schema — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-08 17:35
+> Last Updated: 2026-05-13 12:30
 > Backlog: T-01, T-02, T-03, M-02, M-03, M-04, M-05
 
 ## 1. 설계 원칙
 
-- **개인정보 최소화**: 온체인 기록에는 DID 해시만 저장, 실명·주소는 DB에서 암호화
+- **개인정보 최소화**: 온체인 기록에는 DID 해시만 저장, MVP 데모에서는 실제 실명·주소 원문을 저장하지 않음
+- **MVP 데모 데이터 제한**: 실제 주소·상세 상황 설명은 저장하지 않고, 지역 코드·해시·데모 데이터 중심으로 시연
 - **역할 분리**: 시민(user) / 담당자(officer) / 기업(company) 테이블 분리
 - **감사 추적**: 모든 집행·승인 행위에 `created_at`, `updated_at`, 담당자 ID 기록
 - **Drizzle ORM**: 모든 스키마는 `drizzle/schema.ts`에서 관리
@@ -14,7 +15,7 @@
 
 ## 2. 테이블 명세
 
-### 2-1. `users` — 시민 앱 사용자
+### 2-1. `users` — 대상자 웹 사용자
 
 ```sql
 users
@@ -39,68 +40,57 @@ officers
 └── updated_at      TIMESTAMPTZ DEFAULT now()
 ```
 
-### 2-3. `reports` — 이웃 제보
-
-```sql
-reports
-├── id              UUID PRIMARY KEY DEFAULT gen_random_uuid()
-├── reporter_did_hash TEXT NOT NULL          -- 제보자 DID 해시 (원문 저장 금지)
-├── address         TEXT NOT NULL            -- 암호화된 주소
-├── address_code    TEXT                     -- 법정동 코드 (매칭용)
-├── description     TEXT NOT NULL            -- 상황 설명 (암호화)
-├── status          TEXT DEFAULT 'pending'   -- 'pending' | 'reviewed' | 'resolved'
-├── chain_tx_hash   TEXT                     -- 온체인 기록 TX 해시
-├── officer_id      UUID REFERENCES officers(id)  -- 배정 담당자
-├── created_at      TIMESTAMPTZ DEFAULT now()
-└── updated_at      TIMESTAMPTZ DEFAULT now()
-```
-
-### 2-4. `crisis_scores` — 위기도 스코어
+### 2-3. `crisis_scores` — 위기도 스코어
 
 ```sql
 crisis_scores
 ├── id              UUID PRIMARY KEY DEFAULT gen_random_uuid()
 ├── target_did_hash TEXT NOT NULL            -- 대상자 DID 해시
 ├── score           NUMERIC(4,1) NOT NULL    -- 0.0 ~ 10.0
-├── score_basis     JSONB                    -- 근거: {keywords, response_gap, reports, isolation}
-├── source          TEXT NOT NULL            -- 'soli' | 'report' | 'manual'
+├── score_basis     JSONB                    -- 근거: {keywords(40%), response_gap(35%), isolation(25%)}
+├── source          TEXT NOT NULL            -- 'soli' | 'manual'
 ├── officer_id      UUID REFERENCES officers(id)
 ├── created_at      TIMESTAMPTZ DEFAULT now()
 └── updated_at      TIMESTAMPTZ DEFAULT now()
 ```
 
-### 2-5. `care_registrations` — 가족 케어 등록
+### 2-4. `monitoring_targets` — 정기 안부 대상자 등록
+
+> **MVP 범위**: 담당자가 기존 관리 대상자를 등록하고, 대상자 본인 동의 후 Soli 정기 안부를 시작한다. 가족 케어와 이웃 제보는 Phase 2에서 재검토한다.
 
 ```sql
-care_registrations
+monitoring_targets
 ├── id              UUID PRIMARY KEY DEFAULT gen_random_uuid()
-├── child_did_hash  TEXT NOT NULL            -- 자녀 DID 해시
-├── parent_did_hash TEXT NOT NULL            -- 부모 DID 해시
-├── parent_phone    TEXT                     -- 암호화된 부모 연락처
+├── target_did_hash TEXT NOT NULL            -- 대상자 DID 해시
+├── target_phone_hash TEXT                   -- 연락처 해시 (원문 저장 금지)
+├── district_code   TEXT NOT NULL            -- 담당 관할 코드
+├── consented_at    TIMESTAMPTZ              -- 정기 안부 동의 완료 시각
 ├── frequency       TEXT DEFAULT 'daily'     -- 'daily' | 'every_other_day'
-├── alert_threshold NUMERIC(4,1) DEFAULT 6.0 -- 알림 발송 위기도 기준
+├── alert_threshold NUMERIC(4,1) DEFAULT 7.0 -- 담당자 알림 발송 위기도 기준
 ├── is_active       BOOLEAN DEFAULT true
-├── chain_tx_hash   TEXT                     -- 관계 인증 온체인 기록
 ├── created_at      TIMESTAMPTZ DEFAULT now()
 └── updated_at      TIMESTAMPTZ DEFAULT now()
 ```
 
-### 2-6. `welfare_applications` — 자가 복지 신청
+### 2-5. `welfare_matches` — Soli 복지 매칭 결과
 
 ```sql
-welfare_applications
+welfare_matches
 ├── id              UUID PRIMARY KEY DEFAULT gen_random_uuid()
-├── applicant_did_hash TEXT NOT NULL         -- 신청자 DID 해시
-├── welfare_type    TEXT NOT NULL            -- 복지 종류 코드
+├── user_did_hash   TEXT NOT NULL            -- 대상자 DID 해시
+├── conversation_id UUID                     -- Soli 대화 ID
+├── profile         JSONB                    -- 연령대·지역·가구 형태 등 직접 입력 조건
+├── situation_tags  TEXT[]                   -- 실직·질병·주거 불안·돌봄 공백 등 체크리스트
+├── welfare_code    TEXT NOT NULL            -- 복지서비스 코드
 ├── welfare_name    TEXT NOT NULL            -- "긴급복지지원" 등
-├── status          TEXT DEFAULT 'pending'   -- 'pending' | 'approved' | 'rejected'
-├── verified_at     TIMESTAMPTZ              -- OmniOne CX 자격 확인 시각
-├── officer_id      UUID REFERENCES officers(id)
+├── match_score     NUMERIC(4,2)             -- 0.00 ~ 1.00
+├── match_basis     JSONB                    -- 매칭 근거: 키워드·조건·체크리스트
+├── apply_url       TEXT                     -- 복지로/정부24 외부 신청 링크
 ├── created_at      TIMESTAMPTZ DEFAULT now()
 └── updated_at      TIMESTAMPTZ DEFAULT now()
 ```
 
-### 2-7. `support_executions` — 지원 집행
+### 2-6. `support_executions` — 지원 집행
 
 ```sql
 support_executions
@@ -110,13 +100,13 @@ support_executions
 ├── amount          NUMERIC(12,0)            -- 집행 금액 (원)
 ├── officer_id      UUID NOT NULL REFERENCES officers(id)
 ├── approved_at     TIMESTAMPTZ NOT NULL
-├── chain_tx_hash   TEXT NOT NULL            -- OmniOne Chain TX 해시 (필수)
+├── chain_tx_id     TEXT NOT NULL            -- OmniOne Chain txId (필수)
 ├── csr_donation_id UUID REFERENCES csr_donations(id)  -- CSR 연계 시
 ├── created_at      TIMESTAMPTZ DEFAULT now()
 └── updated_at      TIMESTAMPTZ DEFAULT now()
 ```
 
-### 2-8. `soli_conversations` — Soli 대화 로그
+### 2-7. `soli_conversations` — Soli 대화 로그 (위기 감지 1차 소스)
 
 ```sql
 soli_conversations
@@ -130,7 +120,9 @@ soli_conversations
 └── updated_at      TIMESTAMPTZ DEFAULT now()
 ```
 
-### 2-9. `csr_donations` — 기업 CSR 기부
+### 2-8. `csr_donations` — 기업 CSR 기부
+
+> **Future scope**: MVP 구현 대상이 아니다. 집행 증명 구조가 CSR 증빙으로 확장될 수 있음을 설명하기 위한 파일럿 이후 후보 테이블이다.
 
 ```sql
 csr_donations
@@ -142,12 +134,14 @@ csr_donations
 ├── end_date        DATE
 ├── platform_fee    NUMERIC(5,2)             -- 수수료율 (%) 3~5
 ├── esg_report_url  TEXT                     -- 자동 생성된 ESG 리포트 URL
-├── chain_tx_hash   TEXT                     -- 기부 등록 온체인 기록
+├── chain_tx_id     TEXT                     -- 기부 등록 온체인 기록
 ├── created_at      TIMESTAMPTZ DEFAULT now()
 └── updated_at      TIMESTAMPTZ DEFAULT now()
 ```
 
-### 2-10. `insurance_data_exports` — 보험사 데이터 API 제공 이력
+### 2-9. `insurance_data_exports` — 보험사 데이터 API 제공 이력
+
+> **Future scope**: MVP 구현 대상이 아니다. 보험사에는 개인 단위 데이터가 아니라 집계·비식별 통계만 제공한다는 장기 사업 경계를 설명하기 위한 후보 테이블이다.
 
 ```sql
 insurance_data_exports
@@ -172,11 +166,8 @@ insurance_data_exports
 -- 위기도 스코어 최신 조회 (대시보드 우선순위)
 CREATE INDEX idx_crisis_scores_target_created ON crisis_scores(target_did_hash, created_at DESC);
 
--- 제보 상태별 담당자 조회
-CREATE INDEX idx_reports_officer_status ON reports(officer_id, status);
-
--- 케어 등록 부모 DID 조회
-CREATE INDEX idx_care_parent ON care_registrations(parent_did_hash, is_active);
+-- 정기 안부 대상자 조회
+CREATE INDEX idx_monitoring_targets ON monitoring_targets(district_code, is_active);
 
 -- 대화 로그 사용자별 최신
 CREATE INDEX idx_soli_user_created ON soli_conversations(user_did_hash, created_at DESC);
@@ -188,11 +179,10 @@ CREATE INDEX idx_soli_user_created ON soli_conversations(user_did_hash, created_
 
 | 테이블 | 온체인 기록 시점 | 기록 내용 |
 |:---|:---|:---|
-| `reports` | 제보 접수 완료 | 제보자 DID 해시 + 타임스탬프 + 상황 해시 |
-| `care_registrations` | 관계 인증 완료 | 자녀·부모 DID 해시 + 등록 타임스탬프 |
+| `welfare_matches` | 복지 매칭 결과 참조 | 매칭 결과 해시 + 생성 타임스탬프 |
 | `support_executions` | 집행 승인 완료 | 수급자 DID 해시 + 지원 종류·금액 해시 + 담당자 DID 해시 |
-| `csr_donations` | 기부 등록 + 집행 | 기업명 해시 + 금액 집계 + 수혜자 수 |
-| `insurance_data_exports` | 데이터셋 제공 승인 | 보험사명 해시 + 집계 범위 해시 + 제공 데이터셋 해시 |
+| `csr_donations` | 파일럿 이후 | 기업명 해시 + 금액 집계 + 수혜자 수 |
+| `insurance_data_exports` | 파일럿 이후 | 보험사명 해시 + 집계 범위 해시 + 제공 데이터셋 해시 |
 
 ---
 
