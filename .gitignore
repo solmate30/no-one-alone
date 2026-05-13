@@ -1,0 +1,6 @@
+# Local Claude/Codex workspace artifacts
+.claude/
+.agent/
+
+# Deprecated local proposal draft
+solmate_hackathon_proposal.md
