@@ -20,6 +20,8 @@
     --soft-green: #f0fdf4;
     --soft-amber: #fffbeb;
     --soft-gray: #f8fafc;
+    --deep: #071426;
+    --deep-2: #0f2440;
   }
 
   * { box-sizing: border-box; }
@@ -109,6 +111,7 @@
   .summary-item { border: 1px solid var(--line); background: var(--soft-gray); padding: 14px 16px; min-height: 86px; }
   .summary-item strong { display: block; color: var(--navy); font-size: 14px; margin-bottom: 6px; }
   .summary-item p { color: var(--muted); font-size: 13px; line-height: 1.55; }
+  .summary-item.primary { background: #eaf2ff; border-color: #bfdbfe; }
 
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 22px; }
   .stat { border: 1px solid var(--line); background: #fff; padding: 18px 14px; min-height: 124px; }
@@ -148,6 +151,56 @@
   .impact strong { display: block; color: var(--blue); font-size: 24px; margin-bottom: 8px; }
   .impact p { color: var(--muted); font-size: 12px; line-height: 1.45; }
 
+  .problem-slide .page { background: var(--deep); border-color: #1e3a5f; color: #eef6ff; }
+  .problem-slide .slide-header { border-bottom-color: #ef4444; }
+  .problem-slide .section-label, .problem-slide h2 { color: #ffffff; }
+  .problem-slide .meta, .problem-slide .footer { color: #9fb2cc; }
+  .problem-slide .footer { border-top-color: rgba(255,255,255,0.13); }
+  .delay-wall { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px; }
+  .delay-keywords { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .delay-card { min-height: 132px; padding: 18px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.06); }
+  .delay-card strong { display: block; color: #ffffff; font-size: 28px; line-height: 1.15; margin-bottom: 10px; }
+  .delay-card span { color: #c7d7ea; font-size: 13px; line-height: 1.45; }
+  .delay-card.alert strong { color: #fca5a5; }
+  .problem-panel { border: 1px solid rgba(147, 197, 253, 0.24); background: rgba(37, 99, 235, 0.11); padding: 20px; min-height: 276px; }
+  .problem-panel h3 { color: #e0ecff; }
+  .problem-panel p, .problem-panel li { color: #c7d7ea; font-size: 14px; line-height: 1.65; }
+  .source-note { margin-top: 12px; color: #9fb2cc; font-size: 11px; line-height: 1.45; }
+
+  .solution-slide .page { background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%); }
+  .soli-sim { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 18px; margin-bottom: 16px; }
+  .phone, .report { border: 1px solid var(--line); background: #fff; padding: 16px; min-height: 250px; }
+  .phone-head, .report-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid #e5eaf2; margin-bottom: 12px; }
+  .phone-head strong, .report-head strong { color: var(--navy); font-size: 14px; }
+  .status-chip { color: #166534; background: #dcfce7; border: 1px solid #bbf7d0; padding: 4px 8px; font-size: 11px; font-weight: 800; }
+  .bubble { max-width: 88%; padding: 10px 12px; margin-bottom: 10px; font-size: 13px; line-height: 1.45; }
+  .bubble.soli { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e3a8a; }
+  .bubble.user { margin-left: auto; background: #f8fafc; border: 1px solid #e2e8f0; color: #334155; }
+  .risk-row { display: grid; grid-template-columns: 98px 1fr; gap: 10px; border-bottom: 1px solid #edf1f6; padding: 9px 0; }
+  .risk-row span { color: var(--muted); font-size: 12px; }
+  .risk-row strong { color: var(--ink); font-size: 13px; line-height: 1.45; }
+  .mini-pipeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .mini-step { border: 1px solid #bfdbfe; background: #eff6ff; padding: 12px; min-height: 72px; }
+  .mini-step strong { display: block; color: var(--navy); font-size: 13px; margin-bottom: 5px; }
+  .mini-step span { color: var(--muted); font-size: 11px; line-height: 1.35; }
+
+  .explorer-mock { border: 1px solid #cbd5e1; background: #fff; padding: 0; overflow: hidden; }
+  .explorer-top { background: #0f172a; color: #e2e8f0; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+  .explorer-body { padding: 14px; }
+  .hash-line { font-family: "SFMono-Regular", Consolas, monospace; color: #1d4ed8; background: #eff6ff; border: 1px solid #bfdbfe; padding: 9px 10px; font-size: 12px; word-break: break-all; margin-bottom: 10px; }
+  .explorer-row { display: grid; grid-template-columns: 110px 1fr; gap: 10px; padding: 8px 0; border-bottom: 1px solid #edf1f6; font-size: 12px; }
+  .explorer-row span { color: var(--muted); }
+  .explorer-row strong { color: var(--ink); }
+  .success { color: #15803d; font-weight: 850; }
+  .tech-note { color: var(--muted); font-size: 12px; line-height: 1.45; margin-top: 10px; }
+
+  .closing-slide .page { background: linear-gradient(180deg, #ffffff 0%, #eef6ff 100%); }
+  .closing-quote { font-size: 28px; line-height: 1.45; color: var(--navy); font-weight: 850; border-left: 7px solid var(--blue); padding-left: 20px; margin: 14px 0 24px; }
+  .tone-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .tone-card { border: 1px solid var(--line); background: #fff; padding: 16px; min-height: 122px; }
+  .tone-card strong { display: block; color: var(--navy); font-size: 15px; margin-bottom: 8px; }
+  .tone-card p { color: var(--muted); font-size: 13px; line-height: 1.55; }
+
   .nav { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); display: flex; gap: 8px; z-index: 20; }
   .dot { width: 8px; height: 8px; border-radius: 50%; border: 0; background: #b8c2d1; cursor: pointer; }
   .dot.active { background: var(--navy); }
@@ -165,7 +218,7 @@
     .content { padding: 22px; }
     h1 { font-size: 36px; }
     h2 { font-size: 24px; }
-    .stats, .pipeline, .impact-grid, .summary-grid, .two-col { grid-template-columns: 1fr; }
+    .stats, .pipeline, .impact-grid, .summary-grid, .two-col, .delay-wall, .delay-keywords, .soli-sim, .mini-pipeline, .tone-grid { grid-template-columns: 1fr; }
     .project-info { grid-template-columns: 1fr; }
     .project-info div { border-right: 0; border-bottom: 1px solid var(--line); }
     .project-info div:last-child { border-bottom: 0; }
@@ -200,8 +253,8 @@
       <div class="content">
         <h2>복지 위기 신호를 제때 발견하고, 신뢰 가능한 집행 기록으로 남깁니다</h2>
         <div class="summary-grid">
-          <div class="summary-item"><strong>문제</strong><p>복지대상자는 증가하지만 발굴 후 실제 지원 연결률은 약 44%에 머무른다.</p></div>
-          <div class="summary-item"><strong>해결 방식</strong><p>Soli AI 선제 감지, 담당자 돌봄 연결, 온체인 지원 완료 증명을 하나의 흐름으로 연결한다.</p></div>
+          <div class="summary-item primary"><strong>문제</strong><p>복지대상자는 2019년 1,153.1만 명에서 2023년 1,488.5만 명으로 29% 늘었지만, 발굴 후 실제 지원 연결은 약 43.6%에 그친다.</p></div>
+          <div class="summary-item primary"><strong>해결 방식</strong><p>격월 행정 데이터의 빈틈을 Soli AI 상시 감지, 담당자 판단, 온체인 지원 완료 증명으로 연결한다.</p></div>
           <div class="summary-item"><strong>모바일 신분증</strong><p>가입·로그인, 수급자 집행 확인 두 지점에 적용한다.</p></div>
           <div class="summary-item"><strong>Open DID / OmniOne Chain</strong><p>지원 확인 VC 발급·VP 검증과 지원 완료 증명 txId를 MVP 필수 성공 기준으로 구현해 가점 +10%를 확보한다.</p></div>
           <div class="summary-item"><strong>개발·시연 범위</strong><p>OmniOne CX 가입·로그인 → Soli 감지 → 담당자 승인 → 본인 재확인 → VC 발급·VP 검증 → txId 표시까지 구현한다.</p></div>
@@ -212,36 +265,61 @@
     </div>
   </section>
 
-  <section class="slide">
+  <section class="slide problem-slide">
     <div class="page">
-      <div class="slide-header"><span class="section-label">3. 제안내용의 목적 및 필요성</span><span class="meta">문제 정의</span></div>
+      <div class="slide-header"><span class="section-label">3. 제안내용의 목적 및 필요성</span><span class="meta">문제 정의 · 지체되는 시스템</span></div>
       <div class="content">
         <h2>문제는 제도가 아니라, 위기 신호가 제때 연결되지 않는 구조입니다</h2>
-        <div class="stats">
-          <div class="stat"><span class="num red">3,924명</span><span class="label">2024년 고독사</span><p class="note">사후 발견이 반복되는 사회문제</p></div>
-          <div class="stat"><span class="num">44%</span><span class="label">지원 연결률</span><p class="note">누적 발굴 666만 명 중 290만 명 지원</p></div>
-          <div class="stat"><span class="num">1,027명</span><span class="label">담당자 1인 관리</span><p class="note">수동 발굴과 판단에 구조적 한계</p></div>
-          <div class="stat"><span class="num">격월</span><span class="label">위기정보 수집</span><p class="note">상시 위기 감지 체계 부족</p></div>
-        </div>
-        <div class="two-col">
-          <div class="box"><h3>사각지대가 생기는 이유</h3><ul><li>주소지와 실거주지가 다른 고시원·쪽방 거주자</li><li>정신질환, 인지저하, 사회적 고립으로 자기 신청이 어려운 대상자</li><li>이웃이 이상 징후를 알아차려도 명확한 신고 채널 부족</li></ul></div>
-          <div class="box blue"><h3>제안의 목적</h3><p>행정 데이터가 놓치는 위기 신호를 Soli 정기 안부와 대화 패턴으로 포착하고, AI가 담당자 판단에 필요한 근거를 요약해 돌봄 연결 시간을 줄인다.</p></div>
+        <div class="delay-wall">
+          <div>
+            <div class="delay-keywords">
+              <div class="delay-card alert"><strong>통장 잔고<br>7,000원</strong><span>도움이 필요한 상태였지만 공적 지원 연결은 늦었다.</span></div>
+              <div class="delay-card alert"><strong>수개월간의<br>노숙</strong><span>이미 시스템 안에 있었지만 위기 신호는 연결되지 않았다.</span></div>
+              <div class="delay-card"><strong>격월 수집</strong><span>위기정보는 연 6회 수집되어 상시 변화 포착에 한계가 있다.</span></div>
+              <div class="delay-card"><strong>43.6%</strong><span>발굴된 666만 명 중 실제 지원은 290만 명에 그쳤다.</span></div>
+            </div>
+            <p class="source-note">출처: 보건복지부 복지 사각지대 발굴 보도자료, 보건복지부 고독사 발생 실태조사, 관련 보도자료 기반 사건 서사.</p>
+          </div>
+          <div class="problem-panel">
+            <h3>지체가 만드는 사각지대</h3>
+            <ul>
+              <li>복지대상자는 2019년 1,153.1만 명에서 2023년 1,488.5만 명으로 증가했다.</li>
+              <li>복지대상자 증가율 29%에 비해 사회복지 담당 공무원 증가는 10% 수준이다.</li>
+              <li>비수급 빈곤층 66만 명처럼 제도 밖 위험 신호가 여전히 남아 있다.</li>
+            </ul>
+            <p style="margin-top:14px;">no-one-alone은 이 지체를 줄이기 위해 상시 안부, 담당자 우선순위화, 신뢰 가능한 집행 기록을 하나의 흐름으로 묶는다.</p>
+          </div>
         </div>
       </div>
       <div class="footer"><span>목적 및 필요성</span><span>2 / 9</span></div>
     </div>
   </section>
 
-  <section class="slide">
+  <section class="slide solution-slide">
     <div class="page">
-      <div class="slide-header"><span class="section-label">4. 제안내용의 상세 설명</span><span class="meta">서비스 흐름</span></div>
+      <div class="slide-header"><span class="section-label">4. 제안내용의 상세 설명</span><span class="meta">Soli AI 인터페이스 · 즉시 연결</span></div>
       <div class="content">
-        <h2>발굴, 판단, 집행, 기록을 하나의 업무 흐름으로 연결합니다</h2>
-        <div class="pipeline">
-          <div class="step"><span class="step-num">01 발굴</span><h3>Soli 정기 안부</h3><p>담당자가 등록한 대상자에게 Soli가 안부를 묻고 응답 공백과 위기 키워드를 감지한다.</p></div>
-          <div class="step"><span class="step-num">02 판단 보조</span><h3>Soli AI 근거 요약</h3><p>위기 키워드, 응답 공백, 감정 변화를 요약하고 고위험 근거를 표시한다.</p></div>
-          <div class="step"><span class="step-num">03 집행</span><h3>담당자 승인</h3><p>담당자가 대시보드에서 우선순위와 근거 요약을 보고 최종 판단한다.</p></div>
-          <div class="step"><span class="step-num">04 기록</span><h3>OmniOne Chain 증명</h3><p>VC 발급, 승인, 집행 이벤트의 해시를 기록해 사후 검증 가능성을 확보한다.</p></div>
+        <h2>AI는 따뜻하게 다가가고, 데이터는 차갑고 정확하게 요약합니다</h2>
+        <div class="soli-sim">
+          <div class="phone">
+            <div class="phone-head"><strong>Soli 안부 대화</strong><span class="status-chip">24/7 상시 감지</span></div>
+            <div class="bubble soli">오늘 식사는 하셨어요? 어제보다 답장이 늦어 걱정돼서 다시 안부를 여쭤봐요.</div>
+            <div class="bubble user">요즘 몸이 안 좋아요. 며칠째 밖에 못 나갔어요.</div>
+            <div class="bubble soli">혼자 계실 때 더 힘드셨겠어요. 지금 가장 급한 건 식사, 병원, 주거 중 무엇인가요?</div>
+          </div>
+          <div class="report">
+            <div class="report-head"><strong>담당자 위기 요약 리포트</strong><span class="status-chip">즉시 연결</span></div>
+            <div class="risk-row"><span>우선순위</span><strong>오늘 확인 필요 상위 5명 중 1순위</strong></div>
+            <div class="risk-row"><span>감지 근거</span><strong>응답 공백 증가, 외출 단절 표현, 식사·건강 악화 표현 동시 발생</strong></div>
+            <div class="risk-row"><span>AI 역할</span><strong>판정이 아니라 담당자가 확인할 대화 맥락과 근거 요약</strong></div>
+            <div class="risk-row"><span>다음 행동</span><strong>담당자 전화 확인 → 필요 시 방문 → 집행 직전 본인 확인</strong></div>
+          </div>
+        </div>
+        <div class="mini-pipeline">
+          <div class="mini-step"><strong>01 발굴</strong><span>정기 안부·응답 공백 감지</span></div>
+          <div class="mini-step"><strong>02 판단 보조</strong><span>위기 신호 근거 요약</span></div>
+          <div class="mini-step"><strong>03 집행</strong><span>담당자 승인·본인 확인</span></div>
+          <div class="mini-step"><strong>04 기록</strong><span>VC·txId로 사후 검증</span></div>
         </div>
         <div class="callout">AI는 수급 여부나 지원 여부를 자동 결정하지 않는다. 최종 승인과 집행은 담당자가 수행하고, Soli는 판단 근거를 정리하는 보조 도구로 제한한다.</div>
       </div>
@@ -254,17 +332,29 @@
       <div class="slide-header"><span class="section-label">4. 제안내용의 상세 설명</span><span class="meta">신뢰 구조</span></div>
       <div class="content">
         <h2>OmniOne 기술을 복지 집행의 신뢰 레이어로 사용합니다</h2>
-        <table>
-          <thead><tr><th>구분</th><th>사용 시점</th><th>역할</th><th>검증 가치</th></tr></thead>
-          <tbody>
-            <tr><td>모바일 신분증</td><td>가입·로그인, 집행 직전</td><td>해커톤 제공 SDK·가이드 기반 OmniOne CX 표준 인증창 연동</td><td>안전한 서비스 진입·부정 수급 방지</td></tr>
-            <tr><td>Open DID / VC</td><td>지원 확인 VC 발급, VP 검증</td><td>DID 해시와 VC 검증 결과로 행위 주체 연결</td><td>지원 연결 사실의 사후 검증 가능성 확보</td></tr>
-            <tr><td>OmniOne Chain</td><td>VC 발급·승인·집행 이벤트</td><td>개인정보 원문 없이 이벤트 해시 기록</td><td>다기관 감사와 CSR 집행 증빙 비용 절감</td></tr>
-          </tbody>
-        </table>
-        <div class="two-col" style="margin-top:16px;">
-          <div class="box green"><h3>온체인 기록 대상</h3><ul><li>VC 메타데이터 해시 + 발급 타임스탬프</li><li>승인자 해시 + 케이스 해시 + 승인 시각</li><li>수급자 DID 해시 + 지원 종류·금액 해시 + txId</li></ul></div>
-          <div class="box amber"><h3>개인정보 경계</h3><p>MVP 데모에서는 실제 주소·상세 상황 설명을 저장하지 않는다. OmniOne Chain에는 DID 해시, 이벤트 해시, 지원 완료 증명 해시만 기록한다.</p></div>
+        <div class="two-col">
+          <div>
+            <table class="compact">
+              <thead><tr><th>구분</th><th>사용 시점</th><th>검증 가치</th></tr></thead>
+              <tbody>
+                <tr><td>OmniOne CX</td><td>가입·로그인, 집행 직전</td><td>안전한 진입·부정 수급 방지</td></tr>
+                <tr><td>Open DID / VC</td><td>지원 확인 VC 발급, VP 검증</td><td>지원 연결 사실의 사후 검증</td></tr>
+                <tr><td>OmniOne Chain</td><td>VC 발급·승인·집행 이벤트</td><td>다기관 감사와 증빙 비용 절감</td></tr>
+              </tbody>
+            </table>
+            <div class="box amber" style="margin-top:14px;"><h3>개인정보 경계</h3><p>MVP 데모에서는 실제 주소·상세 상황 설명을 저장하지 않는다. OmniOne Chain에는 DID 해시, 이벤트 해시, 지원 완료 증명 해시만 기록한다.</p></div>
+          </div>
+          <div class="explorer-mock">
+            <div class="explorer-top"><strong>OmniOne Chain Explorer</strong><span>Transaction Detail</span></div>
+            <div class="explorer-body">
+              <div class="hash-line">0x9f2c...a81d7e4b3c2f9016e0a4</div>
+              <div class="explorer-row"><span>Status</span><strong class="success">Success</strong></div>
+              <div class="explorer-row"><span>Event</span><strong>support.confirmed.vc</strong></div>
+              <div class="explorer-row"><span>Timestamp</span><strong>2026-09-10 14:21:08 KST</strong></div>
+              <div class="explorer-row"><span>Data</span><strong>DID hash + event hash only</strong></div>
+              <p class="tech-note">Explorer 화면은 공개 블록체인 탐색기의 Tx Hash, Status, Timestamp, Block 구조를 참고한 MVP 시연용 mock이다.</p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="footer"><span>상세 설명: 신뢰 기술</span><span>4 / 9</span></div>
@@ -302,8 +392,8 @@
       <div class="slide-header"><span class="section-label">6. 기대효과</span><span class="meta">검증 지표</span></div>
       <div class="content">
         <h2>파일럿에서 검증할 정량 지표를 명확히 설정합니다</h2>
-        <div class="impact-grid"><div class="impact"><span>발굴 후 지원 연결률</span><strong>44% → 70%+</strong><p>3년 파일럿 검증용 가설 KPI</p></div><div class="impact"><span>위기정보 수집 주기</span><strong>격월 → 상시</strong><p>Soli 대화 및 응답 공백 감지 빈도로 측정</p></div><div class="impact"><span>1차 확인·분류 시간</span><strong>수주 → 24h</strong><p>3년 파일럿 검증용 가설 KPI</p></div><div class="impact"><span>초기 확인 업무 부담</span><strong>50% 감소</strong><p>케이스당 확인 소요 시간과 담당자 설문</p></div></div>
-        <div class="two-col"><div class="box"><h3>사회적 효과</h3><ul><li>고독사 발생 전 선제 개입 가능성 향상</li><li>행정 데이터 밖 위기 신호 보완</li><li>복지 집행과 CSR 기부의 투명성 강화</li></ul></div><div class="box blue"><h3>사업화 방향</h3><p>1차 고객은 지자체 B2G SaaS다. 보험회사는 개인 단위 데이터 판매가 아니라 비식별 통계 기반 공동 실증 파트너로 확장한다.</p></div></div>
+        <div class="impact-grid"><div class="impact"><span>발굴 후 지원 연결률</span><strong>43.6% → 70%+</strong><p>3년 파일럿 검증용 가설 KPI</p></div><div class="impact"><span>위기정보 수집 주기</span><strong>격월 → 상시</strong><p>Soli 대화 및 응답 공백 감지 빈도로 측정</p></div><div class="impact"><span>1차 확인·분류 시간</span><strong>수주 → 24h</strong><p>3년 파일럿 검증용 가설 KPI</p></div><div class="impact"><span>현장 확인 부담</span><strong>50% 감소</strong><p>케이스당 확인 소요 시간과 담당자 설문</p></div></div>
+        <div class="two-col"><div class="box"><h3>사회적 효과</h3><ul><li>고독사 발생 전 선제 개입 가능성 향상</li><li>행정 데이터 밖 위기 신호 보완</li><li>복지 집행과 CSR 기부의 투명성 강화</li></ul></div><div class="box blue"><h3>사업화 방향</h3><p>1차 고객은 지자체 B2G SaaS다. 보험회사에는 개인 단위 데이터가 아니라 고독사 보험의 보험료 산정·위험 지역 분석에 필요한 집계·비식별 리스크 리포트를 제공한다.</p></div></div>
       </div>
       <div class="footer"><span>기대효과</span><span>7 / 9</span></div>
     </div>
@@ -313,10 +403,10 @@
     <div class="page">
       <div class="slide-header"><span class="section-label">7. 사업화 계획</span><span class="meta">수익 모델 및 확장</span></div>
       <div class="content">
-        <h2>지자체에 팔고, 보험회사와 함께 키웁니다</h2>
+        <h2>지자체에는 업무 도구를, 보험회사에는 리스크 데이터를 제공합니다</h2>
         <div class="two-col">
-          <div class="box blue"><h3>1차 수익 — 지자체 B2G SaaS</h3><p>행정복지센터 담당자용 AI 우선순위화 도구를 기초지자체 단위 연간 라이선스로 공급한다.</p><ul><li>파일럿 1개 지자체 — 5,000만원</li><li>확장 10개 지자체 — 5억</li><li>전국 226개 지자체 — 100억+</li></ul><p style="margin-top:10px;font-size:12px;color:var(--muted);">진입: 해커톤 입상 후 고독사 예방 의지가 있는 1개 지자체와 무상 PoC → 성과지표 확보 후 협약·조달</p></div>
-          <div class="box"><h3>확장 파트너 — 보험회사 공동 실증</h3><p>개인 단위 데이터 판매 없음. 집계·비식별 고립 신호 통계와 공동 실증 결과만 제공한다.</p><ul><li>PoC: 지역·연령대별 고립 신호 패턴 검증</li><li>상품 고도화: 고독사 예방형 사회안전망 상품 설계 참고 지표</li><li>운영 고도화: 가입자 동의 기반 안부 확인·위험 신호 알림</li></ul></div>
+          <div class="box blue"><h3>1차 수익 — 지자체 B2G SaaS</h3><p>행정복지센터 담당자용 AI 우선순위화 도구를 기초지자체 단위 연간 라이선스로 공급한다.</p><ul><li>파일럿: 무상 PoC 3개월 → 성과 후 협약 연 2,000만원</li><li>3년 목표: 10개 기초지자체, 연 2.5억</li><li>전국 TAM: 226개 기초지자체, 연 56억 기준</li></ul><p style="margin-top:10px;font-size:12px;color:var(--muted);">진입: 해커톤 입상 후 고독사 예방 의지가 있는 1개 지자체와 성과지표 중심 PoC 추진</p></div>
+          <div class="box"><h3>확장 수익 — 보험사 리스크 데이터 PoC</h3><p>고독사 보험은 임대인의 특수청소, 유품 정리, 원상복구, 임대료 손실을 보상하는 초기 시장이다. 보험사는 보험료 산정과 위험 지역 분석에 쓸 데이터가 부족하다.</p><ul><li>PoC: 권역·연령대·가구 유형별 고립 신호 패턴 검증</li><li>리포트: 고독사 보험 위험률·보험료 산정 참고 지표</li><li>운영: 가입자 동의 기반 안부 확인·지자체 연계 부가서비스</li></ul></div>
         </div>
         <div class="tag-row"><span class="pill">2026 해커톤 입상 + 시제품</span><span class="pill">2027 지자체 파일럿 + 보험사 1개 공동 실증</span><span class="pill">2028 유료 전환 + 정식 계약</span><span class="pill">2029+ 일본·대만 고령화 시장</span></div>
       </div>
@@ -324,13 +414,18 @@
     </div>
   </section>
 
-  <section class="slide">
+  <section class="slide closing-slide">
     <div class="page">
-      <div class="slide-header"><span class="section-label">8. 기타</span><span class="meta">팀 역량 및 리스크 대응</span></div>
+      <div class="slide-header"><span class="section-label">8. 기타</span><span class="meta">팀 역량 · 리스크 대응</span></div>
       <div class="content">
-        <h2>개발 가능성과 리스크 대응을 함께 제시합니다</h2>
-        <div class="two-col"><div class="box green"><h3>팀 역량</h3><ul><li>Next.js, NestJS 기반 풀스택 웹 서비스 구현 역량</li><li>IITP 블록체인 과제 실무 경험</li><li>Soli 챗봇, 담당자 대시보드, VC/txId 표시까지 단일 플로우 구현 계획 수립</li></ul></div><div class="box amber"><h3>주요 리스크 대응</h3><ul><li>OmniOne CX 연동 문제: SDK·가이드 기반 표준 인증창 연동, 미지원 시 Mock 병행</li><li>AI 오판: AI는 근거 요약 도구로 제한, 담당자 최종 승인 구조 유지</li><li>개인 자격 확인: MVP 범위 제외, 파일럿 이후 승인 기관 협력으로 추진</li><li>범위 과대: Soli 감지, 담당자 승인, VC/txId 기록에 집중</li></ul></div></div>
-        <div class="callout">시연은 Soli 감지, 담당자 승인, OmniOne CX 인증, Open DID VC 발급·VP 검증, 온체인 txId 표시로 집중한다. 실제 행정 연동과 실사용자 개인정보 수집은 파일럿 단계로 분리한다.</div>
+        <h2>작게 만들고, 확실하게 시연하고, 안전하게 확장합니다</h2>
+        <p class="closing-quote">"비극이 일어난 후 미안하다고 말하는 사회가 아니라, 먼저 발견해서 다행이라고 말할 수 있는 사회."</p>
+        <div class="tone-grid">
+          <div class="tone-card"><strong>팀 역량</strong><p>Next.js, NestJS 기반 웹 서비스 구현과 API 설계 경험을 바탕으로 Soli 챗봇, 담당자 대시보드, 증명 해시 표시까지 단일 시연 플로우를 구현합니다.</p></div>
+          <div class="tone-card"><strong>MVP 성공 기준</strong><p>OmniOne CX 가입·로그인, Soli 위기 감지, 담당자 승인, 지원 확인 VC 발급·VP 검증, OmniOne Chain txId 1개 표시를 완료합니다.</p></div>
+          <div class="tone-card"><strong>리스크 대응</strong><p>SDK·네트워크 지연 시 Mock 인증과 녹화 영상을 병행하고, AI는 최종 판정자가 아니라 담당자 판단을 돕는 근거 요약 도구로 제한합니다.</p></div>
+        </div>
+        <div class="callout">MVP에서는 실제 행정 시스템 연동, 개인 자격 확인, 실사용자 개인정보 수집을 제외하고 데모 데이터와 해시 기반 기록으로 안전하게 시연합니다.</div>
       </div>
       <div class="footer"><span>기타</span><span>9 / 9</span></div>
     </div>
