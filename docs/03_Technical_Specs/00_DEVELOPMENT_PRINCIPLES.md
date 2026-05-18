@@ -268,4 +268,4 @@ fix/[설명]    — 버그 수정
 - **UI_Screens**: [UI Design](../02_UI_Screens/01_UI_DESIGN.md) — 컴포넌트 설계
 - **Technical_Specs**: [DB Schema](./01_DB_SCHEMA.md) — 데이터베이스 스키마
 - **Technical_Specs**: [API Specs](./02_API_SPECS.md) — API 엔드포인트 명세
-- **Technical_Specs**: [Blockchain DID Architecture](./03_BLOCKCHAIN_DID_ARCH.md) — Open DID·OmniOne Chain 실제 API 기반 상세 아키텍처
+- **Technical_Specs**: [Blockchain DID Architecture](./04_BLOCKCHAIN_DID_ARCH.md) — Open DID·OmniOne Chain 실제 API 기반 상세 아키텍처
