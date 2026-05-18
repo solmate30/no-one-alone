@@ -11,7 +11,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Solmate** (repo: `no-one-alone`) is a welfare crisis detection platform for the 2026 Blockchain & AI Hackathon (Track 2). The tagline: "국가가 못 찾는 사람을, AI가 찾고, 복지가 닿고, 블록체인이 증명한다."
+**Solmate** (repo: `no-one-alone`) is a welfare crisis detection platform for the 2026 Blockchain & AI Hackathon (Track 2). The tagline: "사회복지사의 눈이 닿지 않는 곳을, AI가 찾고, 복지가 닿고, 블록체인이 증명한다."
 
 Core pipeline: **OmniOne CX 가입·로그인 본인확인 → Soli AI 정기 안부 감지 → Soli 복지 매칭 → 담당자 대시보드 승인 → 집행 직전 본인 재확인 → Open DID VC/VP + OmniOne Chain txId 기록**
 

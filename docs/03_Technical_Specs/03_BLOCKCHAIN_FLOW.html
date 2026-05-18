@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOA — 서비스 흐름 및 기술 구성</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+  background: #f1f5f9;
+  padding: 40px 32px;
+  color: #1e293b;
+  min-width: 900px;
+}
+.page-title { font-size: 22px; font-weight: 700; color: #0f172a; margin-bottom: 4px; }
+.page-subtitle { font-size: 13px; color: #64748b; margin-bottom: 32px; }
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 36px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 8px 24px rgba(0,0,0,.05);
+  margin-bottom: 28px;
+}
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: #94a3b8; margin-bottom: 4px;
+}
+.section-title {
+  font-size: 17px; font-weight: 700; color: #1e293b;
+  margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid #f1f5f9;
+}
+
+/* ─────────────────────────────────────────
+   Diagram 1 · Role summary (text)
+───────────────────────────────────────── */
+.role-grid {
+  display: grid;
+  grid-template-columns: 1fr 24px 1.5fr 24px 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+.role-card {
+  border-radius: 14px;
+  padding: 20px;
+  border: 1.5px solid transparent;
+}
+.role-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.role-card .role-sub { font-size: 11px; margin-bottom: 14px; opacity: .6; }
+.role-card ul { list-style: none; padding: 0; }
+.role-card ul li {
+  font-size: 12px; line-height: 1.6; padding-left: 12px;
+  position: relative; color: #475569;
+}
+.role-card ul li::before { content: '·'; position: absolute; left: 0; }
+.role-arrow {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: #cbd5e1; flex-shrink: 0;
+}
+.rc-blue  { background: #eff6ff; border-color: #bfdbfe; }
+.rc-blue  h3 { color: #1d4ed8; }
+.rc-violet{ background: #faf5ff; border-color: #ddd6fe; }
+.rc-violet h3 { color: #7c3aed; }
+.rc-green { background: #f0fdf4; border-color: #bbf7d0; }
+.rc-green h3 { color: #16a34a; }
+.platform-inner {
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr;
+  gap: 0;
+  margin-top: 12px;
+}
+.panel-box {
+  border-radius: 10px;
+  padding: 12px;
+  border: 1.5px dashed transparent;
+}
+.panel-box h4 { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+.panel-box p  { font-size: 11px; color: #64748b; line-height: 1.5; }
+.pb-violet { background: #f5f3ff; border-color: #c4b5fd; }
+.pb-violet h4 { color: #7c3aed; }
+.pb-green  { background: #f0fdf4; border-color: #86efac; }
+.pb-green  h4 { color: #16a34a; }
+.panel-arrow {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: #a78bfa;
+}
+
+/* ─────────────────────────────────────────
+   Diagram 2 · Horizontal flow
+───────────────────────────────────────── */
+.hflow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  overflow-x: auto;
+}
+.hstep {
+  flex: 1;
+  min-width: 120px;
+  border-radius: 12px;
+  padding: 14px 12px;
+  border: 1.5px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.hstep-num {
+  font-size: 9px; font-weight: 700; letter-spacing: .06em;
+  opacity: .5; text-transform: uppercase;
+}
+.hstep-title { font-size: 12px; font-weight: 700; line-height: 1.35; }
+.hstep-desc  { font-size: 10.5px; color: #64748b; line-height: 1.5; margin-top: 2px; flex: 1; }
+.hstep-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.hcon {
+  display: flex; align-items: flex-start; padding-top: 22px;
+  flex-shrink: 0; color: #cbd5e1; font-size: 18px;
+}
+.loop-badge {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 9.5px; font-weight: 700;
+  background: #ede9fe; color: #7c3aed;
+  padding: 2px 7px; border-radius: 99px; margin-top: 4px; width: fit-content;
+}
+.tbadge {
+  font-size: 9.5px; font-weight: 700;
+  padding: 2px 7px; border-radius: 99px; white-space: nowrap;
+}
+.tb-cx    { background: #1d4ed8; color: white; }
+.tb-did   { background: #c2410c; color: white; }
+.tb-chain { background: #334155; color: white; }
+.tb-soli  { background: #7c3aed; color: white; }
+.tb-noa   { background: #0f766e; color: white; }
+.tb-tx    { background: #0f172a; color: white; font-family: monospace; }
+
+.hs-blue   { background:#eff6ff; border-color:#bfdbfe; }
+.hs-blue   .hstep-title { color:#1d4ed8; }
+.hs-violet { background:#f5f3ff; border-color:#ddd6fe; }
+.hs-violet .hstep-title { color:#7c3aed; }
+.hs-green  { background:#f0fdf4; border-color:#bbf7d0; }
+.hs-green  .hstep-title { color:#16a34a; }
+.hs-orange { background:#fff7ed; border-color:#fed7aa; }
+.hs-orange .hstep-title { color:#c2410c; }
+.hs-slate  { background:#f8fafc; border-color:#e2e8f0; }
+.hs-slate  .hstep-title { color:#334155; }
+
+/* ─────────────────────────────────────────
+   Diagram 3 · System architecture
+───────────────────────────────────────── */
+.sys-wrap { display: flex; flex-direction: column; gap: 0; }
+
+/* users row */
+.users-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+  padding: 0 0;
+}
+.user-node {
+  width: 140px;
+  border-radius: 12px;
+  padding: 14px 16px;
+  border: 1.5px dashed transparent;
+  text-align: center;
+  flex-shrink: 0;
+}
+.user-node .u-icon { font-size: 22px; margin-bottom: 6px; }
+.user-node h4 { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+.user-node p  { font-size: 10px; color: #64748b; line-height: 1.4; }
+.un-blue  { background: #eff6ff; border-color: #93c5fd; }
+.un-blue  h4 { color: #1d4ed8; }
+.un-green { background: #f0fdf4; border-color: #86efac; }
+.un-green h4 { color: #16a34a; }
+
+/* connector between users and platform */
+.user-arrow {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 11px; color: #94a3b8; flex-shrink: 0;
+}
+.user-arrow span { font-size: 16px; }
+
+/* platform box */
+.platform-box {
+  border: 2px solid #7c3aed;
+  border-radius: 16px;
+  background: #faf5ff;
+  padding: 16px;
+  margin: 8px 0;
+  flex: 1;
+}
+.platform-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: #a78bfa; text-align: center; margin-bottom: 12px;
+}
+.platform-panels {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  align-items: center;
+}
+.p-panel {
+  border-radius: 10px;
+  padding: 14px;
+  border: 1.5px solid transparent;
+}
+.p-panel h4 { font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+.p-panel p  { font-size: 11px; color: #64748b; line-height: 1.5; }
+.p-panel .powered {
+  font-size: 10px; color: #94a3b8; margin-top: 6px;
+  padding: 3px 8px; background: white; border-radius: 6px; display: inline-block;
+}
+.pp-violet { background: #f5f3ff; border-color: #c4b5fd; }
+.pp-violet h4 { color: #7c3aed; }
+.pp-green  { background: #ecfdf5; border-color: #6ee7b7; }
+.pp-green  h4 { color: #059669; }
+.p-inner-arrow {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 0 16px; color: #a78bfa; flex-shrink: 0;
+}
+.p-inner-arrow span { font-size: 18px; }
+.p-inner-arrow p { font-size: 9.5px; color: #a78bfa; text-align: center; white-space: nowrap; }
+
+/* vert connectors */
+.vert-conn-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin: 2px 0;
+}
+.vert-conn {
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  font-size: 9.5px; color: #94a3b8; min-width: 40px;
+}
+.vert-conn .line {
+  width: 1.5px; height: 22px;
+  background: linear-gradient(to bottom, #e2e8f0, #cbd5e1);
+  position: relative;
+}
+.vert-conn .line::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #cbd5e1;
+}
+.vert-conn .label { font-size: 9px; color: #94a3b8; text-align: center; }
+
+/* tech row */
+.tech-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+.tech-node {
+  border-radius: 10px;
+  padding: 12px 10px;
+  border: 1.5px dashed transparent;
+  text-align: center;
+}
+.tech-node .t-logo {
+  width: 22px; height: 22px; border-radius: 5px;
+  object-fit: contain; margin: 0 auto 5px; display: block;
+  background: white; padding: 1px;
+}
+.tech-node h5 { font-size: 11px; font-weight: 700; margin-bottom: 3px; }
+.tech-node p  { font-size: 9.5px; color: #64748b; line-height: 1.4; }
+.tech-node .used-at {
+  font-size: 9px; font-weight: 700; margin-top: 5px;
+  padding: 2px 6px; border-radius: 99px; display: inline-block;
+}
+
+.tn-violet{ background: #f5f3ff; border-color: #c4b5fd; }
+.tn-violet h5 { color: #7c3aed; }
+.tn-violet .used-at { background: #ede9fe; color: #7c3aed; }
+
+.tn-blue  { background: #eff6ff; border-color: #bfdbfe; }
+.tn-blue  h5 { color: #1d4ed8; }
+.tn-blue  .used-at { background: #dbeafe; color: #1d4ed8; }
+
+.tn-slate2{ background: #f8fafc; border-color: #e2e8f0; }
+.tn-slate2 h5 { color: #475569; }
+.tn-slate2 .used-at { background: #e2e8f0; color: #475569; }
+
+.tn-orange{ background: #fff7ed; border-color: #fed7aa; }
+.tn-orange h5 { color: #c2410c; }
+.tn-orange .used-at { background: #ffedd5; color: #c2410c; }
+
+.tn-dark  { background: #f8fafc; border-color: #cbd5e1; }
+.tn-dark  h5 { color: #334155; }
+.tn-dark  .used-at { background: #e2e8f0; color: #334155; }
+
+.footer { text-align: center; font-size: 12px; color: #94a3b8; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<div class="page-title">NOA — no-one-alone</div>
+<div class="page-subtitle">사회복지사의 눈이 닿지 않는 곳을, AI가 찾고, 복지가 닿고, 블록체인이 증명한다.</div>
+
+<!-- ═══════════════════════════════════════
+     Diagram 1 · 역할 요약
+═══════════════════════════════════════ -->
+<div class="card">
+  <div class="section-label">Diagram 1</div>
+  <div class="section-title">역할 요약 — 누가 무엇을 하는가</div>
+
+  <div class="role-grid">
+
+    <!-- 수급자 -->
+    <div class="role-card rc-blue">
+      <h3>수급자</h3>
+      <div class="role-sub">독거노인 · 취약계층</div>
+      <ul>
+        <li>모바일로 Soli AI와 안부 대화</li>
+        <li>도움을 요청하지 않아도 AI가 먼저 접근</li>
+        <li>지원받기 전 OmniOne CX로 본인 확인</li>
+        <li>받은 지원 기록을 블록체인으로 조회</li>
+      </ul>
+    </div>
+
+    <div class="role-arrow">→</div>
+
+    <!-- NOA 플랫폼 -->
+    <div class="role-card rc-violet">
+      <h3>NOA 플랫폼</h3>
+      <div class="role-sub">수급자용 · 담당자용 두 화면</div>
+      <div class="platform-inner">
+        <div class="panel-box pb-violet">
+          <h4>Soli AI (수급자 화면)</h4>
+          <p>매일 안부 대화 → 위기 신호 자동 감지 → 위기 점수 산출</p>
+        </div>
+        <div class="panel-arrow">→</div>
+        <div class="panel-box pb-green">
+          <h4>담당자 대시보드</h4>
+          <p>위기 점수 우선순위 정렬 → Soli 요약 → 케이스 승인</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-arrow">→</div>
+
+    <!-- 담당자 -->
+    <div class="role-card rc-green">
+      <h3>담당자</h3>
+      <div class="role-sub">복지 공무원</div>
+      <ul>
+        <li>오늘 확인할 사람 N명 자동 정렬</li>
+        <li>Soli가 요약한 위기 근거 확인</li>
+        <li>케이스 검토 후 지원 승인</li>
+        <li>집행 기록 투명하게 관리</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     Diagram 2 · 서비스 흐름 (가로)
+═══════════════════════════════════════ -->
+<div class="card">
+  <div class="section-label">Diagram 2</div>
+  <div class="section-title">서비스 흐름 — 가입부터 집행까지</div>
+
+  <div class="hflow">
+
+    <!-- Step 1 -->
+    <div class="hstep hs-blue">
+      <div class="hstep-num">Step 1</div>
+      <div class="hstep-title">모바일 신분증으로 가입·로그인</div>
+      <div class="hstep-desc">이름·주민번호 입력 없이 OmniOne CX로 본인 확인. DID 해시만 저장.</div>
+      <div class="hstep-badges">
+        <span class="tbadge tb-cx">OmniOne CX</span>
+        <span class="tbadge tb-tx">txId-1</span>
+      </div>
+    </div>
+
+    <div class="hcon">→</div>
+
+    <!-- Step 2 -->
+    <div class="hstep hs-violet">
+      <div class="hstep-num">Step 2</div>
+      <div class="hstep-title">Soli AI가 먼저 안부를 묻는다</div>
+      <div class="hstep-desc">NOA가 만든 AI. 매일 짧은 안부 대화를 시작. 수급자는 신청하지 않아도 된다.</div>
+      <div class="hstep-badges">
+        <span class="tbadge tb-soli">Soli AI</span>
+        <div class="loop-badge">↺ 매일 반복</div>
+      </div>
+    </div>
+
+    <div class="hcon">→</div>
+
+    <!-- Step 3 -->
+    <div class="hstep hs-violet">
+      <div class="hstep-num">Step 3</div>
+      <div class="hstep-title">위기 신호 자동 감지</div>
+      <div class="hstep-desc">응답 공백 · 부정 감정 · 위기 키워드 분석 → 위기 점수 산출 → 담당자 알림.</div>
+      <div class="hstep-badges">
+        <span class="tbadge tb-soli">Soli AI</span>
+      </div>
+    </div>
+
+    <div class="hcon">→</div>
+
+    <!-- Step 4 -->
+    <div class="hstep hs-green">
+      <div class="hstep-num">Step 4</div>
+      <div class="hstep-title">담당자 케이스 검토 · 지원 승인</div>
+      <div class="hstep-desc">대시보드에서 Soli 요약 확인 → 우선순위 정렬된 케이스 검토 → 지원 승인.</div>
+      <div class="hstep-badges">
+        <span class="tbadge tb-noa">NOA 대시보드</span>
+      </div>
+    </div>
+
+    <div class="hcon">→</div>
+
+    <!-- Step 5 -->
+    <div class="hstep hs-orange">
+      <div class="hstep-num">Step 5</div>
+      <div class="hstep-title">수급 자격 증명서 발급 · 집행 전 이중 확인</div>
+      <div class="hstep-desc">승인 사실을 디지털 증명서(VC)로 발급. 집행 전 본인 재확인 + 자격 동시 검증.</div>
+      <div class="hstep-badges">
+        <span class="tbadge tb-did">Open DID</span>
+        <span class="tbadge tb-cx">OmniOne CX</span>
+        <span class="tbadge tb-tx">txId-2</span>
+      </div>
+    </div>
+
+    <div class="hcon">→</div>
+
+    <!-- Step 6 -->
+    <div class="hstep hs-slate">
+      <div class="hstep-num">Step 6</div>
+      <div class="hstep-title">지원 집행 완료 · 기록 영구 보존</div>
+      <div class="hstep-desc">집행 내역 해시를 블록체인에 기록. 수급자가 txId로 언제든 조회 가능.</div>
+      <div class="hstep-badges">
+        <span class="tbadge tb-chain">OmniOne Chain</span>
+        <span class="tbadge tb-tx">txId-3</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     Diagram 3 · 아키텍처 흐름도
+═══════════════════════════════════════ -->
+<div class="card">
+  <div class="section-label">Diagram 3</div>
+  <div class="section-title">아키텍처 흐름 — 위기 감지부터 VC 발급·집행까지</div>
+
+  <div class="sys-wrap" style="display:block">
+  <svg viewBox="0 0 860 420" width="100%" style="display:block;max-width:860px;margin:0 auto;">
+    <defs>
+      <marker id="fv" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#7c3aed"/></marker>
+      <marker id="fg" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#16a34a"/></marker>
+      <marker id="fg2" markerWidth="8" markerHeight="8" refX="1" refY="3" orient="auto"><path d="M8,0 L8,6 L0,3z" fill="#16a34a"/></marker>
+      <marker id="fo" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#c2410c"/></marker>
+      <marker id="fb" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#1d4ed8"/></marker>
+      <marker id="fs" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#475569"/></marker>
+    </defs>
+
+    <!-- ── 행 레이블 ── -->
+    <text x="12" y="28" font-size="10" font-weight="700" letter-spacing=".06em" fill="#7c3aed">위기 감지 흐름</text>
+    <line x1="12" y1="32" x2="848" y2="32" stroke="#ede9fe" stroke-width="1"/>
+
+    <text x="12" y="222" font-size="10" font-weight="700" letter-spacing=".06em" fill="#c2410c">VC 발급 · 집행 흐름</text>
+    <line x1="12" y1="226" x2="848" y2="226" stroke="#ffedd5" stroke-width="1"/>
+
+    <!-- ════════════════ ROW 1: 위기 감지 ════════════════ -->
+
+    <!-- 수급자 -->
+    <circle cx="50" cy="105" r="34" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="6,3"/>
+    <text x="50" y="101" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">수급자</text>
+    <text x="50" y="116" text-anchor="middle" font-size="9" fill="#64748b">모바일 웹</text>
+
+    <!-- ① 수급자 → Soli AI -->
+    <line x1="84" y1="105" x2="128" y2="105" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#fv)"/>
+    <circle cx="106" cy="105" r="9" fill="#7c3aed"/>
+    <text x="106" y="108.5" text-anchor="middle" font-size="9" font-weight="700" fill="white">①</text>
+    <text x="106" y="120" text-anchor="middle" font-size="8.5" fill="#7c3aed">안부 대화</text>
+
+    <!-- Soli AI -->
+    <rect x="128" y="70" width="158" height="70" rx="10" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.5"/>
+    <text x="207" y="96" text-anchor="middle" font-size="12" font-weight="700" fill="#7c3aed">Soli AI</text>
+    <text x="207" y="111" text-anchor="middle" font-size="9.5" fill="#64748b">수급자 화면 · NOA 솔루션</text>
+    <text x="207" y="126" text-anchor="middle" font-size="8.5" fill="#a78bfa">Claude API 기반</text>
+
+    <!-- ② Soli AI → 위기 감지 엔진 -->
+    <line x1="286" y1="105" x2="330" y2="105" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#fv)"/>
+    <circle cx="308" cy="105" r="9" fill="#7c3aed"/>
+    <text x="308" y="108.5" text-anchor="middle" font-size="9" font-weight="700" fill="white">②</text>
+    <text x="308" y="120" text-anchor="middle" font-size="8.5" fill="#7c3aed">대화 분석</text>
+
+    <!-- 위기 감지 엔진 -->
+    <rect x="330" y="70" width="158" height="70" rx="10" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.5"/>
+    <text x="409" y="96" text-anchor="middle" font-size="12" font-weight="700" fill="#7c3aed">위기 감지 엔진</text>
+    <text x="409" y="111" text-anchor="middle" font-size="9.5" fill="#64748b">감정·응답·키워드 분석</text>
+    <text x="409" y="126" text-anchor="middle" font-size="8.5" fill="#a78bfa">위기 점수 0–10 산출</text>
+
+    <!-- ③ 위기 감지 → 담당자 대시보드 -->
+    <line x1="488" y1="105" x2="532" y2="105" stroke="#16a34a" stroke-width="1.5" marker-end="url(#fg)"/>
+    <circle cx="510" cy="105" r="9" fill="#16a34a"/>
+    <text x="510" y="108.5" text-anchor="middle" font-size="9" font-weight="700" fill="white">③</text>
+    <text x="510" y="120" text-anchor="middle" font-size="8.5" fill="#16a34a">위기 알림</text>
+
+    <!-- 담당자 대시보드 -->
+    <rect x="532" y="70" width="178" height="70" rx="10" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+    <text x="621" y="96" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">담당자 대시보드</text>
+    <text x="621" y="111" text-anchor="middle" font-size="9.5" fill="#64748b">우선순위 정렬 · Soli 요약</text>
+    <text x="621" y="126" text-anchor="middle" font-size="8.5" fill="#86efac">NOA 담당자 화면</text>
+
+    <!-- ④ 담당자 → 대시보드 (반대 방향) -->
+    <line x1="776" y1="105" x2="710" y2="105" stroke="#16a34a" stroke-width="1.5" marker-end="url(#fg)"/>
+    <circle cx="743" cy="105" r="9" fill="#16a34a"/>
+    <text x="743" y="108.5" text-anchor="middle" font-size="9" font-weight="700" fill="white">④</text>
+    <text x="743" y="120" text-anchor="middle" font-size="8.5" fill="#16a34a">케이스 확인</text>
+
+    <!-- 담당자 -->
+    <circle cx="810" cy="105" r="34" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" stroke-dasharray="6,3"/>
+    <text x="810" y="101" text-anchor="middle" font-size="11" font-weight="700" fill="#16a34a">담당자</text>
+    <text x="810" y="116" text-anchor="middle" font-size="9" fill="#64748b">공무원</text>
+
+    <!-- ════════ ⑤ 수직 연결: 승인 ════════ -->
+    <line x1="621" y1="140" x2="621" y2="238" stroke="#334155" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#fs)"/>
+    <rect x="628" y="172" width="58" height="18" rx="5" fill="#f1f5f9"/>
+    <circle cx="638" cy="181" r="9" fill="#334155"/>
+    <text x="638" y="184.5" text-anchor="middle" font-size="9" font-weight="700" fill="white">⑤</text>
+    <text x="673" y="185" font-size="8.5" fill="#334155">승인 결정</text>
+
+    <!-- ════════════════ ROW 2: VC 발급·집행 ════════════════ -->
+
+    <!-- 담당자 승인 박스 (같은 x, 아래) -->
+    <rect x="532" y="238" width="178" height="72" rx="10" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+    <text x="621" y="263" text-anchor="middle" font-size="12" font-weight="700" fill="#c2410c">담당자 승인 완료</text>
+    <text x="621" y="279" text-anchor="middle" font-size="9.5" fill="#64748b">지원 대상·금액·유형 확정</text>
+    <text x="621" y="295" text-anchor="middle" font-size="8.5" fill="#fb923c">VC 발급 트리거</text>
+
+    <!-- ⑥ 담당자 승인 → Open DID -->
+    <line x1="532" y1="274" x2="490" y2="274" stroke="#c2410c" stroke-width="1.5" marker-end="url(#fo)"/>
+    <circle cx="511" cy="274" r="9" fill="#c2410c"/>
+    <text x="511" y="277.5" text-anchor="middle" font-size="9" font-weight="700" fill="white">⑥</text>
+    <text x="511" y="262" text-anchor="middle" font-size="8.5" fill="#c2410c">VC 발급 요청</text>
+
+    <!-- Open DID 서버 -->
+    <rect x="328" y="238" width="162" height="72" rx="10" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+    <image x="335" y="246" width="18" height="18" href="https://avatars.githubusercontent.com/u/49894113?s=40&v=4"/>
+    <text x="420" y="265" text-anchor="middle" font-size="12" font-weight="700" fill="#c2410c">Open DID 서버</text>
+    <text x="420" y="281" text-anchor="middle" font-size="9.5" fill="#64748b">수급 자격 VC 발급</text>
+    <text x="420" y="297" text-anchor="middle" font-size="8.5" fill="#fb923c">Apache 2.0 오픈소스</text>
+
+    <!-- ⑦ Open DID → OmniOne CX 재확인 -->
+    <line x1="328" y1="274" x2="286" y2="274" stroke="#1d4ed8" stroke-width="1.5" marker-end="url(#fb)"/>
+    <circle cx="307" cy="274" r="9" fill="#1d4ed8"/>
+    <text x="307" y="277.5" text-anchor="middle" font-size="9" font-weight="700" fill="white">⑦</text>
+    <text x="307" y="262" text-anchor="middle" font-size="8.5" fill="#1d4ed8">VP 제출·검증</text>
+
+    <!-- OmniOne CX 재확인 -->
+    <rect x="130" y="238" width="156" height="72" rx="10" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+    <image x="137" y="246" width="18" height="18" href="https://www.omnione.net/layout/images/ico/cx_logo.png"/>
+    <text x="210" y="265" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">OmniOne CX</text>
+    <text x="210" y="281" text-anchor="middle" font-size="9.5" fill="#1d4ed8">집행 전 본인 재확인</text>
+    <text x="210" y="297" text-anchor="middle" font-size="8.5" fill="#64748b">본인 + 자격 이중 확인</text>
+
+    <!-- ⑧ OmniOne CX → 집행 완료 -->
+    <line x1="130" y1="274" x2="88" y2="274" stroke="#334155" stroke-width="1.5" marker-end="url(#fs)"/>
+    <circle cx="109" cy="274" r="9" fill="#334155"/>
+    <text x="109" y="277.5" text-anchor="middle" font-size="9" font-weight="700" fill="white">⑧</text>
+    <text x="109" y="262" text-anchor="middle" font-size="8.5" fill="#334155">집행</text>
+
+    <!-- 집행 완료 -->
+    <rect x="12" y="238" width="118" height="72" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="71" y="268" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">집행 완료</text>
+    <text x="71" y="284" text-anchor="middle" font-size="9" fill="#64748b">지원 지급</text>
+    <text x="71" y="299" text-anchor="middle" font-size="8.5" fill="#94a3b8">수급자에게 전달</text>
+
+    <!-- ════════ OmniOne Chain 기록 ════════ -->
+
+    <!-- Open DID → Chain -->
+    <line x1="420" y1="310" x2="420" y2="355" stroke="#334155" stroke-width="1.2" stroke-dasharray="4,2" marker-end="url(#fs)"/>
+    <text x="432" y="338" font-size="8.5" fill="#334155">VC 메타 기록</text>
+
+    <!-- 집행 완료 → Chain -->
+    <line x1="71" y1="310" x2="71" y2="355" stroke="#334155" stroke-width="1.2" stroke-dasharray="4,2" marker-end="url(#fs)"/>
+    <text x="83" y="338" font-size="8.5" fill="#334155">집행 기록</text>
+
+    <!-- OmniOne Chain 통합 박스 -->
+    <rect x="12" y="355" width="501" height="50" rx="8" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+    <text x="262" y="376" text-anchor="middle" font-size="10" font-weight="700" fill="#334155">OmniOne Chain</text>
+    <text x="262" y="392" text-anchor="middle" font-size="9" fill="#64748b">VC 메타데이터 해시 · txId-2 &nbsp;&nbsp;|&nbsp;&nbsp; 집행 이벤트 · txId-3</text>
+  </svg>
+  </div>
+</div>
+
+<div class="footer">
+  NOA — no-one-alone &nbsp;·&nbsp; Soli AI by NOA &nbsp;·&nbsp; OmniOne CX by RaonSecure &nbsp;·&nbsp; Open DID Apache 2.0 &nbsp;·&nbsp; OmniOne Chain Hyperledger Besu
+</div>
+
+</body>
+</html>
