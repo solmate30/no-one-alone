@@ -411,5 +411,6 @@ ESG 리포트 자동 생성
 ## Related Documents
 
 - **Technical_Specs**: [DB Schema](./01_DB_SCHEMA.md) — 각 API가 사용하는 테이블
+- **Technical_Specs**: [Blockchain DID Architecture](./03_BLOCKCHAIN_DID_ARCH.md) — `/auth/omni-cx/verify`, `/chain/record/:tx_id` 등 온체인 연동 API의 아키텍처 상세
 - **UI_Screens**: [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md) — API가 호출되는 화면
 - **QA_Validation**: [Test Scenarios](../05_QA_Validation/01_TEST_SCENARIOS.md) — API 테스트 시나리오
