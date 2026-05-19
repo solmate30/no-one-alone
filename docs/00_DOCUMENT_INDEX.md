@@ -1,6 +1,6 @@
 # Document Index — no-one-alone
 > Created: 2026-05-08 17:35
-> Last Updated: 2026-05-12 13:21
+> Last Updated: 2026-05-18 14:18
 > Backlog: D-01
 
 ## 1. 목적
@@ -31,7 +31,7 @@
 | `P-*` | 2026년 5월 공모 제안서 제출 작업 |
 | `D-*` | 개념, 전략, 문서 구조 정리 작업 |
 | `T-*` | 기술 조사 및 기술 명세 작업 |
-| `M-*` | 결선 MVP 구현 작업 |
+| `M-*` | MVP 구현 작업 |
 | `Q-*` | QA, 검증, 발표 준비 작업 |
 
 ## 4. 문서 지도
@@ -45,15 +45,15 @@
 | [Lean Canvas](./01_Concept_Design/02_LEAN_CANVAS.md) | Concept_Design | `P-02`, `P-03`, `P-06`, `D-02` | 문제, 고객 세그먼트, UVP, 수익 구조, 핵심 지표. |
 | [Product Specs](./01_Concept_Design/03_PRODUCT_SPECS.md) | Concept_Design | `P-01`, `P-02`, `P-04`, `P-05`, `T-01`, `T-02`, `T-03`, `T-04`, `M-01`, `M-02`, `M-03`, `M-04`, `M-05`, `M-06` | MVP 범위, 핵심 기능, Track 2 필수·선택 조건. |
 | [Proposal Deck](./01_Concept_Design/04_PITCH_DECK.md) | Concept_Design | `P-01`, `P-02`, `P-03`, `P-04`, `P-05`, `P-06`, `P-07`, `D-02`, `D-03`, `T-04`, `M-06`, `Q-02`, `Q-03` | 공모 제안서 본문, 요약서, 발표 흐름의 기준 문서. |
+| [Field Outreach Strategy](./01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md) | Concept_Design | `P-03`, `P-04`, `P-06`, `P-07`, `D-05`, `M-01`, `M-02`, `M-04`, `M-06` | 55세 이상 시니어 현장 접점, 동의 기반 안부 연결, 마케팅·도입 시나리오, 구현 설계 입력. |
 | [Pitch Deck HTML Preview](./pitch-deck.html) | Documentation | `P-07`, `Q-02` | 공모 제안서 내용을 시각적으로 확인하기 위한 HTML 미리보기 산출물. |
 | [Screen Flow](./02_UI_Screens/00_SCREEN_FLOW.md) | UI_Screens | `P-04`, `T-03`, `M-01`, `M-02`, `M-03`, `M-04` | 사용자별 화면 흐름과 핵심 플로우. |
-| [UI Design](./02_UI_Screens/01_UI_DESIGN.md) | UI_Screens | `P-04`, `T-01`, `T-03`, `M-01`, `M-02`, `M-03`, `M-04` | 시민 앱, 담당자 대시보드, Soli, 인증 UX 기준. |
+| [UI Design](./02_UI_Screens/01_UI_DESIGN.md) | UI_Screens | `P-04`, `T-01`, `T-03`, `M-01`, `M-02`, `M-03`, `M-04` | 대상자 웹 화면, 담당자 대시보드, Soli, 인증 UX 기준. |
 | [Development Principles](./03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md) | Technical_Specs | `D-01`, `P-05`, `T-01`, `T-02`, `M-01`, `M-05` | 기술 스택, 프로젝트 구조, 코딩 컨벤션, 보안 원칙. |
 | [DB Schema](./03_Technical_Specs/01_DB_SCHEMA.md) | Technical_Specs | `T-01`, `T-02`, `T-03`, `M-02`, `M-03`, `M-04`, `M-05` | 데이터 모델, 인덱스, 온체인 기록 대상. |
-| [API Specs](./03_Technical_Specs/02_API_SPECS.md) | Technical_Specs | `T-01`, `T-02`, `T-03`, `M-02`, `M-03`, `M-04`, `M-05` | 인증, 제보, Soli, 위기도, 대시보드, 체인 API 계약. |
+| [API Specs](./03_Technical_Specs/02_API_SPECS.md) | Technical_Specs | `T-01`, `T-02`, `T-03`, `M-02`, `M-03`, `M-04`, `M-05` | 인증, Soli, 위기도, 복지 매칭, 대시보드, 체인 API 계약. |
 | [Proposal Validation Scenarios](./05_QA_Validation/01_TEST_SCENARIOS.md) | QA_Validation | `P-05`, `T-03`, `M-02`, `M-04`, `Q-01`, `Q-03` | 창의성, 실현 가능성, 사업성, 발표 검증 시나리오. |
-| [QA Checklist](./05_QA_Validation/02_QA_CHECKLIST.md) | QA_Validation | `P-07`, `D-03`, `T-04`, `M-01`, `M-02`, `M-03`, `M-05`, `M-06`, `Q-01`, `Q-02`, `Q-04` | 제출 전 점검, 내용 정합성, 결선 MVP 계획 검증. |
-| [Proposal Source](../solmate_hackathon_proposal.md) | Source | `P-03`, `P-06`, `D-02` | 제안서 원문. 5-Layer 문서와 동기화해야 하는 원천 자료. |
+| [QA Checklist](./05_QA_Validation/02_QA_CHECKLIST.md) | QA_Validation | `P-07`, `D-03`, `T-04`, `M-01`, `M-02`, `M-03`, `M-05`, `M-06`, `Q-01`, `Q-02`, `Q-04` | 제출 전 점검, 내용 정합성, MVP 개발 단계 계획 검증. |
 | [CLAUDE.md](../CLAUDE.md) | Root | `D-01` | Claude Code가 이 repo에서 작업할 때 참조하는 도구별 지침. |
 
 ## 5. 신규 문서 후보
@@ -65,7 +65,7 @@
 | `03_OMNIONE_CX_INTEGRATION.md` | `docs/03_Technical_Specs/` | `T-01`, `M-03`, `M-05` | OmniOne CX SDK 연동 방식이 구체화될 때 |
 | `04_OPEN_DID_CHAIN_INTEGRATION.md` | `docs/03_Technical_Specs/` | `T-02`, `M-05` | Open DID, OmniOne Chain 기록 구조가 구체화될 때 |
 | `01_SOLI_SCORING_LOGIC.md` | `docs/04_Logic_Progress/` | `T-03`, `M-02` | 위기 키워드와 스코어링 규칙을 구현 전 확정할 때 |
-| `02_IMPLEMENTATION_DECISIONS.md` | `docs/04_Logic_Progress/` | `M-01` | 결선 진출 후 실제 코드 구조와 패턴을 확정할 때 |
+| `02_IMPLEMENTATION_DECISIONS.md` | `docs/04_Logic_Progress/` | `M-01` | MVP 개발 단계 진입 후 실제 코드 구조와 패턴을 확정할 때 |
 | `03_DEMO_SCRIPT.md` | `docs/05_QA_Validation/` | `Q-03`, `Q-04` | 8분 발표와 최종 데모 흐름을 확정할 때 |
 
 ## Related Documents

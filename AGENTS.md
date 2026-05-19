@@ -1,7 +1,6 @@
 # AGENTS.md — no-one-alone
 > Created: 2026-05-08 17:45
-> Last Updated: 2026-05-08 17:45
-> Backlog: D-01
+> Last Updated: 2026-05-13 12:30
 
 ## 1. Purpose
 
@@ -11,7 +10,7 @@ Project name: `no-one-alone` / Solmate
 
 Core message:
 
-> 국가가 못 찾는 사람을, 이웃이 찾고, AI가 연결하고, 블록체인이 증명한다.
+> 국가가 못 찾는 사람을, AI가 찾고, 복지가 닿고, 블록체인이 증명한다.
 
 Current state:
 
@@ -50,7 +49,7 @@ Backlog ID prefixes:
 | `M-*` | Finals MVP implementation tasks |
 | `Q-*` | QA, validation, and presentation tasks |
 
-When creating or updating a document:
+When creating a document or making a substantial content change:
 
 1. Add or update the document's `> Backlog:` metadata.
 2. Add or update the document's `Related Documents` section.
@@ -68,7 +67,7 @@ Every shared Markdown document should start with:
 > Backlog: P-01, D-01
 ```
 
-Update `Last Updated` whenever a document changes.
+Update `Last Updated` whenever a document receives a substantial content change. Tiny typo, spacing, or formatting-only edits may keep the existing timestamp.
 
 Use `> Backlog: 전체` only for documents that govern the full project, such as the central backlog.
 
@@ -151,7 +150,6 @@ Shared project assets:
 - `docs/**`
 - `AGENTS.md`
 - `CLAUDE.md`
-- `solmate_hackathon_proposal.md`
 - `refs/**` as read-only reference material
 
 Do not casually edit:

@@ -1,6 +1,6 @@
 # Backlog — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-12 13:21
+> Last Updated: 2026-05-18 14:18
 > Backlog: 전체
 
 ## 0. Backlog 운영 원칙
@@ -19,14 +19,13 @@
 
 각 작업은 가능한 한 아래 필드를 유지한다.
 
-- 상태: Todo / In Progress / Done / Blocked
 - 우선순위: High / Medium / Low
 - 목표: 작업의 목적
 - 작업 유형: Proposal / Documentation / Research / MVP Implementation / QA
 - 필수 참조: 작업 전에 반드시 읽을 문서
 - 생성/업데이트 문서: 이 작업으로 만들거나 수정할 문서
 - 산출물: 실제 제출물, 문서, 코드, 화면, 검증 결과
-- 완료 기준: Done으로 바꿀 수 있는 조건
+- 완료 기준: [X]로 바꿀 수 있는 조건
 - 구현 전 확인 질문: 코드 또는 세부 문서 작성 전에 사용자와 확인할 사항
 
 ### 0-3. 백로그 ID 체계
@@ -36,7 +35,7 @@
 | `P-*` | 2026년 5월 공모 제안서 제출 작업 |
 | `D-*` | 개념, 전략, 문서 구조 정리 작업 |
 | `T-*` | 기술 조사 및 기술 명세 작업 |
-| `M-*` | 결선 MVP 구현 작업 |
+| `M-*` | MVP 구현 작업 |
 | `Q-*` | QA, 검증, 발표 준비 작업 |
 
 ---
@@ -64,9 +63,8 @@
 
 ## 3. 2026년 5월 제안서 제출 백로그
 
-### P-01. 표지 및 제출 기본 정보 확정
+### [ ] P-01. 표지 및 제출 기본 정보 확정
 
-- 상태: Todo
 - 우선순위: High
 - 작업 유형: Proposal
 - 목표: 공모 양식의 표지, Track, 참가 유형, 팀 정보를 확정한다.
@@ -81,9 +79,8 @@
   - 표지 입력 정보가 공모 양식에 맞게 확정됨
   - 개인정보 입력 필요 항목과 공개 문서에 남길 항목이 분리됨
 
-### P-02. 제안 요약서 2p 이내 작성
+### [ ] P-02. 제안 요약서 2p 이내 작성
 
-- 상태: Todo
 - 우선순위: High
 - 작업 유형: Proposal
 - 목표: 심사자가 2분 안에 문제, 해법, 기술 필연성, 사업성을 이해할 수 있는 요약서를 작성한다.
@@ -99,11 +96,10 @@
 - 완료 기준:
   - Track 2 선택 이유가 명시됨
   - 창의성, 실현 가능성, 사업성 메시지가 모두 포함됨
-  - "이웃이 찾고, AI가 연결하고, 블록체인이 증명한다" 메시지가 유지됨
+  - "AI가 찾고, 복지가 닿고, 블록체인이 증명한다" 태그라인이 일관되게 반영됨
 
-### P-03. 목적 및 필요성 작성
+### [ ] P-03. 목적 및 필요성 작성
 
-- 상태: Todo
 - 우선순위: High
 - 작업 유형: Proposal
 - 목표: 고독사·복지 사각지대 문제와 기존 대응 방식의 한계를 설득력 있게 정리한다.
@@ -111,10 +107,11 @@
   - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 3. 제안내용의 목적 및 필요성
   - [Vision & Core Values](../01_Concept_Design/01_VISION_CORE.md) — 3. 타겟 오디언스, 4. 핵심 가치
   - [Lean Canvas](../01_Concept_Design/02_LEAN_CANVAS.md) — 1. Problem, 2. Customer Segments
-  - [Proposal Source](../../solmate_hackathon_proposal.md) — 1. 목적 및 필요성
+  - [Field Outreach Strategy](../01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md) — 55세 이상 현장 접점과 낙인 완화 프레이밍
 - 생성/업데이트 문서:
   - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md)
   - [Lean Canvas](../01_Concept_Design/02_LEAN_CANVAS.md)
+  - [Field Outreach Strategy](../01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md)
 - 산출물:
   - 목적 및 필요성 본문 문안
   - 문제 근거와 출처 목록
@@ -122,30 +119,30 @@
   - 대상 사용자와 사각지대 발생 원인이 분리되어 설명됨
   - 통계 또는 공신력 있는 근거가 필요한 문장에 표시가 남아 있음
 
-### P-04. 제안내용 상세 설명 작성
+### [ ] P-04. 제안내용 상세 설명 작성
 
-- 상태: Todo
 - 우선순위: High
 - 작업 유형: Proposal
-- 목표: 시민 앱, Soli 챗봇, 담당자 대시보드, OmniOne Chain 기록을 하나의 실행 파이프라인으로 설명한다.
+- 목표: 대상자 웹 화면, Soli 챗봇, 담당자 대시보드, OmniOne Chain 기록을 하나의 실행 파이프라인으로 설명한다.
 - 필수 참조:
   - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 4. 제안내용의 상세 설명
   - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 3. 핵심 기능 명세
+  - [Field Outreach Strategy](../01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md) — 주민센터부터 Soli 안부, 담당자 확인까지의 현장 흐름
   - [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md) — 1. 전체 화면 구조
   - [UI Design](../02_UI_Screens/01_UI_DESIGN.md) — 2. 사용자 유형별 UI 원칙, 3. Soli 챗봇 UI 설계
 - 생성/업데이트 문서:
   - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md)
+  - [Field Outreach Strategy](../01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md)
   - [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md)
 - 산출물:
   - 전체 파이프라인 설명
   - 핵심 기능 요약표
 - 완료 기준:
-  - 시민 제보에서 담당자 승인, 온체인 기록까지의 흐름이 끊기지 않음
+  - Soli 감지에서 담당자 승인, 온체인 기록까지의 흐름이 끊기지 않음
   - MVP 범위와 장기 비전이 혼동되지 않음
 
-### P-05. 차별성 및 심사 기준 대응 정리
+### [ ] P-05. 차별성 및 심사 기준 대응 정리
 
-- 상태: Todo
 - 우선순위: High
 - 작업 유형: Proposal
 - 목표: 창의성 35점, 실현 가능성 35점, 사업성 30점에 직접 대응하는 메시지를 만든다.
@@ -162,40 +159,41 @@
   - 기존 시스템 대비 차별성 표
 - 완료 기준:
   - 모바일 신분증 필수조건과 Open DID/OmniOne Chain 선택조건이 명확히 드러남
-  - 결선 기간 내 구현 가능한 범위와 제외 범위가 분리됨
+  - MVP 개발 단계 기간 내 구현 가능한 범위와 제외 범위가 분리됨
 
-### P-06. 기대효과 및 사업화 계획 정리
+### [ ] P-06. 기대효과 및 사업화 계획 정리
 
-- 상태: Todo
 - 우선순위: Medium
 - 작업 유형: Proposal
 - 목표: 사회적 효과와 지속 가능한 수익 구조를 함께 설명한다.
 - 필수 참조:
   - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 6. 기대효과와 사업화
   - [Lean Canvas](../01_Concept_Design/02_LEAN_CANVAS.md) — 6. Revenue Streams, 8. Key Metrics, 9. Unfair Advantage
+  - [Field Outreach Strategy](../01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md) — B2G 현장 도입 채널과 운영 패키지
   - [Roadmap](./00_ROADMAP.md) — 2. 생존 단계, 3. 검증 단계, 7. 수익 목표 요약
-  - [Proposal Source](../../solmate_hackathon_proposal.md) — 5. 비즈니스 모델, 6. 기대효과
 - 생성/업데이트 문서:
   - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md)
+  - [Field Outreach Strategy](../01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md)
   - [Roadmap](./00_ROADMAP.md)
 - 산출물:
   - 정량 목표
-  - B2G SaaS, 보험, CSR, 데이터 API 수익 구조 요약
+  - B2G SaaS, 보험사 공동 실증, 비식별 데이터 상품 수익 구조 요약
 - 완료 기준:
   - 수익 모델이 제안서 분량 안에서 현실적으로 축약됨
   - 3년 파일럿 기준 KPI가 제시됨
 
-### P-07. PPTX 양식 이식
+### [ ] P-07. PPTX 양식 이식
 
-- 상태: Todo
 - 우선순위: High
 - 작업 유형: Proposal
 - 목표: 확정된 문구를 `refs/TrackNo_팀명_프로젝트명_yymmdd.pptx` 양식에 맞춰 반영한다.
 - 필수 참조:
   - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 전체
+  - [Field Outreach Strategy](../01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md) — 55세 이상 현장 접점, 극적 시나리오, 발표용 문장
   - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md) — 1. 양식 준수, 7. 제출 전 최종 확인
 - 생성/업데이트 문서:
   - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md)
+  - [Field Outreach Strategy](../01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md)
   - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md)
 - 산출물:
   - 제출용 PPTX
@@ -203,6 +201,7 @@
 - 완료 기준:
   - 제안 요약서 2p 이내
   - 본문 10p 이내
+  - 55세 이상 현장 접점과 동의 기반 안전망 메시지가 PPTX 본문 또는 발표 흐름에 반영됨
   - 파일명 규칙 충족
   - 8분 발표 흐름과 맞음
 
@@ -210,9 +209,8 @@
 
 ## 4. 문서 체계 및 지식 정리 백로그
 
-### D-01. 문서 인덱스와 백로그 연결 체계 유지
+### [ ] D-01. 문서 인덱스와 백로그 연결 체계 유지
 
-- 상태: In Progress
 - 우선순위: High
 - 작업 유형: Documentation
 - 목표: 새 문서가 생길 때마다 백로그와 누락 없이 연결되는 구조를 유지한다.
@@ -220,6 +218,8 @@
   - [Document Index](../00_DOCUMENT_INDEX.md)
   - [Development Principles](../03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md) — 4-4. 브랜치 전략
 - 생성/업데이트 문서:
+  - [AGENTS.md](../../AGENTS.md)
+  - [CLAUDE.md](../../CLAUDE.md)
   - [Document Index](../00_DOCUMENT_INDEX.md)
   - [Backlog](./00_BACKLOG.md)
 - 산출물:
@@ -229,14 +229,12 @@
   - 모든 공유 문서가 최소 1개 이상의 백로그 ID에 연결됨
   - 새 문서 작성 시 백로그 연결 규칙이 명시됨
 
-### D-02. 제안서 원문과 5-Layer 문서 동기화
+### [X] D-02. 제안서 원문과 5-Layer 문서 동기화
 
-- 상태: Todo
 - 우선순위: High
 - 작업 유형: Documentation
-- 목표: `solmate_hackathon_proposal.md`의 핵심 내용을 5-Layer 문서 구조와 정합성 있게 맞춘다.
+- 목표: 제안서 원문의 핵심 내용을 5-Layer 문서 구조와 정합성 있게 맞춘다. (solmate_hackathon_proposal.md는 삭제됨. 내용이 04_PITCH_DECK.md로 이식 완료)
 - 필수 참조:
-  - [Proposal Source](../../solmate_hackathon_proposal.md)
   - [Vision & Core Values](../01_Concept_Design/01_VISION_CORE.md)
   - [Lean Canvas](../01_Concept_Design/02_LEAN_CANVAS.md)
   - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md)
@@ -250,9 +248,49 @@
   - 원문에만 있고 docs에 없는 핵심 주장이 식별됨
   - docs에 반영된 항목과 미반영 항목이 구분됨
 
-### D-03. 근거 자료 및 출처 정리
+### [X] D-04. Soli 1차 감지 전환 — 파이프라인 구조 변경
 
-- 상태: Todo
+- 우선순위: High
+- 작업 유형: Documentation
+- 목표: 핵심 파이프라인을 "이웃 제보 1차 감지"에서 "Soli AI 대화 1차 감지"로 전환하고 6개 문서에 반영한다.
+- 변경 근거: 이웃 신고는 한국 문화에서 거부감이 높고 자발적 제보 동기가 약함. Soli 대화 자체가 위기를 감지하는 구조가 실현 가능성과 창의성 모두를 강화함. 이웃 제보 기능은 완전 제거 (Phase 2 커뮤니티 케어 채널로 재검토 가능).
+- 새 태그라인: "사회복지사의 눈이 닿지 않는 곳을, AI가 찾고, 복지가 닿고, 블록체인이 증명한다"
+- 생성/업데이트 문서:
+  - [Vision & Core Values](../01_Concept_Design/01_VISION_CORE.md) — 태그라인, 파이프라인
+  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 기능 순서, 스코어 가중치
+  - [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md) — 홈 구조, 이웃 제보 제거
+  - [API Specs](../03_Technical_Specs/02_API_SPECS.md) — Soli Critical Path, 보조 채널 명시
+  - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 스코어 가중치 주석
+  - [Backlog](./00_BACKLOG.md) — 태스크 반영
+
+### [ ] D-05. 55세 이상 시니어 현장 도입·마케팅 전략 정리
+
+- 우선순위: High
+- 작업 유형: Documentation
+- 목표: 55세 이상 시니어가 실제 현장에서 Solmate를 어떻게 알게 되고, 어떤 동의 과정을 거쳐 담당 공무원의 직접 지원으로 연결되는지 정리한다.
+- 필수 참조:
+  - [Vision & Core Values](../01_Concept_Design/01_VISION_CORE.md) — 핵심 비전과 타겟 오디언스
+  - [Lean Canvas](../01_Concept_Design/02_LEAN_CANVAS.md) — 고객 세그먼트와 채널
+  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 모바일 신분증, Soli, 데이터 경계
+  - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 제안서 본문과 발표 흐름
+- 생성/업데이트 문서:
+  - [Field Outreach Strategy](../01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md)
+  - [Document Index](../00_DOCUMENT_INDEX.md)
+  - [Backlog](./00_BACKLOG.md)
+- 산출물:
+  - 55세 이상 대상 범위와 낙인 완화 프레이밍
+  - 주민센터·복지관·경로당·보건소·관리사무소·생활지원사 등 현장 접점
+  - 발표용 극적 시나리오와 마케팅 문구
+  - 제안서 반영 포인트
+- 완료 기준:
+  - 55세 이상 누구나 시작 가능한 안부 연결 구조가 명시됨
+  - 모바일 신분증 본인확인과 동의 기반 정보 공유의 경계가 명확함
+  - 주민센터부터 Soli 대화, 담당자 대시보드, 지원 연결까지의 현장 흐름이 설명됨
+  - P-07 PPTX 이식과 M-01/M-02/M-04/M-06 구현 설계 참조로 연결됨
+  - 현장 인터뷰로 검증해야 할 질문이 정리됨
+
+### [ ] D-03. 근거 자료 및 출처 정리
+
 - 우선순위: High
 - 작업 유형: Research
 - 목표: 문제 정의, 시장성, 정책 적합성, 개인정보·블록체인 설명에 필요한 근거 자료를 모은다.
@@ -274,17 +312,21 @@
 
 ## 5. 기술 조사 및 기술 명세 백로그
 
-### T-01. OmniOne CX 모바일 신분증 인증 구조 정리
+### [ ] T-01. OmniOne CX 모바일 신분증 인증 구조 정리
 
-- 상태: Todo
 - 우선순위: High
 - 작업 유형: Research
-- 목표: 모바일 신분증 인증을 제안서와 결선 MVP에 어떻게 넣을지 정리한다.
+- 목표: 모바일 신분증 인증을 제안서와 MVP에 어떻게 넣을지 정리한다.
+- 기술 레퍼런스:
+  - 제공: RaonSecure, 해커톤 SDK 직접 제공 (별도 오픈소스 없음)
+  - 연동: 표준 인증창 호출 → 콜백으로 `{ did_hash, verified_at, id_type, result_code }` 수신
+  - 사용 지점 2곳: 가입·로그인 / 집행 직전
+  - 상세: [Development Principles](../03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md) — 7-1. OmniOne CX
 - 필수 참조:
   - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 4. 필수조건 충족
   - [UI Design](../02_UI_Screens/01_UI_DESIGN.md) — 4. OmniOne CX 인증 UX 가이드라인
   - [API Specs](../03_Technical_Specs/02_API_SPECS.md) — 2. `/auth`
-  - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 2-1. `users`, 2-3. `reports`
+  - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 2-1. `users`
 - 생성/업데이트 문서:
   - [Development Principles](../03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md)
   - [API Specs](../03_Technical_Specs/02_API_SPECS.md)
@@ -295,12 +337,37 @@
   - 필수조건 충족 지점이 명확함
   - 데모 모드와 실제 SDK 연동 모드가 구분됨
 
-### T-02. Open DID 및 OmniOne Chain 기록 구조 정리
+### [X] T-10. 블록체인·DID 아키텍처 상세 문서 작성
 
-- 상태: Todo
+- 우선순위: High
+- 작업 유형: Documentation
+- 목표: Open DID 오픈소스(GitHub)의 실제 API를 검증한 뒤, OmniOne Chain·OmniOne CX·Open DID 컴포넌트 간 연동 아키텍처를 InsureConnect 수준으로 구체적으로 기술한다.
+- 조사 범위:
+  - Ledger Service API 실제 경로 확인 (`/api/v1/diddoc/register`, `/api/v1/vcmeta/register` 등)
+  - Issuer Server P210 5단계 프로토콜, Verifier Server P310 4단계 프로토콜
+  - TAS(Trust Anchor Server) 역할 및 P132 사용자 등록 흐름
+  - Blockchain SDK 메서드명 (`registDidDoc`, `registVcMetadata` 등)
+  - RBAC 지원 범위 (SDK 미지원, 애플리케이션 레벨 구현 필요)
+- 생성/업데이트 문서:
+  - [Blockchain DID Architecture](../03_Technical_Specs/04_BLOCKCHAIN_DID_ARCH.md) — 신규 생성
+  - [Development Principles](../03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md) — Ledger API 실제 경로 수정, Related Documents 추가
+- 완료 기준:
+  - [X] `04_BLOCKCHAIN_DID_ARCH.md` 작성 완료 (실제 API 기반)
+  - [X] `00_DEVELOPMENT_PRINCIPLES.md` Ledger API 경로 수정 완료
+  - [X] 백로그에 T-10 등록
+
+### [ ] T-02. Open DID 및 OmniOne Chain 기록 구조 정리
+
 - 우선순위: High
 - 작업 유형: Research
-- 목표: 선택조건 가점 요소인 Open DID와 OmniOne Chain 기록을 MVP 범위 안에서 설명 가능하게 만든다.
+- 목표: 가점 +10% 확보를 위해 Open DID와 OmniOne Chain 기록을 MVP 필수 성공 기준으로 정의한다.
+- 기술 레퍼런스:
+  - GitHub 조직: https://github.com/OmniOneID (Apache-2.0, 36개 저장소)
+  - 핵심 저장소: `did-issuer-server`, `did-verifier-server`, `did-blockchain-sdk-server`, `did-ledger-service-server`, `did-besu-contract`, `did-demo-server`
+  - Ledger API: `POST /register-diddoc`, `POST /register-vcmeta`, `GET /get-vcmeta`
+  - 임의 이벤트 로그 미지원 → 지원 완료 증명을 VC 구조로 설계하여 `register-vcmeta`에 기록
+  - MVP 최소 범위: `did-demo-server` 참조하여 VC 1개 발급 + VP 1회 검증 + txId 1개 화면 표시
+  - 상세: [Development Principles](../03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md) — 7-2. Open DID, 7-3. OmniOne Chain
 - 필수 참조:
   - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 3-4. OmniOne Chain 기록, 4. 필수조건 충족
   - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 4. 온체인 기록 대상 정리
@@ -313,23 +380,27 @@
 - 산출물:
   - 온체인 기록 대상 목록
   - 개인정보 비저장·해시 기록 원칙
-  - 제안서용 가점 조건 설명
+  - 제안서용 가점 확보 전략 설명
 - 완료 기준:
   - 온체인에 올릴 데이터와 올리지 않을 데이터가 구분됨
-  - 최소 1개 TX 기록 데모 범위가 정의됨
+  - 최소 1개 VC 발급, VP 검증, txId 기록 데모 범위가 정의됨
 
-### T-03. AI Soli 위기 감지 및 스코어링 구조 정리
+### [ ] T-03. AI Soli 위기 감지 및 스코어링 구조 정리
 
-- 상태: Todo
 - 우선순위: Medium
 - 작업 유형: Research
 - 목표: Soli 챗봇의 대화, 위기 키워드 감지, 위기도 스코어 산출 방식을 MVP 수준으로 정의한다.
+- 기술 레퍼런스:
+  - SDK: `@anthropic-ai/sdk` (npm), SSE 스트리밍 지원
+  - 스코어 가중치: keywords(40%) + response_gap(35%) + isolation(25%)
+  - AI 실패 시 룰 기반 fallback 필수 (위기 키워드 사전 + 응답 공백 임계값)
+  - 상세: [Development Principles](../03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md) — 7-4. Claude API
 - 필수 참조:
   - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 3-2. AI 챗봇 Soli
   - [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md) — 6. Soli 챗봇 공통 화면
   - [UI Design](../02_UI_Screens/01_UI_DESIGN.md) — 3. Soli 챗봇 UI 설계
   - [API Specs](../03_Technical_Specs/02_API_SPECS.md) — 4. `/crisis`, 5. `/soli`
-  - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 2-4. `crisis_scores`, 2-8. `soli_conversations`
+  - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 2-3. `crisis_scores`, 2-6. `soli_conversations`
 - 생성/업데이트 문서:
   - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md)
   - [API Specs](../03_Technical_Specs/02_API_SPECS.md)
@@ -342,43 +413,66 @@
   - AI 실패 시 룰 기반 fallback이 정의됨
   - 대화 원문 접근 제한 원칙이 반영됨
 
-### T-04. 공공 마이데이터 자격 확인 흐름 정리
+### [ ] T-04. Soli 복지 매칭 데이터 연동 구조 정리
 
-- 상태: Todo
 - 우선순위: High
 - 작업 유형: Research
-- 목표: 대상자 동의 기반 복지 자격 확인 흐름을 제안서와 MVP 범위 안에서 설명 가능하게 만든다.
+- 목표: 복지서비스 목록 실연동(한국사회보장정보원 API)과 개인 자격 확인의 파일럿 이후 범위를 구분하여 MVP 범위 안에서 정의한다.
+- 기술 레퍼런스:
+  - 중앙부처복지서비스 API: https://www.data.go.kr/data/15090532/openapi.do (자동 승인, 무료)
+  - 지자체복지서비스 API: https://www.data.go.kr/data/15108347/openapi.do (자동 승인, 무료)
+  - 사회서비스 제공기관 API: https://www.data.go.kr/data/15057683/openapi.do (자동 승인, 무료)
+  - 복지로: https://www.bokjiro.go.kr (신청 외부 링크 대상)
+  - 공공 마이데이터(개인 자격 확인): 이용기관 심사 필요, MVP 제외, 파일럿 이후 추진
+  - 상세: [Development Principles](../03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md) — 7-4. 복지 공공데이터 API
 - 필수 참조:
-  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 3-6. 공공 마이데이터 자격 확인 흐름, 4. 필수조건 충족
+  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 3-6. 복지 데이터 연동 구조, 4. 필수조건 충족
   - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 4. 제안내용의 상세 설명, 5. 제안내용의 차별성
-  - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md) — 4. Track 2 및 가점 조건, 6. 결선 MVP 계획 점검
+  - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md) — 4. Track 2 및 가점 조건, 6. MVP 개발 단계 계획 점검
 - 생성/업데이트 문서:
   - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md)
   - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md)
   - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md)
 - 산출물:
-  - 대상자 동의, Mock 조회, 담당자 확인 배지 흐름
-  - 원문 저장 금지 및 이벤트 해시 기록 원칙
-  - 실제 운영 API 계약·심사 완료는 파일럿 단계로 분리한다는 설명
+  - 복지서비스 API 실연동 방식
+  - 기본 조건·상황 체크리스트·대화 맥락 매칭 기준
+  - 개인 자격 확인은 파일럿 단계로 분리한다는 설명
 - 완료 기준:
-  - 마이데이터가 자동 판정 장치가 아니라 담당자 판단 보조 도구로 정의됨
+  - MVP는 개인 자격 확정이 아니라 복지 후보 매칭으로 정의됨
   - MVP 시연 범위와 실제 운영 연동 범위가 구분됨
 
 ---
 
-## 6. 결선 MVP 구현 백로그
+## 6. MVP 구현 백로그
 
-아래 항목은 5월에 구현하지 않는다. 대신 제안서에서 “결선 진출 시 실제로 만들 MVP 범위”로 제시하고, 결선 진출 후 구현 전에 다시 기술 결정을 확정한다.
+아래 항목은 5월에 구현하지 않는다. 대신 제안서에서 "MVP 개발 단계에서 실제로 만들 MVP 범위"로 제시하고, MVP 개발 단계 진입 전에 다시 기술 결정을 확정한다.
 
-### M-01. 프로젝트 셋업 및 UI 골격
+MVP 구현 일정은 예선 통과 후 별도 `01_EXECUTION_PLAN.md`로 수립한다 (2026-07-01 이후).
 
-- 상태: Planned
+### MVP 구현 페이즈 일정 (결선 12주, 2026-07-01 ~ 09-21)
+
+| 페이즈 | 기간 | 주요 작업 | 구현 가능성 |
+|:---|:---|:---|:---|
+| **P0. 프로젝트 셋업** | 07-01 ~ 07-14 (2주) | M-01 Next.js+NestJS 골격, DB, CI | 높음 |
+| **P1. SDK 환경** | 07-01 ~ 07-14 (2주, P0 병행) | M-05-P1 did-demo-server 실행, CX Mock | 보통 (서버 셋업 복잡) |
+| **P2. 핵심 기능** | 07-15 ~ 08-04 (3주) | M-02 Soli+스코어링, M-05-P2 CX 실연동+DID 등록 | 높음 |
+| **P3. 대시보드+VC** | 08-05 ~ 08-25 (3주) | M-04 담당자 대시보드, M-05-P3 VC 발급+txId | 보통 (P210 프로토콜 복잡) |
+| **P4. 집행 완성** | 08-26 ~ 09-07 (2주) | M-05-P4 VP 검증+2차 CX+집행, M-06 복지 매칭 | 보통 (QR VP 흐름 단순화 필요) |
+| **P5. 데모·마무리** | 09-08 ~ 09-21 (2주) | 전체 시나리오 시연, fallback 준비, 문서 제출 | 높음 |
+
+**구현 가능성 종합 판단**: 12주는 타이트하지만 `did-demo-server` 활용 전략을 쓰면 가능하다. P3(VC 발급)까지 완료하면 가점 +10% 최소 조건(OmniOne CX + VC + txId)을 충족한다. P4(VP 검증)는 시연 완성도 향상이 목적으로, 지연 시 P5에서 데모 시나리오로 흡수한다.
+
+**핵심 리스크**: TAS P132·Issuer P210 프로토콜 구현 난이도. `did-demo-server` 소스 코드를 레퍼런스로 삼아 흐름을 복제하는 것이 처음부터 짜는 것보다 3~4일 단축 가능.
+
+### [ ] M-01. 프로젝트 셋업 및 UI 골격
+
 - 우선순위: High
 - 작업 유형: MVP Implementation
 - 목표: Next.js 앱, 기본 라우팅, 화면 목업을 구성한다.
 - 필수 참조:
   - [Development Principles](../03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md) — 1. 기술 스택, 3. 프로젝트 구조, 4. 코딩 컨벤션
-  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 5-3. 결선 구현 범위
+  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 5-3. MVP 구현 범위
+  - [Field Outreach Strategy](../01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md) — 55세 이상 현장 진입 채널과 안부 연결 신청 흐름
   - [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md) — 1. 전체 화면 구조
   - [UI Design](../02_UI_Screens/01_UI_DESIGN.md) — 1. 설계 원칙
 - 생성/업데이트 문서:
@@ -387,24 +481,25 @@
 - 산출물:
   - `/web` 앱 구조
   - 기본 라우팅
-  - 시민 앱/담당자 대시보드 화면 골격
+  - 대상자 웹 화면/담당자 대시보드 화면 골격
+  - 주민센터·복지관·경로당 QR 진입을 고려한 55세 이상 안부 연결 진입 화면
 - 완료 기준:
   - 로컬 실행 가능
   - 핵심 화면 라우트가 존재함
   - 구현 전 폴더 구조와 패턴이 사용자 승인됨
 
-### M-02. Soli 챗봇 및 위기 스코어링 구현
+### [ ] M-02. Soli 챗봇 및 위기 스코어링 구현
 
-- 상태: Planned
 - 우선순위: High
 - 작업 유형: MVP Implementation
 - 목표: 기본 대화, 위기 키워드 감지, 위기도 스코어 출력을 구현한다.
 - 필수 참조:
   - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 3-2. AI 챗봇 Soli
+  - [Field Outreach Strategy](../01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md) — Soli 정기 안부 문구, 생활위기 신호, 3일 응답 공백 시나리오
   - [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md) — 6. Soli 챗봇 공통 화면
   - [UI Design](../02_UI_Screens/01_UI_DESIGN.md) — 3. Soli 챗봇 UI 설계
   - [API Specs](../03_Technical_Specs/02_API_SPECS.md) — 4. `/crisis`, 5. `/soli`
-  - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 2-4. `crisis_scores`, 2-8. `soli_conversations`
+  - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 2-3. `crisis_scores`, 2-6. `soli_conversations`
 - 생성/업데이트 문서:
   - [Proposal Validation Scenarios](../05_QA_Validation/01_TEST_SCENARIOS.md)
   - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md)
@@ -412,47 +507,29 @@
   - 대화 UI
   - 키워드 감지
   - 스코어 산출
+  - 정기 안부, 생활요금 어려움, 응답 공백을 포함한 현장 시나리오형 테스트 대화
 - 완료 기준:
   - 정상 대화와 위기 감지 분기가 모두 시연됨
   - AI 응답 실패 시 fallback이 작동함
   - 담당자에게 보여줄 요약 범위가 제한됨
 
-### M-03. 시민 제보 플로우 구현
+### [-] M-03. 커뮤니티 케어 채널 (Phase 2 검토)
 
-- 상태: Planned
-- 우선순위: High
-- 작업 유형: MVP Implementation
-- 목표: 주소·상황 입력, 제보자 모바일 신분증 인증, 제보 접수 완료 화면을 구현한다.
-- 필수 참조:
-  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 3-1. 시민 앱, 5-3. 결선 구현 범위
-  - [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md) — 2. 이웃 제보 플로우
-  - [UI Design](../02_UI_Screens/01_UI_DESIGN.md) — 2-1. 시민 앱, 4. OmniOne CX 인증 UX 가이드라인
-  - [API Specs](../03_Technical_Specs/02_API_SPECS.md) — 2. `/auth`, 3. `/reports`
-  - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 2-1. `users`, 2-3. `reports`
-- 생성/업데이트 문서:
-  - [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md)
-  - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md)
-- 산출물:
-  - 제보 입력 화면
-  - 인증 진입 및 결과 화면
-  - 접수 완료 화면
-- 완료 기준:
-  - 데모 데이터 기준 접수 플로우가 끝까지 진행됨
-  - 인증 성공/실패 분기가 표시됨
-  - 담당자 대시보드에서 조회 가능한 상태로 저장됨
+- 우선순위: Low
+- 메모: 이웃·관리인이 "이 분이 걱정돼요" 수준으로 안부를 공유하는 채널. 한국 문화에서 "신고" 거부감 문제로 MVP에서 제외. 파일럿 이후 커뮤니티 케어 채널로 재검토 가능.
 
-### M-04. 담당자 대시보드 구현
+### [ ] M-04. 담당자 대시보드 구현
 
-- 상태: Planned
 - 우선순위: High
 - 작업 유형: MVP Implementation
 - 목표: 위기 우선순위 리스트, 대상자 상세, Soli 요약, 지원 승인 버튼을 구현한다.
 - 필수 참조:
   - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 3-3. 담당자 대시보드
+  - [Field Outreach Strategy](../01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md) — "오늘 먼저 확인할 5명"과 담당자 직접 지원 시나리오
   - [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md) — 5. 담당자 대시보드 플로우
   - [UI Design](../02_UI_Screens/01_UI_DESIGN.md) — 2-2. 담당자 대시보드
   - [API Specs](../03_Technical_Specs/02_API_SPECS.md) — 7. `/dashboard`
-  - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 2-7. `support_executions`
+  - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 2-5. `support_executions`
 - 생성/업데이트 문서:
   - [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md)
   - [Proposal Validation Scenarios](../05_QA_Validation/01_TEST_SCENARIOS.md)
@@ -460,65 +537,149 @@
   - 우선순위 리스트
   - 대상자 상세 화면
   - 지원 승인 플로우
+  - 응답 공백, 생활비 어려움, 최근 조치 이력을 요약하는 담당자 확인 카드
 - 완료 기준:
-  - 제보 데이터가 위기 우선순위로 정렬됨
+  - 위기 스코어 기반 우선순위 정렬이 작동함
   - 승인 액션이 기록됨
   - 개인정보 마스킹 원칙이 적용됨
 
-### M-05. OmniOne CX, Open DID, Chain 연동 데모 구현
+### [ ] M-05. OmniOne CX + Open DID + OmniOne Chain 연동 (4페이즈)
 
-- 상태: Planned
 - 우선순위: High
 - 작업 유형: MVP Implementation
-- 목표: 인증 결과 저장, 최소 1개 온체인 TX 기록, TX 해시 표시를 구현한다.
 - 필수 참조:
-  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 3-4. OmniOne Chain 기록, 4. 필수조건 충족
+  - [Blockchain DID Architecture](../03_Technical_Specs/04_BLOCKCHAIN_DID_ARCH.md) — 전체 아키텍처 기준 문서
+  - [Development Principles](../03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md) — 7-1. OmniOne CX, 7-2. Open DID, 7-3. OmniOne Chain
   - [API Specs](../03_Technical_Specs/02_API_SPECS.md) — 2. `/auth`, 8. `/chain`
-  - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 4. 온체인 기록 대상 정리
-  - [Development Principles](../03_Technical_Specs/00_DEVELOPMENT_PRINCIPLES.md) — 5. 보안 원칙
-- 생성/업데이트 문서:
-  - [API Specs](../03_Technical_Specs/02_API_SPECS.md)
-  - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md)
-  - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md)
-- 산출물:
-  - 인증 결과 처리
-  - TX 기록 및 조회
-  - 해시 표시 UI
+  - [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — `chain_tx_id`, `target_did_hash`
+
+#### MVP 최소 성공 기준 (가점 +10% 충족 조건)
+
+아래 3가지가 데모에서 동작하면 가점 조건을 충족한다:
+- [ ] OmniOne CX 인증 1회 (가입 또는 로그인 중 1 지점)
+- [ ] Open DID VC 발급 1회 + OmniOne Chain txId 1개 표시
+- [ ] VP 검증 1회
+
+M-05-P1~P3 완료 시 위 3가지를 충족한다. P4는 완성도와 시연 임팩트 향상이 목적이다.
+
+#### 구현 전략
+
+각 Open DID 서버(TAS, Issuer, Verifier, Ledger Service)를 처음부터 짜지 않는다.  
+`did-demo-server`(OmniOneID GitHub, Apache-2.0)를 Docker로 로컬 실행 → 전체 흐름 파악 → NOA 백엔드에서 각 서버 API를 호출하는 방식으로 연동한다.  
+OmniOne CX SDK는 해커톤 오리엔테이션(2026-07-01) 이후 RaonSecure가 직접 제공한다.
+
+#### Fallback 전략
+
+외부 SDK·서버 장애에 대비해 각 페이즈에 Mock 모드를 병행 유지한다.  
+데모 당일 실연동이 안 될 경우: Mock 데이터로 동일 UI 흐름을 시연하고 화면 녹화로 보완한다.
+
+---
+
+### [ ] M-05-P1. SDK·서버 환경 셋업 (2026-07-01 ~ 07-14, 2주)
+
+- 우선순위: High
+- 작업 유형: MVP Implementation
+- 목표: OmniOne CX SDK와 Open DID 서버군을 로컬에서 실행하고 기본 연결을 확인한다.
+- 구현 방법:
+  - [ ] `did-demo-server` Docker Compose로 로컬 실행 (TAS·CA·Issuer·Verifier·Ledger Service 포함)
+  - [ ] 데모 서버 실행 확인 후 전체 흐름(DID 등록 → VC 발급 → VP 검증 → txId) 로컬 시연
+  - [ ] OmniOne CX SDK 수령 및 연동 가이드 검토
+  - [ ] OmniOne CX Mock 인증 모드 구현 (실 SDK 연동 전 UI 흐름 선행 개발)
+  - [ ] NestJS 백엔드에서 Ledger Service `POST /api/v1/diddoc/register` 호출 테스트
+- 리스크:
+  - did-demo-server Java 21 + Gradle 환경 셋업에 1~2일 소요 예상
+  - OmniOne CX SDK 수령이 오리엔테이션 이후 지연될 경우 Mock 모드로 P2 선행 진행
 - 완료 기준:
-  - 최소 1개 인증 또는 TX 데모가 성공함
-  - 개인정보 원문이 온체인에 기록되지 않음
-  - 실패 시 데모 모드 fallback이 준비됨
+  - [ ] did-demo-server 로컬에서 전체 흐름 1회 실행 성공
+  - [ ] Ledger Service API 호출 시 txId 반환 확인
+  - [ ] OmniOne CX Mock 인증 → JWT 발급 흐름 동작
 
-### M-06. 공공 마이데이터 자격 확인 데모 구현
+### [ ] M-05-P2. OmniOne CX 1차 연동 + 사용자 DID 등록 (2026-07-15 ~ 08-04, 3주)
 
-- 상태: Planned
+- 우선순위: High
+- 작업 유형: MVP Implementation
+- 목표: 서비스 가입·로그인 시 OmniOne CX 실인증을 연동하고, TAS P132를 통해 사용자 DID를 OmniOne Chain에 등록한다.
+- 구현 방법:
+  - [ ] OmniOne CX SDK 실인증 연동 (표준 인증창 호출 → 콜백 처리 → did_hash 추출)
+  - [ ] TAS P132 6단계 구현: `propose-register-user` → `request-ecdh` → `request-create-token` → `retrieve-kyc` → `request-register-user` → `confirm-register-user`
+  - [ ] Ledger Service `POST /api/v1/diddoc/register` → txId-1 수신 및 DB 저장 (`users.chain_tx_id`)
+  - [ ] JWT 발급 연계 (OmniOne CX 콜백 검증 후 서버 JWT 발급)
+  - [ ] P132 단계별 실패 처리 (재시도 3회, 가입 미완료 상태 유지)
+- 리스크:
+  - TAS P132 ECDH 세션키 교환 구현이 복잡. did-demo-server 소스 코드 참조 필수
+  - OmniOne CX 콜백 파라미터가 제공 가이드와 다를 경우 적응 필요
+- 완료 기준:
+  - [ ] OmniOne CX 실인증 후 did_hash 추출 성공
+  - [ ] DID Document OmniOne Chain 등록 txId 반환 확인
+  - [ ] 사용자 가입 플로우 전체 동작
+
+### [ ] M-05-P3. VC 발급 + OmniOne Chain 기록 (2026-08-05 ~ 08-25, 3주)
+
+- 우선순위: High
+- 작업 유형: MVP Implementation
+- 목표: 담당자 승인 완료 후 수급 자격 VC를 발급하고 메타데이터를 OmniOne Chain에 기록하여 txId를 수급자에게 표시한다.
+- 구현 방법:
+  - [ ] Issuer Server P210 5단계 구현: `request-offer` → `inspect-propose-issue` → `generate-issue-profile` → `issue-vc` → `complete-vc`
+  - [ ] VC 스키마 정의: `GET /api/v1/vc/vcschema`로 기존 스키마 확인 → 복지 수급 자격 VC 커스텀 스키마 등록
+  - [ ] Ledger Service `POST /api/v1/vcmeta/register` → txId-2 수신 및 DB 저장 (`support_executions.chain_tx_id`)
+  - [ ] 수급자 대시보드에 txId 표시 UI (OmniOne Chain 조회 링크 포함)
+  - [ ] 담당자 승인 API(`POST /dashboard/execute`)와 VC 발급 흐름 연결
+- 리스크:
+  - P210 E2E 암호화 구현이 가장 복잡한 부분. did-demo-server의 issuer 모듈 코드를 그대로 활용
+  - VC 커스텀 스키마 등록이 막힐 경우 기본 스키마로 대체
+- 완료 기준:
+  - [ ] 담당자 승인 → VC 발급 → txId 생성 → 수급자 화면 표시 전체 흐름 동작
+  - [ ] 개인정보 원문이 온체인에 기록되지 않음 (메타데이터 해시만)
+  - [ ] **이 시점에 가점 +10% 최소 조건 충족** (OmniOne CX + VC 발급 + txId)
+
+### [ ] M-05-P4. VP 검증 + OmniOne CX 2차 확인 + 집행 완성 (2026-08-26 ~ 09-07, 2주)
+
 - 우선순위: Medium
 - 작업 유형: MVP Implementation
-- 목표: 대상자 동의 화면, Mock 자격 정보 조회, 담당자 대시보드 확인 배지 흐름을 구현한다.
+- 목표: 집행 직전 수급자 VP 제출과 OmniOne CX 재확인을 결합해 이중 신원 검증 후 집행하고 txId를 기록한다.
+- 구현 방법:
+  - [ ] Verifier Server P310 4단계 구현: `request-offer-qr` → `request-profile` → `request-verify` → `confirm-verify`
+  - [ ] QR 기반 VP 제출 흐름: 담당자 화면에서 QR 생성 → 수급자 앱에서 스캔 → VP 제출
+  - [ ] OmniOne CX 2차 재확인 (집행 직전 신뢰 포인트 2)
+  - [ ] VP 검증 완료 후 VC 즉시 폐기: `updateVcStatus(vcId, REVOKED)` + Ledger Service 상태 변경
+  - [ ] 집행 이벤트 해시 온체인 기록: SHA-256(did_hash + support_type + amount + timestamp) → txId-3
+- 리스크:
+  - QR 기반 VP 제출은 모바일 앱과 웹 동시 동작 필요. 데모용으로 같은 기기 QR 스캔 시나리오로 단순화 가능
+  - OmniOne CX 2차 확인이 1차와 동일 SDK 경로면 재사용 가능, 다르면 추가 구현 필요
+- 완료 기준:
+  - [ ] 집행 직전 VP 검증 → 집행 → txId-3 기록 흐름 동작
+  - [ ] VC 폐기 후 DB 원문 삭제 확인
+  - [ ] 전체 신뢰 체인 (txId-1 DID 등록 → txId-2 VC 메타 → txId-3 집행) 시연 가능
+
+### [ ] M-06. Soli 복지 매칭 데모 구현
+
+- 우선순위: Medium
+- 작업 유형: MVP Implementation
+- 목표: 한국사회보장정보원 복지서비스 API 연동, 기본 조건·상황 체크리스트 입력, 복지 매칭 카드 표시 흐름을 구현한다.
 - 필수 참조:
-  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 3-6. 공공 마이데이터 자격 확인 흐름
+  - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 3-6. 복지 데이터 연동 구조
+  - [Field Outreach Strategy](../01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md) — 공과금 체납 상담, 사용자 제출 증빙, 동의 기반 생활위기 체크
   - [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 4. 제안내용의 상세 설명
-  - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md) — 6. 결선 MVP 계획 점검
+  - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md) — 6. MVP 개발 단계 계획 점검
 - 생성/업데이트 문서:
   - [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md)
   - [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md)
 - 산출물:
-  - 동의 화면
-  - Mock 자격 확인 결과
-  - 담당자 확인 배지
-  - 자격 확인 이벤트 해시 표시
+  - 기본 조건 입력 UI
+  - 상황 체크리스트
+  - 복지 매칭 결과 카드
+  - 복지로/정부24 외부 신청 링크
 - 완료 기준:
-  - 대상자 동의 없이는 자격 확인이 진행되지 않음
-  - 마이데이터 원문이 저장되지 않음
-  - 실제 운영 API 계약·심사 완료가 MVP 필수 조건으로 오해되지 않음
+  - 인증된 사용자 세션에서 매칭 결과가 생성됨
+  - 개인 행정정보 조회가 진행되지 않음
+  - 실제 공공 마이데이터 운영 API 계약·심사 완료가 MVP 필수 조건으로 오해되지 않음
 
 ---
 
 ## 7. QA 및 발표 준비 백로그
 
-### Q-01. 내용 정합성 및 근거 검증
+### [ ] Q-01. 내용 정합성 및 근거 검증
 
-- 상태: Todo
 - 우선순위: High
 - 작업 유형: QA
 - 목표: 제안서의 문제, 기술, 사업성 문장이 기존 문서와 서로 충돌하지 않는지 확인한다.
@@ -534,9 +695,8 @@
 - 완료 기준:
   - MVP 범위, 기술 스택, 수익 모델, 개인정보 원칙이 문서 간 일치함
 
-### Q-02. 제출 전 QA 체크리스트 완료
+### [ ] Q-02. 제출 전 QA 체크리스트 완료
 
-- 상태: Todo
 - 우선순위: High
 - 작업 유형: QA
 - 목표: 양식, 목차, 심사 기준, Track 2 조건, 제출 파일명을 최종 점검한다.
@@ -551,9 +711,8 @@
   - 모든 필수 항목이 체크됨
   - 미확정 항목이 별도 표시됨
 
-### Q-03. 8분 발표 및 5분 Q&A 흐름 점검
+### [ ] Q-03. 8분 발표 및 5분 Q&A 흐름 점검
 
-- 상태: Todo
 - 우선순위: Medium
 - 작업 유형: QA
 - 목표: 제안서가 발표 시간 안에 설명 가능한 흐름인지 검증한다.
@@ -570,9 +729,8 @@
   - 8분 내 설명 가능
   - 기술 필수조건, 사업성, 실현 가능성 질문에 답변 가능
 
-### Q-04. 제출 패키지 최종화
+### [ ] Q-04. 제출 패키지 최종화
 
-- 상태: Todo
 - 우선순위: High
 - 작업 유형: QA
 - 목표: 온라인 모집 마감 전 제출 파일을 최종 확정한다.
@@ -591,15 +749,15 @@
 
 ---
 
-## 8. 결선 리스크와 대응
+## 8. MVP 개발 단계 리스크와 대응
 
 | 리스크 | 대응 | 관련 백로그 |
 |:---|:---|:---|
-| OmniOne CX/Chain SDK 연동 지연 | 데모 모드와 실제 연동 모드를 분리하고, 최소 1개 인증·TX 성공을 목표로 축소 | `T-01`, `T-02`, `M-05` |
-| 공공 마이데이터 운영 API 연동 지연 | MVP에서는 동의 화면과 Mock 응답으로 자격 확인 흐름을 시연하고, 실제 운영 API 계약·심사는 파일럿 단계로 분리 | `T-04`, `M-06` |
+| OmniOne CX/Chain SDK 연동 지연 | 데모 모드와 실제 연동 모드를 분리하되, 가점 확보를 위해 최소 1개 인증·VC 발급·VP 검증·txId 성공을 목표로 축소 | `T-01`, `T-02`, `M-05` |
+| 공공 마이데이터 운영 API 연동 지연 | MVP 범위에서 개인 자격 확인을 제외하고, 복지서비스 API 실연동 기반 Soli 복지 매칭으로 범위를 축소 | `T-04`, `M-06` |
 | AI 응답 품질 불안정 | 위기 키워드 룰 기반 스코어링을 fallback으로 구현 | `T-03`, `M-02` |
-| 개인정보 이슈 | 실사용자 데이터 없이 데모 데이터와 DID 해시만 사용. 마이데이터 원문은 저장하지 않고 확인 결과와 이벤트 해시만 남김 | `T-01`, `T-02`, `T-04`, `M-03`, `M-05`, `M-06` |
-| 범위 과대 | Phase 2 가족 안부 케어는 제외하고, 핵심 시연은 이웃 제보→담당자 승인→온체인 기록에 집중 | `P-05`, `M-03`, `M-04`, `M-05`, `M-06` |
+| 개인정보 이슈 | 실사용자 데이터 없이 데모 데이터와 DID 해시만 사용. 개인 행정정보 원문은 조회·저장하지 않음 | `T-01`, `T-02`, `T-04`, `M-05`, `M-06` |
+| 범위 과대 | Phase 2 가족 안부 케어는 제외하고, 핵심 시연은 Soli 감지→담당자 승인→온체인 기록에 집중 | `P-05`, `M-02`, `M-04`, `M-05`, `M-06` |
 | 발표 당일 네트워크 장애 | 로컬 데모 데이터와 녹화 영상을 백업으로 준비 | `Q-03`, `Q-04` |
 
 ---
@@ -610,4 +768,4 @@
 - **Logic_Progress**: [Roadmap](./00_ROADMAP.md) — 해커톤 일정 및 단계별 계획
 - **Concept_Design**: [Product Specs](../01_Concept_Design/03_PRODUCT_SPECS.md) — 제안서 기준 MVP 범위
 - **Concept_Design**: [Proposal Deck](../01_Concept_Design/04_PITCH_DECK.md) — 공모 제안서 본문 작성 기준
-- **QA_Validation**: [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md) — 제안서 및 결선 계획 점검 항목
+- **QA_Validation**: [QA Checklist](../05_QA_Validation/02_QA_CHECKLIST.md) — 제안서 및 MVP 계획 점검 항목
