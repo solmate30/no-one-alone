@@ -170,7 +170,8 @@ If any of these is missing, complete the document first.
 |:---|:---|
 | Frontend + Backend | Next.js 14+ App Router + Route Handlers + TypeScript (1차 목표) |
 | ORM | Drizzle ORM + PostgreSQL 16+ |
-| AI | Claude API — latest Sonnet model (confirm at finals entry) |
+| AI | LLM API (공급사 미확정 — MVP 진입 시 확정) |
+| 전화·SMS | Twilio 또는 알리고·NCP (MVP 진입 시 확정, mock fallback 준비) |
 | Auth | OmniOne CX (mobile ID / DID), Open DID |
 | Blockchain | OmniOne Chain |
 | Infra | Vercel (Next.js 단일 배포) |
@@ -199,7 +200,7 @@ web/
 server/src/
 ├── auth/       — OmniOne CX DID 인증, JWT 발급
 ├── crisis/     — 위기도 스코어링
-├── soli/       — Claude API 챗봇
+├── soli/       — 솔이 AI (LLM API 연동)
 ├── targets/    — 정기 안부 대상자 등록
 ├── welfare/    — Soli 복지 매칭
 ├── dashboard/  — 담당자 대시보드

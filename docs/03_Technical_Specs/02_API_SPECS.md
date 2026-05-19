@@ -1,6 +1,6 @@
 # API Specs — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-13 12:30
+> Last Updated: 2026-05-20 13:00
 > Backlog: T-01, T-02, T-03, M-02, M-03, M-04, M-05
 
 ## 1. 공통 규칙
@@ -81,7 +81,7 @@ Open DID — 지원 확인 VC 발급
 **Request** (인증 필요)
 ```json
 {
-  "purpose": "welfare_eligibility",
+  "purpose": "support_confirmation",
   "application_id": "app_xyz"
 }
 ```
@@ -104,7 +104,7 @@ Open DID — 제출된 VP 검증
 ```json
 {
   "vp_token": "vp_eyJ...",
-  "required_claim": "welfare_eligibility"
+  "required_claim": "support_confirmation"
 }
 ```
 
@@ -128,8 +128,8 @@ Open DID — 제출된 VP 검증
 ```json
 {
   "target_did_hash": "sha256:target123...",
-  "source": "soli",
-  "soli_conversation_id": "conv_abc"
+  "source": "soli_call",
+  "soli_signal_id": "call_abc"
 }
 ```
 
@@ -174,15 +174,67 @@ Open DID — 제출된 VP 검증
 
 ---
 
-## 4. `/soli` — Soli 챗봇 (위기 감지 1차 경로)
+## 4. `/soli` — 솔이 전화 및 SMS·웹 채팅
+
+솔이의 1단계는 아웃바운드 전화다. 2단계에서 대상자는 SMS 또는 웹 채팅(/checkin) 중 편한 채널을 선택한다. 두 채널은 병렬 운영되며, 모든 신호는 동일하게 NOA 서버가 수신·처리해 담당자 대시보드에 반영한다.
+
+### `POST /soli/calls/schedule`
+솔이 정기 전화 예약 (담당자 전용)
+
+**Request**
+```json
+{
+  "target_did_hash": "sha256:target123...",
+  "frequency": "weekly",
+  "preferred_time": "09:00"
+}
+```
+
+> `target_did_hash`로 DB의 `monitoring_targets.target_phone_ciphertext`를 조회해 복호화한 뒤 Provider에 전달한다. 전화번호 원문은 API 요청에 포함하지 않는다.
+
+**Response**
+```json
+{
+  "call_schedule_id": "sched_abc",
+  "next_call_at": "2026-07-22T00:00:00Z"
+}
+```
+
+---
+
+### `POST /soli/calls/webhook`
+아웃바운드 통화 결과 수신 (전화 API webhook)
+
+**Request**
+```json
+{
+  "call_id": "call_abc",
+  "target_did_hash": "sha256:target123...",
+  "status": "completed",
+  "duration_seconds": 312,
+  "stt_ciphertext_ref": "s3://encrypted/call_abc",
+  "absence_count": 0
+}
+```
+
+**Response**
+```json
+{
+  "accepted": true,
+  "analysis_job_id": "job_abc"
+}
+```
+
+---
 
 ### `POST /soli/chat`
-Soli 대화 (인증 필요 — 시민) — Critical Path
+솔이 웹 채팅 채널 (인증 필요 — 시민, JWT/DID 기반)
 
 **Request**
 ```json
 {
   "conversation_id": "conv_abc",
+  "channel": "web",
   "message": "요즘 너무 힘들어요."
 }
 ```
@@ -196,13 +248,37 @@ data: {"done": true, "crisis_score": 5.2}
 
 ---
 
-### `GET /soli/summary/:conversation_id` (담당자 전용)
-Soli 대화 요약 조회 (원문 아님)
+### `POST /soli/webhook/sms`
+솔이 SMS 채널 수신 웹훅 (인증 불필요 — 통신사 Provider 발신)
+
+MVP에서는 Twilio / 알리고 / NCP 중 1개 실연동 또는 mock으로 대체한다.
+
+**Request** (Provider webhook payload)
+```json
+{
+  "provider":          "twilio",
+  "provider_message_id": "SM_abc123",
+  "from_phone_hash":   "sha256:...",
+  "body":              "요즘 많이 힘드네요",
+  "received_at":       "2026-08-01T09:00:00Z"
+}
+```
+
+**Response**
+```json
+{ "queued": true, "signal_id": "sig_xyz" }
+```
+
+---
+
+### `GET /soli/summary/:signal_id` (담당자 전용)
+솔이 통화·SMS·웹 채팅 요약 조회 (원문 아님)
 
 **Response**
 ```json
 {
-  "summary": "최근 2주간 경제적 어려움과 사회적 고립감 표현. 외출 빈도 감소.",
+  "source": "call",
+  "summary": "최근 통화에서 경제적 어려움과 사회적 고립감 표현. 목소리 에너지 저하와 외출 빈도 감소 언급.",
   "emotion_tags": ["불안", "고립"],
   "crisis_score": 6.8
 }
@@ -210,7 +286,7 @@ Soli 대화 요약 조회 (원문 아님)
 
 ---
 
-## 5. `/welfare` — Soli 복지 매칭
+## 5. `/welfare` — 솔이 복지 매칭
 
 ### `POST /welfare/match`
 복지 자동 매칭 (가입·로그인 인증 세션 필요)
@@ -261,7 +337,7 @@ Soli 대화 요약 조회 (원문 아님)
       "score": 8.2,
       "soli_gap_hours": 48,
       "eligibility_status": "verified",
-      "care_type": ["Soli 감지", "Soli 복지 매칭", "담당자 등록"]
+      "care_type": ["솔이 감지", "솔이 복지 매칭", "담당자 등록"]
     }
   ]
 }
@@ -318,7 +394,7 @@ Soli 대화 요약 조회 (원문 아님)
 
 ## 8. Future APIs — MVP 이후 확장 후보
 
-아래 API는 2026-07-01 ~ 2026-09-21 MVP 구현 범위가 아니다. 제안서에서는 사업 확장 가능성을 설명하기 위한 후보 계약으로만 다루며, 결선 MVP에서는 Soli 감지, 담당자 승인, 본인 확인, VC/txId 표시 흐름을 우선 구현한다.
+아래 API는 2026-07-01 ~ 2026-09-21 MVP 구현 범위가 아니다. 제안서에서는 사업 확장 가능성을 설명하기 위한 후보 계약으로만 다루며, 결선 MVP에서는 솔이 감지, 담당자 승인, 본인 확인, VC/txId 표시 흐름을 우선 구현한다.
 
 ### 8-1. `/csr` — CSR 기부·ESG 리포트
 

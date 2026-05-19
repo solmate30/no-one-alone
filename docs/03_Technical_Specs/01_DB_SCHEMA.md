@@ -1,6 +1,6 @@
 # DB Schema — no-one-alone
 > Created: 2026-05-08 01:39
-> Last Updated: 2026-05-13 12:30
+> Last Updated: 2026-05-20 13:00
 > Backlog: T-01, T-02, T-03, M-02, M-03, M-04, M-05
 
 ## 1. 설계 원칙
@@ -54,31 +54,33 @@ crisis_scores
 └── updated_at      TIMESTAMPTZ DEFAULT now()
 ```
 
-### 2-4. `monitoring_targets` — 정기 안부 대상자 등록
+### 2-4. `monitoring_targets` — 정기 전화 대상자 등록
 
-> **MVP 범위**: 담당자가 기존 관리 대상자를 등록하고, 대상자 본인 동의 후 Soli 정기 안부를 시작한다. 가족 케어와 이웃 제보는 Phase 2에서 재검토한다.
+> **MVP 범위**: 현장 QR 자가 가입 또는 담당자 등록 후, 대상자 본인 동의 기반으로 솔이 정기 전화를 시작한다. 자가 가입은 수급 자격을 확정하는 복지 신청이 아니라, 솔이가 먼저 전화할 수 있도록 수신 동의를 확보하고 필요 시 복지 연결로 이어지는 안부 연결 신청이다. 전화 이후 2단계에서 SMS 또는 웹 채팅 중 사용자가 선택한 채널로 대화를 이어간다.
 
 ```sql
 monitoring_targets
 ├── id              UUID PRIMARY KEY DEFAULT gen_random_uuid()
 ├── target_did_hash TEXT NOT NULL            -- 대상자 DID 해시
-├── target_phone_hash TEXT                   -- 연락처 해시 (원문 저장 금지)
+├── target_phone_hash       TEXT NOT NULL    -- 전화번호 해시 (검색·중복 방지용, 발신 불가)
+├── target_phone_ciphertext TEXT NOT NULL    -- 암호화된 전화번호 원문 (AES-256-GCM, 발신·SMS 전송에만 사용)
 ├── district_code   TEXT NOT NULL            -- 담당 관할 코드
-├── consented_at    TIMESTAMPTZ              -- 정기 안부 동의 완료 시각
-├── frequency       TEXT DEFAULT 'daily'     -- 'daily' | 'every_other_day'
+├── consented_at    TIMESTAMPTZ              -- 정기 전화 수신 동의 완료 시각
+├── frequency       TEXT DEFAULT 'weekly'    -- 'weekly' | 'twice_weekly' | 'three_four_weekly'
+├── preferred_time  TEXT                     -- 대상자가 선호하는 통화 시간대
 ├── alert_threshold NUMERIC(4,1) DEFAULT 7.0 -- 담당자 알림 발송 위기도 기준
 ├── is_active       BOOLEAN DEFAULT true
 ├── created_at      TIMESTAMPTZ DEFAULT now()
 └── updated_at      TIMESTAMPTZ DEFAULT now()
 ```
 
-### 2-5. `welfare_matches` — Soli 복지 매칭 결과
+### 2-5. `welfare_matches` — 솔이 복지 매칭 결과
 
 ```sql
 welfare_matches
 ├── id              UUID PRIMARY KEY DEFAULT gen_random_uuid()
 ├── user_did_hash   TEXT NOT NULL            -- 대상자 DID 해시
-├── conversation_id UUID                     -- Soli 대화 ID
+├── signal_id       UUID                     -- 솔이 통화·SMS·웹 채팅 신호 ID
 ├── profile         JSONB                    -- 연령대·지역·가구 형태 등 직접 입력 조건
 ├── situation_tags  TEXT[]                   -- 실직·질병·주거 불안·돌봄 공백 등 체크리스트
 ├── welfare_code    TEXT NOT NULL            -- 복지서비스 코드
@@ -95,7 +97,7 @@ welfare_matches
 ```sql
 support_executions
 ├── id              UUID PRIMARY KEY DEFAULT gen_random_uuid()
-├── recipient_did_hash TEXT NOT NULL         -- 수급자 DID 해시 (원문 저장 금지)
+├── recipient_did_hash TEXT NOT NULL         -- 대상자 DID 해시 (원문 저장 금지)
 ├── support_type    TEXT NOT NULL            -- '긴급생활비' | '식료품' | '의료비' 등
 ├── amount          NUMERIC(12,0)            -- 집행 금액 (원)
 ├── officer_id      UUID NOT NULL REFERENCES officers(id)
@@ -106,13 +108,18 @@ support_executions
 └── updated_at      TIMESTAMPTZ DEFAULT now()
 ```
 
-### 2-7. `soli_conversations` — Soli 대화 로그 (위기 감지 1차 소스)
+### 2-7. `soli_call_sessions` — 솔이 전화 통화 로그 (위기 감지 1차 소스)
 
 ```sql
-soli_conversations
+soli_call_sessions
 ├── id              UUID PRIMARY KEY DEFAULT gen_random_uuid()
-├── user_did_hash   TEXT NOT NULL            -- 대화 사용자 DID 해시
-├── messages        BYTEA NOT NULL           -- AES-256 암호화된 대화 전문
+├── target_did_hash TEXT NOT NULL            -- 통화 대상자 DID 해시
+├── call_status     TEXT NOT NULL            -- 'scheduled' | 'completed' | 'missed' | 'failed'
+├── scheduled_at    TIMESTAMPTZ
+├── started_at      TIMESTAMPTZ
+├── ended_at        TIMESTAMPTZ
+├── absence_count   INTEGER DEFAULT 0
+├── stt_ciphertext  BYTEA                    -- AES-256 암호화된 STT 전문
 ├── summary         TEXT                     -- AI 요약 (담당자 제공용)
 ├── emotion_tags    TEXT[]                   -- ['불안', '고립', '무기력'] 등
 ├── crisis_score    NUMERIC(4,1)             -- 이 대화에서 산출된 위기도
@@ -120,7 +127,24 @@ soli_conversations
 └── updated_at      TIMESTAMPTZ DEFAULT now()
 ```
 
-### 2-8. `csr_donations` — 기업 CSR 기부
+### 2-8. `soli_conversations` — 솔이 SMS·웹 채팅 로그
+
+```sql
+soli_conversations
+├── id                   UUID PRIMARY KEY DEFAULT gen_random_uuid()
+├── user_did_hash        TEXT NOT NULL            -- 대상자 DID 해시
+├── channel              TEXT NOT NULL            -- 'sms' | 'web'
+├── provider_message_id  TEXT                     -- SMS Provider 메시지 ID (channel='sms'일 때)
+├── from_phone_hash      TEXT                     -- 발신 전화번호 해시 (channel='sms'일 때)
+├── messages             BYTEA NOT NULL           -- AES-256 암호화된 대화 전문
+├── summary              TEXT                     -- AI 요약 (담당자 제공용)
+├── emotion_tags         TEXT[]                   -- ['불안', '고립', '무기력'] 등
+├── crisis_score         NUMERIC(4,1)             -- 이 대화에서 산출된 위기도
+├── created_at           TIMESTAMPTZ DEFAULT now()
+└── updated_at           TIMESTAMPTZ DEFAULT now()
+```
+
+### 2-9. `csr_donations` — 기업 CSR 기부
 
 > **Future scope**: MVP 구현 대상이 아니다. 집행 증명 구조가 CSR 증빙으로 확장될 수 있음을 설명하기 위한 파일럿 이후 후보 테이블이다.
 
@@ -139,7 +163,7 @@ csr_donations
 └── updated_at      TIMESTAMPTZ DEFAULT now()
 ```
 
-### 2-9. `insurance_data_exports` — 보험사 데이터 API 제공 이력
+### 2-10. `insurance_data_exports` — 보험사 데이터 API 제공 이력
 
 > **Future scope**: MVP 구현 대상이 아니다. 보험사에는 개인 단위 데이터가 아니라 집계·비식별 통계만 제공한다는 장기 사업 경계를 설명하기 위한 후보 테이블이다.
 
@@ -166,10 +190,13 @@ insurance_data_exports
 -- 위기도 스코어 최신 조회 (대시보드 우선순위)
 CREATE INDEX idx_crisis_scores_target_created ON crisis_scores(target_did_hash, created_at DESC);
 
--- 정기 안부 대상자 조회
+-- 정기 전화 대상자 조회
 CREATE INDEX idx_monitoring_targets ON monitoring_targets(district_code, is_active);
 
--- 대화 로그 사용자별 최신
+-- 통화 로그 사용자별 최신
+CREATE INDEX idx_soli_call_target_created ON soli_call_sessions(target_did_hash, created_at DESC);
+
+-- SMS·웹 채팅 로그 사용자별 최신
 CREATE INDEX idx_soli_user_created ON soli_conversations(user_did_hash, created_at DESC);
 ```
 
@@ -180,7 +207,7 @@ CREATE INDEX idx_soli_user_created ON soli_conversations(user_did_hash, created_
 | 테이블 | 온체인 기록 시점 | 기록 내용 |
 |:---|:---|:---|
 | `welfare_matches` | 복지 매칭 결과 참조 | 매칭 결과 해시 + 생성 타임스탬프 |
-| `support_executions` | 집행 승인 완료 | 수급자 DID 해시 + 지원 종류·금액 해시 + 담당자 DID 해시 |
+| `support_executions` | 집행 승인 완료 | 대상자 DID 해시 + 지원 종류·금액 해시 + 담당자 DID 해시 |
 | `csr_donations` | 파일럿 이후 | 기업명 해시 + 금액 집계 + 수혜자 수 |
 | `insurance_data_exports` | 파일럿 이후 | 보험사명 해시 + 집계 범위 해시 + 제공 데이터셋 해시 |
 

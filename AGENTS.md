@@ -1,6 +1,6 @@
 # AGENTS.md — no-one-alone
 > Created: 2026-05-08 17:45
-> Last Updated: 2026-05-13 12:30
+> Last Updated: 2026-05-20 15:44
 
 ## 1. Purpose
 
@@ -10,7 +10,16 @@ Project name: `no-one-alone` / Solmate
 
 Core message:
 
-> 국가가 못 찾는 사람을, AI가 찾고, 복지가 닿고, 블록체인이 증명한다.
+> 사회복지사의 눈이 닿지 않는 곳에, 솔이가 먼저 전화하고, 복지가 닿고, 블록체인이 증명한다.
+
+Current product direction:
+
+- AI name: `솔이`.
+- User-facing documents should use `솔이`, not `Soli`.
+- Internal code names may keep lowercase `soli` for paths, tables, and component identifiers.
+- Core service flow: AI phone call first → SMS or web chat by user choice → dashboard classification → caseworker intervention.
+- Self-signup stays in scope. The first user action is an `안부 연결 신청`, not a final welfare eligibility application.
+- 솔이는 welfare eligibility or support execution decisions을 자동 판정하지 않는다. 솔이는 전화·SMS·웹 채팅에서 위기 신호와 근거를 요약하고, 최종 판단은 담당자가 한다.
 
 Current state:
 
