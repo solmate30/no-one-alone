@@ -168,13 +168,13 @@ If any of these is missing, complete the document first.
 
 | Layer | Technology |
 |:---|:---|
-| Frontend | Next.js 14+ App Router + TypeScript — in `/web` |
-| Backend | NestJS + PostgreSQL 16+ — in `/server` |
-| ORM | Drizzle ORM (`server/drizzle/schema.ts`) |
+| Frontend + Backend | Next.js 14+ App Router + Route Handlers + TypeScript (1차 목표) |
+| ORM | Drizzle ORM + PostgreSQL 16+ |
 | AI | Claude API — latest Sonnet model (confirm at finals entry) |
 | Auth | OmniOne CX (mobile ID / DID), Open DID |
 | Blockchain | OmniOne Chain |
-| Infra | Vercel (frontend) + AWS (backend) |
+| Infra | Vercel (Next.js 단일 배포) |
+| 폴백 Backend | NestJS — Vercel 제약 시 AWS로 분리 |
 
 ### Frontend directory structure (planned)
 

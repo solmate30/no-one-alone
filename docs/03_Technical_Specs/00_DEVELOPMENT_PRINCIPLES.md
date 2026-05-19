@@ -7,16 +7,30 @@
 
 ## 1. 기술 스택
 
+### 1차 목표 (Next.js 단일 스택)
+
+Next.js App Router Route Handler로 백엔드 API까지 처리한다. 인프라가 단순하고 Vercel 배포 비용이 낮아 해커톤 3개월 개발에 유리하다.
+
+| 레이어 | 기술 | 버전 기준 |
+|:---|:---|:---|
+| Frontend + Backend | Next.js + TypeScript (App Router + Route Handlers) | Next.js 14+ |
+| ORM | Drizzle ORM + PostgreSQL | PostgreSQL 16+, 최신 stable |
+| AI | Claude API (Anthropic) | MVP 개발 단계 진입 시 공식 최신 Sonnet 계열 모델 확인 후 확정 |
+| Auth | OmniOne CX (모바일 신분증), Open DID | OmniOne CX SDK |
+| Blockchain | OmniOne Chain | 공식 SDK |
+| Infra | Vercel (Frontend + API) | - |
+| 정기 안부 크론 | Vercel Cron | - |
+| CI/CD | GitHub Actions | - |
+
+### 폴백 (NestJS 분리 스택)
+
+정기 안부 크론 잡, 장시간 스트리밍, 또는 Vercel 제약으로 Next.js 단일 스택으로 해결이 어려운 경우 NestJS를 별도 백엔드로 분리한다.
+
 | 레이어 | 기술 | 버전 기준 |
 |:---|:---|:---|
 | Frontend | Next.js + TypeScript | Next.js 14+ (App Router) |
 | Backend | NestJS + PostgreSQL | NestJS 10+, PostgreSQL 16+ |
-| ORM | Drizzle ORM | 최신 stable |
-| AI | Claude API (Anthropic) | MVP 개발 단계 진입 시 공식 최신 Sonnet 계열 모델 확인 후 확정 |
-| Auth | OmniOne CX (모바일 신분증), Open DID | OmniOne CX SDK |
-| Blockchain | OmniOne Chain | 공식 SDK |
 | Infra | Vercel (Frontend) + AWS (Backend) | - |
-| CI/CD | GitHub Actions | - |
 
 ---
 
