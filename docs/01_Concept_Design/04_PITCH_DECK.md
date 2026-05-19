@@ -479,6 +479,7 @@ VC 발급·집행   집행 완료 ←⑧← OmniOne CX ←⑦← Open DID 서버
 - **Concept_Design**: [Vision & Core Values](./01_VISION_CORE.md) — 핵심 비전 및 타겟 오디언스
 - **Concept_Design**: [Lean Canvas](./02_LEAN_CANVAS.md) — 비즈니스 모델 및 수익 구조
 - **Concept_Design**: [Product Specs](./03_PRODUCT_SPECS.md) — MVP 기능 명세
+- **Concept_Design**: [Field Outreach Strategy](./05_FIELD_OUTREACH_STRATEGY.md) — 55세 이상 현장 접점, 동의 기반 안전망, 발표용 극적 시나리오
 - **UI_Screens**: [Screen Flow](../02_UI_Screens/00_SCREEN_FLOW.md) — MVP 시연 화면 흐름
 - **UI_Screens**: [UI Design](../02_UI_Screens/01_UI_DESIGN.md) — 사용자·담당자 화면 설계 기준
 - **Technical_Specs**: [DB Schema](../03_Technical_Specs/01_DB_SCHEMA.md) — 데이터 저장 및 온체인 기록 기준

@@ -1,6 +1,6 @@
 # Document Index — no-one-alone
 > Created: 2026-05-08 17:35
-> Last Updated: 2026-05-13 02:00
+> Last Updated: 2026-05-18 14:18
 > Backlog: D-01
 
 ## 1. 목적
@@ -45,6 +45,7 @@
 | [Lean Canvas](./01_Concept_Design/02_LEAN_CANVAS.md) | Concept_Design | `P-02`, `P-03`, `P-06`, `D-02` | 문제, 고객 세그먼트, UVP, 수익 구조, 핵심 지표. |
 | [Product Specs](./01_Concept_Design/03_PRODUCT_SPECS.md) | Concept_Design | `P-01`, `P-02`, `P-04`, `P-05`, `T-01`, `T-02`, `T-03`, `T-04`, `M-01`, `M-02`, `M-03`, `M-04`, `M-05`, `M-06` | MVP 범위, 핵심 기능, Track 2 필수·선택 조건. |
 | [Proposal Deck](./01_Concept_Design/04_PITCH_DECK.md) | Concept_Design | `P-01`, `P-02`, `P-03`, `P-04`, `P-05`, `P-06`, `P-07`, `D-02`, `D-03`, `T-04`, `M-06`, `Q-02`, `Q-03` | 공모 제안서 본문, 요약서, 발표 흐름의 기준 문서. |
+| [Field Outreach Strategy](./01_Concept_Design/05_FIELD_OUTREACH_STRATEGY.md) | Concept_Design | `P-03`, `P-04`, `P-06`, `P-07`, `D-05`, `M-01`, `M-02`, `M-04`, `M-06` | 55세 이상 시니어 현장 접점, 동의 기반 안부 연결, 마케팅·도입 시나리오, 구현 설계 입력. |
 | [Pitch Deck HTML Preview](./pitch-deck.html) | Documentation | `P-07`, `Q-02` | 공모 제안서 내용을 시각적으로 확인하기 위한 HTML 미리보기 산출물. |
 | [Screen Flow](./02_UI_Screens/00_SCREEN_FLOW.md) | UI_Screens | `P-04`, `T-03`, `M-01`, `M-02`, `M-03`, `M-04` | 사용자별 화면 흐름과 핵심 플로우. |
 | [UI Design](./02_UI_Screens/01_UI_DESIGN.md) | UI_Screens | `P-04`, `T-01`, `T-03`, `M-01`, `M-02`, `M-03`, `M-04` | 대상자 웹 화면, 담당자 대시보드, Soli, 인증 UX 기준. |
